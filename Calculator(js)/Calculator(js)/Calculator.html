@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <meta charset="utf-8" />
+    <script src="Calculator.js"></script>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" id="resultWindow" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="btn1" value="1" onclick="NumBtnPress(1)" style="margin:5px" />
+                    <input type="button" id="btn2" value="2" onclick="NumBtnPress(2)" style="margin:5px" />
+                    <input type="button" id="btn3" value="3" onclick="NumBtnPress(3)" style="margin:5px" />
+                    <input type="button" id="btnAdd" value="+" onclick="ActionBtnPress('+')" style="margin:5px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="btn4" value="4" onclick="NumBtnPress(4)" style="margin:5px" />
+                    <input type="button" id="btn5" value="5" onclick="NumBtnPress(5)" style="margin:5px" />
+                    <input type="button" id="btn6" value="6" onclick="NumBtnPress(6)" style="margin:5px" />
+                    <input type="button" id="btnSub" value="-" onclick="ActionBtnPress('-')" style="margin:5px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="btn7" value="7" onclick="NumBtnPress(7)" style="margin:5px" />
+                    <input type="button" id="btn8" value="8" onclick="NumBtnPress(8)" style="margin:5px" />
+                    <input type="button" id="btn9" value="9" onclick="NumBtnPress(9)" style="margin:5px" />
+                    <input type="button" id="btnMul" value="*" onclick="ActionBtnPress('*')" style="margin:5px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="btn0" value="0" onclick="NumBtnPress(0)" style="margin-left:43px; margin-right:5px" />
+                    <input type="button" id="btnEqual" value="=" onclick="ActionBtnPress('=')" style="margin:5px" />
+                    <input type="button" id="btnDiv" value="/" onclick="ActionBtnPress('/')" style="margin:5px" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
