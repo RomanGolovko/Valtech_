@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="960a7022-cf33-4838-9572-e2a5bcb706ce"
+  name="BLL" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <suppliersInternal>
+    <dependency
+      Id="d6d12d86-ce30-467b-8d9b-a8c33c1ff003">
+      <packageMoniker
+        Id="d21a57ba-448b-4ce9-9712-6188ec3c7830"
+        LastKnownName="DAL"
+        LastKnownLocation="Package2_1428.uml" />
+    </dependency>
+  </suppliersInternal>
+  <importedPackagesInternal>
+    <packageImport
+      Id="068a24ca-befc-4c92-8c97-99c49f90bc48"
+      visibility="Public">
+      <packageMoniker
+        Id="b3c05b24-2958-4af0-8265-61d955e29e2b"
+        LastKnownName="CrossCutting"
+        LastKnownLocation="Package_1429.uml" />
+    </packageImport>
+  </importedPackagesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3e996cc7-e5bb-45a6-b10c-d0c081b96408"
+        LastKnownName="Package1"
+        LastKnownLocation="Package1_1428.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9d05d2d0-82b1-4d6e-8279-eae7cb106a42"
+        name="RealJob"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="1038113d-9536-4305-99fd-c4dad3970ba2"
+            isDerived="false"
+            sourceEndRoleName="RealJob"
+            targetEndRoleName="DataBase"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="0eb435ed-f2da-448a-965c-6b3421c82958"
+              LastKnownName="DataBase"
+              LastKnownLocation="Package2_1428.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2604be6f-f6ff-4763-9eb5-395f0e7af922"
+                  name="RealJob"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bc858565-7a73-4f4f-8762-7c33a164c2fa"
+                  name="DataBase"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="050ae544-49ad-4386-921a-7833abb25b74"
+            name="_db"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="true"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="1787ddac-e597-464f-b9c4-40cd7d22d476"
+                LastKnownName="DataBase"
+                LastKnownLocation="Package_1428.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e8b9298d-e5c4-4853-b33d-7b5b7c8df917"
+            name="GetRealJob"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="14266a44-5c88-4818-9b63-e23c22b0e7c4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6d5bb568-000a-4b6e-881e-9d6e97010397"
+                      LastKnownName="string"
+                      LastKnownLocation="Package_1428.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8ca29b67-2beb-46cf-9d8b-f00a166cf4fa"
+            name="GetFromDAL"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eac295e5-fcb1-4a7c-aba2-993ed00d46ea"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6d5bb568-000a-4b6e-881e-9d6e97010397"
+                      LastKnownName="string"
+                      LastKnownLocation="Package_1428.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="1787ddac-e597-464f-b9c4-40cd7d22d476"
+        name="DataBase" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="6d5bb568-000a-4b6e-881e-9d6e97010397"
+        name="string" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

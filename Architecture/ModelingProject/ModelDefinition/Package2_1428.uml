@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="d21a57ba-448b-4ce9-9712-6188ec3c7830"
+  name="DAL" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <importedPackagesInternal>
+    <packageImport
+      Id="3c2c899c-1028-4108-8d52-736dd9b296cb"
+      visibility="Public">
+      <packageMoniker
+        Id="b3c05b24-2958-4af0-8265-61d955e29e2b"
+        LastKnownName="CrossCutting"
+        LastKnownLocation="Package_1429.uml" />
+    </packageImport>
+  </importedPackagesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="0eb435ed-f2da-448a-965c-6b3421c82958"
+        name="DataBase"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="310ee413-6197-445e-a8f7-088d5317aebd"
+            name="GetDB"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5b877050-2b5f-4031-8991-255ede17c98d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6d5bb568-000a-4b6e-881e-9d6e97010397"
+                      LastKnownName="string"
+                      LastKnownLocation="Package_1428.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
