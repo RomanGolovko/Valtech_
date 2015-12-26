@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ab7f99cc-6230-4faa-823d-8a4edfdcfcb2"
+  name="Concrete" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="616b2253-afe5-4c4e-940a-280aaef6dede">
+      <profileInstance
+        Id="fd326b5d-b973-4dfc-bc19-e45bb2b14b08"
+        name="TextTemplateBindings" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b9649bfd-c30c-46ef-a03a-11f431415cba"
+        name="TicTacToeRules" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="395dbff4-67d9-4973-88b2-080e8781837e"
+        name="Player1Field" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="91c15927-8f36-4442-9f35-7d970eb6788f"
+        name="Player2Field" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7c248516-a0c6-46b7-8a42-fbb104f1af30"
+        name="Player1" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="0467c127-f65a-4d2f-980c-e4d235fa31ad"
+        name="Player2" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="63f4c9d1-1409-4119-bfdc-0e97a9b7b8f0"
+        name="int" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="693e857d-9173-449a-bc1f-ffb363d6a05d"
+        name="TicTacToe" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="576d83e0-c1d0-4bfe-8444-5286169996ce"
+        name="Button[]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="28cbb567-4e7a-47ea-b836-6c55bb9ca4cd"
+        LastKnownName="TicTacToe"
+        LastKnownLocation="Package_2225.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="fffd7552-c0b2-4ce2-9041-4f7ca540d798"
+        LastKnownName="GuessTheNumber"
+        LastKnownLocation="Package_2226.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
