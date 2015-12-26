@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Balls</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <div>
+        <script>
+            var Balls = [];
+
+            setInterval("Move(Balls)()", 25);
+
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            context.strokeStyle = "red";
+            var increaseX = false;
+            var increaseY = false;
+
+            var Ball = function (x, y, increaseX, increaseY) {
+                this.x = x;
+                this.y = y;
+                this.increaseX = increaseX;
+                this.increaseY = increaseY;
+            };
+
+            canvas.onclick = function (e) {
+                DrawBall(e);
+            };
+
+            function DrawBall(e)
+            {
+                var newBall = new Ball(e.clientX, e.clientY, false, false);
+
+                context.fillStyle = "red";
+                context.beginPath();
+                context.arc(newBall.x, newBall.y, 20, 0, Math.PI * 2, true);
+                context.fill();
+
+                var xDirection = Math.random() * (1 - (-1)) + (-1);
+                var yDirection = Math.random() * (1 - (-1)) + (-1);
+
+                if (xDirection >= 0 && yDirection >= 0) {
+                    newBall.increaseX = true;
+                    newBall.increaseY = true;
+                }
+                else if (xDirection < 0 && yDirection >= 0) {
+                    newBall.increaseX = false;
+                    newBall.increaseY = true;
+                }
+                else if (xDirection < 0 && yDirection < 0) {
+                    newBall.increaseX = true;
+                    newBall.increaseY = false;
+                }
+                else {
+                    newBall.increaseX = false;
+                    newBall.increaseY = false;
+                }
+                Balls.push(newBall);
+            }
+
+            function Move(balls)
+            {
+               context.clearRect(0, 0, 600, 600);
+
+                for (var i = 0; i < balls.length; i++) {
+
+                    if (balls[i].x == 20 || balls[i].x == 600 - 20) {
+                        balls[i].increaseX = !balls[i].increaseX;
+                    }
+
+                    if (balls[i].y == 20 || balls[i].y == 600 - 20) {
+                        balls[i].increaseY = !balls[i].increaseY;
+                    }
+
+                    if (balls[i].increaseX == true) {
+                        ++balls[i].x;
+                    }
+                    else {
+                        --balls[i].x;
+                    }
+
+                    if (balls[i].increaseY == true) {
+                        ++balls[i].y;
+                    }
+                    else {
+                        --balls[i].y;
+                    }
+
+                    context.fillStyle = "red";
+                    context.beginPath();
+                    context.arc(balls[i].x, balls[i].y, 20, 0, Math.PI * 2, true);
+                    context.fill();
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
