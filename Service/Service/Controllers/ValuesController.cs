@@ -18,5 +18,12 @@ namespace Service.Controllers
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             return response;
         }
-    }
+
+        public HttpResponseMessage Post([FromBody] int num1, [FromBody] int num2, [FromBody] string action)
+        {
+            var result = _calc.Calculate(num1, num2, action);
+            var response = Request.CreateResponse(HttpStatusCode.OK, result);
+            return response;
+        }
+    } 
 }
