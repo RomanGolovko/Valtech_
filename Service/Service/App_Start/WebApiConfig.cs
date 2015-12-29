@@ -15,7 +15,7 @@ namespace Service
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{num1}/{num2}/{act}",
+                routeTemplate: "api/{controller}/{num1}/{num2}/{act}",
                 defaults: new { num1 = RouteParameter.Optional, num2 = RouteParameter.Optional, act = RouteParameter.Optional}
             );
         }

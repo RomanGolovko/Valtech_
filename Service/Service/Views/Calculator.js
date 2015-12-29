@@ -36,14 +36,14 @@ function Calculate(num1, num2, action)
     }
 
     //var body = num1 + "/" + num2 + "/" + action;
-    //request.open("GET", "http://localhost:50865/api/values/Get/" + body);
+    //request.open("GET", "http://localhost:50865/api/values/" + body);
     //request.onreadystatechange = reqReadyStateChange;
     //request.send();
 
 
-    var body = num1 + "&" + num2 + "&" + action;
-    request.open("POST", "http://localhost:50865/api/values/Post");
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    var body = "num1=" + num1 + "&num2=" + num2 + "&action=" + action;
+    request.open("POST", "http://localhost:50865/api/values");
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.onreadystatechange = reqReadyStateChange;
     request.send(body);
 }

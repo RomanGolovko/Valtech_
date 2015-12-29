@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using BLL;
+using Service.Models;
 
 namespace Service.Controllers
 {
@@ -19,9 +20,9 @@ namespace Service.Controllers
             return response;
         }
 
-        public HttpResponseMessage Post([FromBody] int num1, [FromBody] int num2, [FromBody] string action)
+        public HttpResponseMessage Post([FromBody]Query query)
         {
-            var result = _calc.Calculate(num1, num2, action);
+            var result = _calc.Calculate(query.Num1, query.Num2, query.Action);
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             return response;
         }
