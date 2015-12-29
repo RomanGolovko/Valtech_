@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -32,20 +33,22 @@ namespace ServerImitation
             {
                 ReturnStaticPage(client, requestUri);
             }
+            else if (requestUri.Contains(@".php"))
+            {
+                var parse = request.Split('/');
+                var query = parse[1].Split(' ');
+                var data = query[0].Split('?');
+                ReturnPhpData(client, data[1]);
+            }
             else if (requestUri.Contains(@"/Job"))
             {
-                var temp = requestUri.Split('&');
-                var num1 = int.Parse(temp[1]);
-                var num2 = int.Parse(temp[2]);
-                var action = temp[3];
-                string Str = "HTTP/1.1 200 OK\nContent-type: text/html\nContent-Length:" + LocalWork(num1, num2, action).ToString().Length.ToString() + "\n\n" + LocalWork(num1, num2, action);
-                var Buffer = Encoding.ASCII.GetBytes(Str);
-                client.GetStream().Write(Buffer, 0, Buffer.Length);
+                ReturnServiceData(client, requestUri);
             }
 
             client.Close();
         }
 
+        #region Return page
         public void ReturnStaticPage(TcpClient client, string requestUri)
         {
             var filePath = @"C:\Users\Roman\Documents\Repository\Valtech_\ServerImitation\HTMLs\" + requestUri;
@@ -57,12 +60,12 @@ namespace ServerImitation
             {
                 fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             }
-            catch (Exception)
+            catch (Exception) 
             {
                 return;
             }
 
-            var header = "HTTP/1.1 200 OK\nContent-type: text/html\nContent-Length:" + fs.Length + "\n\n";
+            var header = "HTTP/1.1 200 OK\nContent-type: text/html\nAccess-Control-Allow-Origin: *\nContent-Length:" + fs.Length + "\n\n";
             var headersBuffer = Encoding.ASCII.GetBytes(header);
             client.GetStream().Write(headersBuffer, 0, headersBuffer.Length);
 
@@ -76,6 +79,46 @@ namespace ServerImitation
             }
 
             fs.Close();
+        }
+        #endregion
+
+        #region Return PHP data
+        public void ReturnPhpData(TcpClient client, string query)
+        {
+            var php = new Process();
+            php.StartInfo.FileName = @"C:\xampp\php\php-cgi.exe";
+            php.StartInfo.UseShellExecute = false;
+            php.StartInfo.RedirectStandardOutput = true;
+            php.OutputDataReceived += new DataReceivedEventHandler(php_OutputDataReceived);
+            php.StartInfo.EnvironmentVariables.Add("SCRIPT_FILENAME", @"C:\Users\Roman\Documents\Repository\Valtech_\ServerImitation\PHP\Calculator.php");
+            php.StartInfo.EnvironmentVariables.Add("QUERY_STRING", query);
+            php.Start();
+            var output = php.StandardOutput.ReadToEnd();
+            php.WaitForExit();
+            php.Close();
+
+            string Str = "HTTP/1.1 200 OK" + output;
+            var Buffer = Encoding.ASCII.GetBytes(Str);
+            client.GetStream().Write(Buffer, 0, Buffer.Length);
+        }
+
+        static void php_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Data);
+        }
+        #endregion
+
+        #region Return Service data
+        public void ReturnServiceData(TcpClient client, string requestUri)
+        {
+            var temp = requestUri.Split('&');
+            var num1 = int.Parse(temp[1]);
+            var num2 = int.Parse(temp[2]);
+            var action = temp[3];
+            var data = LocalWork(num1, num2, action);
+            string Str = "HTTP/1.1 200 OK\nContent-type: text/html\nAccess-Control-Allow-Origin: *\nContent-Length:" + data.ToString().Length.ToString() + "\n\n" + data;
+            var Buffer = Encoding.ASCII.GetBytes(Str);
+            client.GetStream().Write(Buffer, 0, Buffer.Length);
         }
 
         public int LocalWork(int num1, int num2, string action)
@@ -102,5 +145,6 @@ namespace ServerImitation
 
             return result;
         }
+        #endregion
     }
 }
