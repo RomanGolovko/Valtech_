@@ -37,13 +37,13 @@ function Calculate(num1, num2, action)
 
     var body = "&" + num1 + "&" + num2 + "&" + action;
 	
-    request.open("GET", "http://127.0.0.1:81/Job" + body, true);
+    request.open("GET", "http://127.0.0.1:88/Job" + body, true);
     request.onreadystatechange = reqReadyStateChange;
     request.send();
 
 
     //var body = num1 + "&" + num2 + "&" + action;
-    //request.open("POST", "http://127.0.0.1:81/Job");
+    //request.open("POST", "http://127.0.0.1:88/Job");
     //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //request.onreadystatechange = reqReadyStateChange;
     //request.send(body);

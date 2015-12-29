@@ -43,7 +43,7 @@ function Calculate(num1, num2, action)
 
 
     //var body = num1 + "&" + num2 + "&" + action;
-    //request.open("POST", "http://127.0.0.1:81/Job");
+    //request.open("POST", "http://127.0.0.1:88/Calculator.php");
     //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //request.onreadystatechange = reqReadyStateChange;
     //request.send(body);
