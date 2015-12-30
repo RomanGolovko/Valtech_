@@ -22,9 +22,7 @@ namespace Service.Controllers
 
         public HttpResponseMessage Post([FromBody]Query query)
         {
-            var result = _calc.Calculate(query.Num1, query.Num2, query.Action);
-            var response = Request.CreateResponse(HttpStatusCode.OK, result);
-            return response;
+            return Get(query.Num1, query.Num2, query.Action);
         }
     } 
 }
