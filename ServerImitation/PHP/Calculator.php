@@ -1,7 +1,10 @@
  <?php 
-  $act=$_GET['action'];
-  $num1=$_GET['num1']; 
-  $num2=$_GET['num2']; 
+
+	 $act=$_GET['action'];
+	 $num1=intval($_GET['num1']);
+	 $num2=intval($_GET['num2']);
+
+  
   $result=0;
   
   switch($act)
@@ -24,4 +27,4 @@
 
   header('Access-Control-Allow-Origin: *');
   echo $result; 
- ?> 
+ ?>

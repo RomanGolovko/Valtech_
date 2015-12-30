@@ -36,7 +36,6 @@ function Calculate(num1, num2, action)
     }
 
     var body = "?num1=" + num1 + "&num2=" + num2 + "&action=" + action;
-	
     request.open("GET", "http://127.0.0.1:88/Calculator.php" + body, true);
     request.onreadystatechange = reqReadyStateChange;
     request.send();
