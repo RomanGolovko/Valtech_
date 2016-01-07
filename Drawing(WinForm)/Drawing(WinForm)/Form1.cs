@@ -6,36 +6,43 @@ namespace Drawing_WinForm_
 {
     public partial class Main : Form
     {
-        private bool isPresed;
+        private bool _isPresed;
         private int _x;
         private int _y;
+        private readonly SaveFileDialog _saveFileDialog;
+        private readonly OpenFileDialog _openFileDialog;
 
         public Main()
         {
             InitializeComponent();
             cmbx_color.DataSource = new List<string> { "black", "green", "red" };
+            _saveFileDialog = new SaveFileDialog();
+            _openFileDialog = new OpenFileDialog();
+            pctbx_canvas.Image = new Bitmap(pctbx_canvas.Width, pctbx_canvas.Height);
         }
 
         private void pctbx_canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            isPresed = true;
+            _isPresed = true;
             _x = e.X;
             _y = e.Y;
         }
 
         private void pctbx_canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            isPresed = false;
+            _isPresed = false;
         }
 
         private void pctbx_canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isPresed)
-            {
-                var color = ChooseColor();
-                var size = (int)nmrc_size.Value;
-                pctbx_canvas.CreateGraphics().DrawLine(new Pen(color, size), _x, _y, e.X, e.Y);
-            }
+            if (!_isPresed) return;
+            var color = ChooseColor();
+            var size = (int)nmrc_size.Value;
+
+            var graphics = Graphics.FromImage(pctbx_canvas.Image);
+            graphics.DrawLine(new Pen(color, size), _x, _y, e.X, e.Y);
+            pctbx_canvas.Invalidate();
+
             _x = e.X;
             _y = e.Y;
         }
@@ -54,6 +61,27 @@ namespace Drawing_WinForm_
             }
 
             return color;
+        }
+
+        private void btn_cleare_Click(object sender, System.EventArgs e)
+        {
+            pctbx_canvas.Image = new Bitmap(pctbx_canvas.Width, pctbx_canvas.Height);
+        }
+
+        private void btn_save_Click(object sender, System.EventArgs e)
+        {
+            _saveFileDialog.Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
+                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff";
+            if (_saveFileDialog.ShowDialog() == DialogResult.Cancel)return;
+            pctbx_canvas.Image.Save(_saveFileDialog.FileName);
+        }
+
+        private void btn_load_Click(object sender, System.EventArgs e)
+        {
+            _openFileDialog.Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
+                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff";
+            if (_openFileDialog.ShowDialog() == DialogResult.Cancel) return;
+            pctbx_canvas.Image = Image.FromFile(_openFileDialog.FileName);
         }
     }
 }
