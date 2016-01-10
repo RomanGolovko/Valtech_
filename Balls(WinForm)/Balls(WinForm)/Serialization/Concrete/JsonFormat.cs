@@ -12,9 +12,9 @@ namespace Balls_WinForm_.Serialization.Concrete
     {
         private readonly DataContractJsonSerializer _formatter = new DataContractJsonSerializer(typeof(List<Ball>));
 
-        public void Save(List<Ball> state)
+        public void Save(string path, List<Ball> state)
         {
-            using (var fs = new FileStream(@"C:\balls(JSON).json", FileMode.OpenOrCreate))
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 _formatter.WriteObject(fs, state);
                 MessageBox.Show(@"Balls state saved", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -22,9 +22,9 @@ namespace Balls_WinForm_.Serialization.Concrete
 
         }
 
-        public List<Ball> Load()
+        public List<Ball> Load(string path)
         {
-            using (var fs = new FileStream(@"C:\balls(JSON).json", FileMode.OpenOrCreate))
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 try
                 {

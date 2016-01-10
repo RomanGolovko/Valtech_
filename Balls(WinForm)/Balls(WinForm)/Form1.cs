@@ -12,7 +12,6 @@ namespace Balls_WinForm_
         public Main()
         {
             InitializeComponent();
-            cmbx_format.DataSource = new List<string> { "Binary", "CSV", "XML", "JSON", "YAML" };
         }
 
         private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)
@@ -25,15 +24,29 @@ namespace Balls_WinForm_
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = @"Binary format (*.dat)|*.dat|CSV format (*.csv)|*.csv|XML format (*.xml)|*.xml|" +
+                         @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
+
             var memento = new PctbxMemento(_balls);
-            memento.SaveState(cmbx_format.Text);
+            memento.SaveState(saveFileDialog.FileName);
         }
 
         private void btn_load_Click(object sender, EventArgs e)
         {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = @"Binary format (*.dat)|*.dat|CSV format (*.csv)|*.csv|XML format (*.xml)|*.xml|" +
+                         @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
+
             try
             {
-                _balls = PctbxMemento.RestoreState(cmbx_format.Text);
+                _balls = PctbxMemento.RestoreState(openFileDialog.FileName);
 
                 foreach (var ball in _balls)
                 {

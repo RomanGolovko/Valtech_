@@ -9,9 +9,9 @@ namespace Balls_WinForm_.Serialization.Concrete
 {
     public class CsvFormat : IFormat
     {
-        public void Save(List<Ball> state)
+        public void Save(string path, List<Ball> state)
         {
-            using (var sw = new StreamWriter(@"C:\balls(CSV).csv", false, Encoding.Default))
+            using (var sw = new StreamWriter(path, false, Encoding.Default))
             {
                 foreach (var str in state.Select(ball => $"{ball.x},{ball.y},{ball.increaseX},{ball.increaseY}"))
                 {
@@ -22,11 +22,11 @@ namespace Balls_WinForm_.Serialization.Concrete
             }
         }
 
-        public List<Ball> Load()
+        public List<Ball> Load(string path)
         {
             var balls = new List<Ball>();
 
-            using (var sr = new StreamReader(@"C:\balls(CSV).csv", Encoding.Default))
+            using (var sr = new StreamReader(path, Encoding.Default))
             {
                 while (!sr.EndOfStream)
                 {

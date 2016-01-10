@@ -4,7 +4,7 @@ namespace Balls_WinForm_.Serialization.Abstract
 {
     public interface IFormat
     {
-        void Save(List<Ball> state);
-        List<Ball> Load();
+        void Save(string path, List<Ball> state);
+        List<Ball> Load(string path);
     }
 }

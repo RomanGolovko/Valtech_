@@ -13,7 +13,7 @@ namespace Balls_WinForm_
         [DataMember]                        // for json serialization
         public readonly List<Ball> balls;   // public for xml serialization
 
-        public PctbxMemento() { }            // for xml serialization
+        public PctbxMemento() { }           // for xml serialization
 
         public PctbxMemento(List<Ball> balls)
         {
@@ -22,12 +22,12 @@ namespace Balls_WinForm_
 
         public static List<Ball> RestoreState(string format)
         {
-            return Factory.SelectSerializationFormat(format).Load();
+            return Factory.SelectSerializationFormat(format).Load(format);
         }
 
         public void SaveState(string format)
         {
-            Factory.SelectSerializationFormat(format).Save(balls);
+            Factory.SelectSerializationFormat(format).Save(format, balls);
         }
     }
 }

@@ -12,18 +12,18 @@ namespace Balls_WinForm_.Serialization.Concrete
     {
         private readonly BinaryFormatter _formatter = new BinaryFormatter();
 
-        public void Save(List<Ball> state)
+        public void Save(string path, List<Ball> state)
         {
-            using (var fs = new FileStream(@"C:\balls(Binary).dat", FileMode.OpenOrCreate))
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 _formatter.Serialize(fs, state);
                 MessageBox.Show(@"Balls state saved", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        public List<Ball> Load()
+        public List<Ball> Load(string path)
         {
-            using (var fs = new FileStream(@"C:\balls(Binary).dat", FileMode.OpenOrCreate))
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 try
                 {

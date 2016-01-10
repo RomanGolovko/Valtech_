@@ -7,14 +7,29 @@ namespace Balls_WinForm_.Serialization
     {
         public static IFormat SelectSerializationFormat(string format)
         {
-            switch (format)
+            if (format.Contains(".dat"))
             {
-                case "Binary": return new BinaryFormat();
-                case "CSV": return new CsvFormat();
-                case "XML": return new XmlFormat();
-                case "JSON": return new JsonFormat();
-                case "YAML": return new YamlFormat();
-                default: return new BinaryFormat();
+                return new BinaryFormat();
+            }
+            else if (format.Contains(".csv"))
+            {
+                return new CsvFormat();
+            }
+            else if (format.Contains(".xml"))
+            {
+                return new XmlFormat();
+            }
+            else if (format.Contains(".json"))
+            {
+                return new JsonFormat();
+            }
+            else if (format.Contains(".yaml"))
+            {
+                return new YamlFormat();
+            }
+            else
+            {
+                return new BinaryFormat();
             }
         }
     }
