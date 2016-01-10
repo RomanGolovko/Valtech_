@@ -9,15 +9,11 @@ namespace Drawing_WinForm_
         private bool _isPresed;
         private int _x;
         private int _y;
-        private readonly SaveFileDialog _saveFileDialog;
-        private readonly OpenFileDialog _openFileDialog;
 
         public Main()
         {
             InitializeComponent();
             cmbx_color.DataSource = new List<string> { "black", "green", "red" };
-            _saveFileDialog = new SaveFileDialog();
-            _openFileDialog = new OpenFileDialog();
             pctbx_canvas.Image = new Bitmap(pctbx_canvas.Width, pctbx_canvas.Height);
         }
 
@@ -70,18 +66,24 @@ namespace Drawing_WinForm_
 
         private void btn_save_Click(object sender, System.EventArgs e)
         {
-            _saveFileDialog.Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff";
-            if (_saveFileDialog.ShowDialog() == DialogResult.Cancel)return;
-            pctbx_canvas.Image.Save(_saveFileDialog.FileName);
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
+            };
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
+            pctbx_canvas.Image.Save(saveFileDialog.FileName);
         }
 
         private void btn_load_Click(object sender, System.EventArgs e)
         {
-            _openFileDialog.Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff";
-            if (_openFileDialog.ShowDialog() == DialogResult.Cancel) return;
-            pctbx_canvas.Image = Image.FromFile(_openFileDialog.FileName);
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
+                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
+            pctbx_canvas.Image = Image.FromFile(openFileDialog.FileName);
         }
     }
 }
