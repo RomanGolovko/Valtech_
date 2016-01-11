@@ -12,7 +12,7 @@ namespace Balls_WinForm_.Serialization.Concrete
     {
         private readonly YamlSerializer _formatter = new YamlSerializer();
 
-        public void Save(string path, List<Ball> state)
+        public void Save(string path, List<BallMemento> state)
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -21,13 +21,13 @@ namespace Balls_WinForm_.Serialization.Concrete
             }
         }
 
-        public List<Ball> Load(string path)
+        public List<BallMemento> Load(string path)
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 try
                 {
-                    return (List<Ball>)_formatter.Deserialize(fs)[0];
+                    return (List<BallMemento>)_formatter.Deserialize(fs)[0];
                 }
                 catch (Exception)
                 {

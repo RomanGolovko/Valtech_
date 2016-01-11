@@ -10,9 +10,9 @@ namespace Balls_WinForm_.Serialization.Concrete
 {
     public class XmlFormat : IFormat
     {
-        private readonly XmlSerializer _formatter = new XmlSerializer(typeof(List<Ball>));
+        private readonly XmlSerializer _formatter = new XmlSerializer(typeof(List<BallMemento>));
 
-        public void Save(string path, List<Ball> state)
+        public void Save(string path, List<BallMemento> state)
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -21,13 +21,13 @@ namespace Balls_WinForm_.Serialization.Concrete
             }
         }
 
-        public List<Ball> Load(string path)
+        public List<BallMemento> Load(string path)
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 try
                 {
-                    return (List<Ball>)_formatter.Deserialize(fs);
+                    return (List<BallMemento>)_formatter.Deserialize(fs);
                 }
                 catch (Exception)
                 {

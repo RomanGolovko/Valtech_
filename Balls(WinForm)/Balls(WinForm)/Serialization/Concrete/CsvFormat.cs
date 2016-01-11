@@ -9,7 +9,7 @@ namespace Balls_WinForm_.Serialization.Concrete
 {
     public class CsvFormat : IFormat
     {
-        public void Save(string path, List<Ball> state)
+        public void Save(string path, List<BallMemento> state)
         {
             using (var sw = new StreamWriter(path, false, Encoding.Default))
             {
@@ -22,15 +22,15 @@ namespace Balls_WinForm_.Serialization.Concrete
             }
         }
 
-        public List<Ball> Load(string path)
+        public List<BallMemento> Load(string path)
         {
-            var balls = new List<Ball>();
+            var balls = new List<BallMemento>();
 
             using (var sr = new StreamReader(path, Encoding.Default))
             {
                 while (!sr.EndOfStream)
                 {
-                    var ball = new Ball();
+                    var ball = new BallMemento();
 
                     var readLine = sr.ReadLine();
                     if (readLine != null)

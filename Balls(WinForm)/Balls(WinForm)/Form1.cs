@@ -7,8 +7,6 @@ namespace Balls_WinForm_
 {
     public partial class Main : Form
     {
-        private List<Ball> _balls = new List<Ball>();
-
         public Main()
         {
             InitializeComponent();
@@ -17,7 +15,7 @@ namespace Balls_WinForm_
         private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)
         {
             var ball = new Ball(pctbx_canvas, e);
-            _balls.Add(ball);
+            pctbx_canvas.Controls.Add(ball);
             var thread = new Thread(ball.MoveBall);
             thread.Start();
         }
@@ -31,7 +29,16 @@ namespace Balls_WinForm_
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
-            var memento = new PctbxMemento(_balls);
+            var balls = new List<Ball>();
+            foreach (var ball in pctbx_canvas.Controls)
+            {
+                if (ball is Ball)
+                {
+                    balls.Add(ball as Ball);
+                }
+            }
+
+            var memento = new PctbxMemento(balls);
             memento.SaveState(saveFileDialog.FileName);
         }
 
@@ -46,9 +53,9 @@ namespace Balls_WinForm_
 
             try
             {
-                _balls = PctbxMemento.RestoreState(openFileDialog.FileName);
+                var balls = PctbxMemento.RestoreState(openFileDialog.FileName);
 
-                foreach (var ball in _balls)
+                foreach (var ball in balls)
                 {
                     ball.SetPctbx(pctbx_canvas);
                     var thread = new Thread(ball.MoveBall);
