@@ -80,7 +80,7 @@ namespace Drawing_WinForm_
             var openFileDialog = new OpenFileDialog
             {
                 Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
             };
             if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
             pctbx_canvas.Image = Image.FromFile(openFileDialog.FileName);
