@@ -5,7 +5,7 @@ namespace Drawing_WinForm_.Formats.Concrete
 {
     public class BaseFormats : IFormat
     {
-        public void Save(string path, Image image)
+         public void Save(string path, Image image)
         {
             image.Save(path);
         }

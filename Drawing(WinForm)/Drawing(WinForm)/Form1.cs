@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Drawing_WinForm_.Formats;
+using Drawing_WinForm_.Formats.Factories.ChainOfResponsibility;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -69,10 +71,25 @@ namespace Drawing_WinForm_
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff" +
+                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)||*.pdf|PSD files (*.psd)|*.psd"
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
-            pctbx_canvas.Image.Save(saveFileDialog.FileName);
+
+            // Switch
+            //FactorySwitch.ChooseFormat(saveFileDialog.FilterIndex).Save(saveFileDialog.FileName, pctbx_canvas.Image);
+
+            // LinkedList
+            //var factory = new FactoryLinked();
+            //factory.GetFormat(saveFileDialog.FilterIndex).Save(saveFileDialog.FileName, pctbx_canvas.Image);
+
+            // Loop
+            var factory = new FactoryLoop();
+            var formats = factory.GetValidFormats(saveFileDialog.FilterIndex);
+            foreach (var item in formats)
+            {
+                item.Save(saveFileDialog.FileName, pctbx_canvas.Image);
+            }
         }
 
         private void btn_load_Click(object sender, System.EventArgs e)
@@ -80,10 +97,25 @@ namespace Drawing_WinForm_
             var openFileDialog = new OpenFileDialog
             {
                 Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff"
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff" +
+                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)||*.pdf|PSD files (*.psd)|*.psd"
             };
             if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
-            pctbx_canvas.Image = Image.FromFile(openFileDialog.FileName);
+
+            // Switch
+            //pctbx_canvas.Image = FactorySwitch.ChooseFormat(openFileDialog.FilterIndex).Load(openFileDialog.FileName);
+
+            // LinkedList
+            //var factory = new FactoryLinked();
+            //pctbx_canvas.Image = factory.GetFormat(openFileDialog.FilterIndex).Load(openFileDialog.FileName);
+
+            // Loop
+            var factory = new FactoryLoop();
+            var formats = factory.GetValidFormats(openFileDialog.FilterIndex);
+            foreach (var item in formats)
+            {
+                pctbx_canvas.Image = item.Load(openFileDialog.FileName);
+            }
         }
     }
 }

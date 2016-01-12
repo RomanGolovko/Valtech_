@@ -54,7 +54,17 @@
     </Compile>
     <Compile Include="Formats\Abstract\IFormat.cs" />
     <Compile Include="Formats\Concrete\BaseFormat.cs" />
-    <Compile Include="Formats\Factory.cs" />
+    <Compile Include="Formats\Concrete\PdfFormat.cs" />
+    <Compile Include="Formats\Concrete\PsdFormat.cs" />
+    <Compile Include="Formats\Concrete\XpsFormat.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\BaseHandler.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\FactoryLinked.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\FactoryLoop.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\IHandler.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\PdfHandler.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\PsdHandler.cs" />
+    <Compile Include="Formats\Factories\ChainOfResponsibility\XpsHandler.cs" />
+    <Compile Include="Formats\Factories\FactorySwitch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
