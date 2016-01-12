@@ -70,18 +70,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MyLIstTemplateTests.cs" />
+    <Compile Include="MyLIstTemplateIntTests.cs" />
+    <Compile Include="MyListTemplatePersonTests.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericDataStructures\GenericDataStructures.csproj">
       <Project>{398679cd-93ed-4220-97d4-52027b124ab8}</Project>
       <Name>GenericDataStructures</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
