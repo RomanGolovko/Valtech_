@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GenericDataStructures.Abstract
+﻿namespace GenericDataStructures.Abstract
 {
     public interface IMyList<T>
     {

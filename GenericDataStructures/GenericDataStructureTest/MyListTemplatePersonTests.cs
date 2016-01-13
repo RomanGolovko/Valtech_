@@ -130,10 +130,10 @@ namespace GenericDataStructureTest
             Assert.Throws<NullReferenceException>(() => aList.Clear());
         }
         #endregion
-
+ 
         #region Init
         [Test]
-        public void Can_Init_With_Size_Many([Range(0, 6)]int value)
+        public void Can_Init_With_Size_Many([Range(0, 4)]int value)
         {
             var array = new Person[5];
             array[0] = new Person { Id = 1, FirstName = "test1", LastName = "test1", Age = 21 };
@@ -143,8 +143,8 @@ namespace GenericDataStructureTest
             array[4] = new Person { Id = 5, FirstName = "test5", LastName = "test5", Age = 25 };
             var aList = MakeList();
             aList.Init(array);
-            Assert.AreEqual(7, aList.Size());
-            Assert.AreEqual(value + 1, aList.Get(value));
+            Assert.AreEqual(5, aList.Size());
+            Assert.AreEqual(value + 1, aList.Get(value).Id);
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace GenericDataStructureTest
             var aList = MakeList();
             aList.Init(array);
             Assert.AreEqual(2, aList.Size());
-            Assert.AreEqual(value + 1, aList.Get(value));
+            Assert.AreEqual(value + 1, aList.Get(value).Id);
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace GenericDataStructureTest
             var aList = MakeList();
             aList.Init(array);
             Assert.AreEqual(1, aList.Size());
-            Assert.AreEqual(1, aList.Get(0));
+            Assert.AreEqual(1, aList.Get(0).Id);
         }
 
         [Test]
@@ -257,7 +257,7 @@ namespace GenericDataStructureTest
         [Test]
         public void Can_Get_MinValue_For_2()
         {
-            var array = new Person[5];
+            var array = new Person[2];
             array[0] = new Person { Id = 1, FirstName = "test1", LastName = "test1", Age = 21 };
             array[1] = new Person { Id = 2, FirstName = "test2", LastName = "test2", Age = 22 };
             var aList = MakeList();
@@ -499,7 +499,7 @@ namespace GenericDataStructureTest
             var aList = MakeList();
             aList.Init(array);
             aList.Reverse();
-            Assert.AreEqual(1, aList.Get(0));
+            Assert.AreEqual(1, aList.Get(0).Id);
         }
 
         [Test]
@@ -533,9 +533,9 @@ namespace GenericDataStructureTest
             var aList = MakeList();
             aList.Init(array);
             aList.HalfReverse();
-            Assert.AreEqual(aList.Get(0).Id, 5);
+            Assert.AreEqual(aList.Get(0).Id, 4);
             Assert.AreEqual(aList.Get(2).Id, 3);
-            Assert.AreEqual(aList.Get(4).Id, 1);
+            Assert.AreEqual(aList.Get(4).Id, 2);
         }
 
         [Test]
@@ -696,7 +696,7 @@ namespace GenericDataStructureTest
 
         #region Sort
         [Test]
-        public void Can_Sort_For_Many([Range(0, 6)]int value)
+        public void Can_Sort_For_Many([Range(0, 4)]int value)
         {
             var array = new Person[5];
             array[4] = new Person { Id = 1, FirstName = "test1", LastName = "test1", Age = 21 };
@@ -729,7 +729,7 @@ namespace GenericDataStructureTest
             var aList = MakeList();
             aList.Init(array);
             aList.Sort();
-            Assert.AreEqual(1, aList.Get(0));
+            Assert.AreEqual(1, aList.Get(0).Id);
         }
 
         [Test]

@@ -135,7 +135,7 @@ namespace DataStructures.Concrete.Arrays
             }
             else if (index == End + 1)
             {
-                AddLast(index);
+                AddLast(value);
             }
             else
             {
