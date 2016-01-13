@@ -46,18 +46,21 @@ namespace VectorDrawing_WinForm_
                     {
                         var rectangle = new Rectangle { Top = e.X, Left = e.Y };
                         rectangle.DrawShape(pctbx, Color.Red, data.Width);
+                        pctbx.Controls.Add(rectangle);
                     }
                     break;
                 case "Ellipse":
                     {
                         var ellipse = new Ellipse { Top = e.X, Left = e.Y };
                         ellipse.DrawShape(pctbx, Color.Red, data.Width);
+                        pctbx.Controls.Add(ellipse);
                     }
                     break;
                 case "Line":
                     {
                         var line = new Line { Top = e.X, Left = e.Y };
                         line.DrawShape(pctbx, Color.Red, data.Width);
+                        pctbx.Controls.Add(line);
                     }
                     break;
             }
@@ -73,7 +76,8 @@ namespace VectorDrawing_WinForm_
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
             var shapes = new List<AShape>();
-            foreach (var shape in _pictureBox.Controls)
+            ///TODO: изменить захардкоженный пикчербокс, сохраняет неполный объем данных (нет ширины, высоты, толщины и т.д.)
+            foreach (var shape in pctbx_canvas1.Controls) 
             {
                 if (shape is AShape)
                 {
