@@ -71,8 +71,8 @@ namespace Drawing_WinForm_
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff" +
-                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)||*.pdf|PSD files (*.psd)|*.psd"
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff|" +
+                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)|*.pdf|PSD files (*.psd)|*.psd"
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
@@ -97,8 +97,8 @@ namespace Drawing_WinForm_
             var openFileDialog = new OpenFileDialog
             {
                 Filter = @"Bitmap files (*.bmp)|*.bmp|Image files (*.jpg)|*.jpg|PNG files (*.png)|*.png|" +
-                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff" +
-                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)||*.pdf|PSD files (*.psd)|*.psd"
+                         @"ICO files (*.ico)|*.ico|GIF files (*.gif)|*.gif|TIFF files (*.tiff)|*.tiff|" +
+                         @"XPS files (*.xps)|*.xps|PDF files (*.pdf)|*.pdf|PSD files (*.psd)|*.psd"
             };
             if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
