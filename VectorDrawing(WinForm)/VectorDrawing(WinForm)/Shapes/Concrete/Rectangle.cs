@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Shapes.Abstract;
 
@@ -9,6 +10,11 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
         public override void DrawShape(PictureBox pctbx, Color color, int width)
         {
             pctbx.CreateGraphics().DrawRectangle(new Pen(color, width), Top, Left, 15, 15);
+        }
+
+        private void EnableCanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

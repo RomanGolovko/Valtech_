@@ -41,8 +41,8 @@
             this.ttcmbx_type = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
             this.tabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ttcmbx_tabs = new System.Windows.Forms.ToolStripComboBox();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.lbl_color = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -53,7 +53,9 @@
             this.lbl_tabs = new System.Windows.Forms.ToolStripLabel();
             this.tbcntrl_canvas = new System.Windows.Forms.TabControl();
             this.tbpg_1 = new System.Windows.Forms.TabPage();
+            this.pctbx_canvas1 = new System.Windows.Forms.PictureBox();
             this.tbpg_2 = new System.Windows.Forms.TabPage();
+            this.pctbx_canvas2 = new System.Windows.Forms.PictureBox();
             this.grbx_color = new System.Windows.Forms.GroupBox();
             this.cmbx_color = new System.Windows.Forms.ComboBox();
             this.grbx_width = new System.Windows.Forms.GroupBox();
@@ -61,19 +63,17 @@
             this.grbx_type = new System.Windows.Forms.GroupBox();
             this.cmbx_type = new System.Windows.Forms.ComboBox();
             this.grbx_coord = new System.Windows.Forms.GroupBox();
-            this.pctbx_canvas1 = new System.Windows.Forms.PictureBox();
-            this.pctbx_canvas2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tbcntrl_canvas.SuspendLayout();
             this.tbpg_1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas1)).BeginInit();
             this.tbpg_2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas2)).BeginInit();
             this.grbx_color.SuspendLayout();
             this.grbx_width.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmr_width)).BeginInit();
             this.grbx_type.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,7 +88,8 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(721, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(541, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,32 +101,32 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -134,58 +135,58 @@
             this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_color});
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.colorToolStripMenuItem.Text = "Color";
             // 
             // ttcmbx_color
             // 
             this.ttcmbx_color.Name = "ttcmbx_color";
-            this.ttcmbx_color.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_color.Size = new System.Drawing.Size(121, 23);
             // 
             // widthToolStripMenuItem
             // 
             this.widthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_width});
             this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
-            this.widthToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.widthToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.widthToolStripMenuItem.Text = "Width";
             // 
             // ttcmbx_width
             // 
             this.ttcmbx_width.Name = "ttcmbx_width";
-            this.ttcmbx_width.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_width.Size = new System.Drawing.Size(121, 23);
             // 
             // ttcmbx_type
             // 
             this.ttcmbx_type.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox3});
             this.ttcmbx_type.Name = "ttcmbx_type";
-            this.ttcmbx_type.Size = new System.Drawing.Size(53, 24);
+            this.ttcmbx_type.Size = new System.Drawing.Size(44, 20);
             this.ttcmbx_type.Text = "Type";
             // 
             // toolStripComboBox3
             // 
             this.toolStripComboBox3.Name = "toolStripComboBox3";
-            this.toolStripComboBox3.Size = new System.Drawing.Size(121, 28);
+            this.toolStripComboBox3.Size = new System.Drawing.Size(121, 23);
             // 
             // tabsToolStripMenuItem
             // 
             this.tabsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_tabs});
             this.tabsToolStripMenuItem.Name = "tabsToolStripMenuItem";
-            this.tabsToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+            this.tabsToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.tabsToolStripMenuItem.Text = "Tabs";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
-            this.aboutToolStripMenuItem.Text = "About";
             // 
             // ttcmbx_tabs
             // 
             this.ttcmbx_tabs.Name = "ttcmbx_tabs";
-            this.ttcmbx_tabs.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_tabs.Size = new System.Drawing.Size(121, 23);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
             // 
             // toolStrip1
             // 
@@ -198,16 +199,16 @@
             this.lbl_type,
             this.toolStripSeparator4,
             this.lbl_tabs});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(721, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(541, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // lbl_color
             // 
             this.lbl_color.Name = "lbl_color";
-            this.lbl_color.Size = new System.Drawing.Size(45, 22);
+            this.lbl_color.Size = new System.Drawing.Size(36, 22);
             this.lbl_color.Text = "Color";
             // 
             // toolStripSeparator2
@@ -218,7 +219,7 @@
             // lbl_width
             // 
             this.lbl_width.Name = "lbl_width";
-            this.lbl_width.Size = new System.Drawing.Size(49, 22);
+            this.lbl_width.Size = new System.Drawing.Size(39, 22);
             this.lbl_width.Text = "Width";
             // 
             // toolStripSeparator3
@@ -229,7 +230,7 @@
             // lbl_type
             // 
             this.lbl_type.Name = "lbl_type";
-            this.lbl_type.Size = new System.Drawing.Size(41, 22);
+            this.lbl_type.Size = new System.Drawing.Size(32, 22);
             this.lbl_type.Text = "Type";
             // 
             // toolStripSeparator4
@@ -240,48 +241,73 @@
             // lbl_tabs
             // 
             this.lbl_tabs.Name = "lbl_tabs";
-            this.lbl_tabs.Size = new System.Drawing.Size(40, 22);
+            this.lbl_tabs.Size = new System.Drawing.Size(31, 22);
             this.lbl_tabs.Text = "Tabs";
             // 
             // tbcntrl_canvas
             // 
             this.tbcntrl_canvas.Controls.Add(this.tbpg_1);
             this.tbcntrl_canvas.Controls.Add(this.tbpg_2);
-            this.tbcntrl_canvas.Location = new System.Drawing.Point(149, 57);
+            this.tbcntrl_canvas.Location = new System.Drawing.Point(112, 46);
+            this.tbcntrl_canvas.Margin = new System.Windows.Forms.Padding(2);
             this.tbcntrl_canvas.Name = "tbcntrl_canvas";
             this.tbcntrl_canvas.SelectedIndex = 0;
-            this.tbcntrl_canvas.Size = new System.Drawing.Size(560, 443);
+            this.tbcntrl_canvas.Size = new System.Drawing.Size(420, 360);
             this.tbcntrl_canvas.TabIndex = 2;
             this.tbcntrl_canvas.SelectedIndexChanged += new System.EventHandler(this.tbcntrl_canvas_SelectedIndexChanged);
             // 
             // tbpg_1
             // 
             this.tbpg_1.Controls.Add(this.pctbx_canvas1);
-            this.tbpg_1.Location = new System.Drawing.Point(4, 25);
+            this.tbpg_1.Location = new System.Drawing.Point(4, 22);
+            this.tbpg_1.Margin = new System.Windows.Forms.Padding(2);
             this.tbpg_1.Name = "tbpg_1";
-            this.tbpg_1.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpg_1.Size = new System.Drawing.Size(552, 414);
+            this.tbpg_1.Padding = new System.Windows.Forms.Padding(2);
+            this.tbpg_1.Size = new System.Drawing.Size(412, 334);
             this.tbpg_1.TabIndex = 0;
             this.tbpg_1.Text = "Canvas 1";
             this.tbpg_1.UseVisualStyleBackColor = true;
             // 
+            // pctbx_canvas1
+            // 
+            this.pctbx_canvas1.Location = new System.Drawing.Point(5, 6);
+            this.pctbx_canvas1.Margin = new System.Windows.Forms.Padding(2);
+            this.pctbx_canvas1.Name = "pctbx_canvas1";
+            this.pctbx_canvas1.Size = new System.Drawing.Size(404, 326);
+            this.pctbx_canvas1.TabIndex = 0;
+            this.pctbx_canvas1.TabStop = false;
+            this.pctbx_canvas1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pctbx_canvas_MouseClick);
+            // 
             // tbpg_2
             // 
             this.tbpg_2.Controls.Add(this.pctbx_canvas2);
-            this.tbpg_2.Location = new System.Drawing.Point(4, 25);
+            this.tbpg_2.Location = new System.Drawing.Point(4, 22);
+            this.tbpg_2.Margin = new System.Windows.Forms.Padding(2);
             this.tbpg_2.Name = "tbpg_2";
-            this.tbpg_2.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpg_2.Size = new System.Drawing.Size(552, 414);
+            this.tbpg_2.Padding = new System.Windows.Forms.Padding(2);
+            this.tbpg_2.Size = new System.Drawing.Size(412, 334);
             this.tbpg_2.TabIndex = 1;
             this.tbpg_2.Text = "Canvas 2";
             this.tbpg_2.UseVisualStyleBackColor = true;
             // 
+            // pctbx_canvas2
+            // 
+            this.pctbx_canvas2.Location = new System.Drawing.Point(5, 6);
+            this.pctbx_canvas2.Margin = new System.Windows.Forms.Padding(2);
+            this.pctbx_canvas2.Name = "pctbx_canvas2";
+            this.pctbx_canvas2.Size = new System.Drawing.Size(404, 326);
+            this.pctbx_canvas2.TabIndex = 0;
+            this.pctbx_canvas2.TabStop = false;
+            this.pctbx_canvas2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pctbx_canvas_MouseClick);
+            // 
             // grbx_color
             // 
             this.grbx_color.Controls.Add(this.cmbx_color);
-            this.grbx_color.Location = new System.Drawing.Point(13, 82);
+            this.grbx_color.Location = new System.Drawing.Point(10, 67);
+            this.grbx_color.Margin = new System.Windows.Forms.Padding(2);
             this.grbx_color.Name = "grbx_color";
-            this.grbx_color.Size = new System.Drawing.Size(134, 100);
+            this.grbx_color.Padding = new System.Windows.Forms.Padding(2);
+            this.grbx_color.Size = new System.Drawing.Size(100, 81);
             this.grbx_color.TabIndex = 3;
             this.grbx_color.TabStop = false;
             this.grbx_color.Text = "Color";
@@ -289,26 +315,30 @@
             // cmbx_color
             // 
             this.cmbx_color.FormattingEnabled = true;
-            this.cmbx_color.Location = new System.Drawing.Point(7, 39);
+            this.cmbx_color.Location = new System.Drawing.Point(5, 32);
+            this.cmbx_color.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_color.Name = "cmbx_color";
-            this.cmbx_color.Size = new System.Drawing.Size(121, 24);
+            this.cmbx_color.Size = new System.Drawing.Size(92, 21);
             this.cmbx_color.TabIndex = 0;
             // 
             // grbx_width
             // 
             this.grbx_width.Controls.Add(this.nmr_width);
-            this.grbx_width.Location = new System.Drawing.Point(13, 188);
+            this.grbx_width.Location = new System.Drawing.Point(10, 153);
+            this.grbx_width.Margin = new System.Windows.Forms.Padding(2);
             this.grbx_width.Name = "grbx_width";
-            this.grbx_width.Size = new System.Drawing.Size(134, 100);
+            this.grbx_width.Padding = new System.Windows.Forms.Padding(2);
+            this.grbx_width.Size = new System.Drawing.Size(100, 81);
             this.grbx_width.TabIndex = 4;
             this.grbx_width.TabStop = false;
             this.grbx_width.Text = "Width";
             // 
             // nmr_width
             // 
-            this.nmr_width.Location = new System.Drawing.Point(7, 40);
+            this.nmr_width.Location = new System.Drawing.Point(5, 32);
+            this.nmr_width.Margin = new System.Windows.Forms.Padding(2);
             this.nmr_width.Name = "nmr_width";
-            this.nmr_width.Size = new System.Drawing.Size(120, 22);
+            this.nmr_width.Size = new System.Drawing.Size(90, 20);
             this.nmr_width.TabIndex = 0;
             this.nmr_width.Value = new decimal(new int[] {
             1,
@@ -319,9 +349,11 @@
             // grbx_type
             // 
             this.grbx_type.Controls.Add(this.cmbx_type);
-            this.grbx_type.Location = new System.Drawing.Point(13, 294);
+            this.grbx_type.Location = new System.Drawing.Point(10, 239);
+            this.grbx_type.Margin = new System.Windows.Forms.Padding(2);
             this.grbx_type.Name = "grbx_type";
-            this.grbx_type.Size = new System.Drawing.Size(134, 100);
+            this.grbx_type.Padding = new System.Windows.Forms.Padding(2);
+            this.grbx_type.Size = new System.Drawing.Size(100, 81);
             this.grbx_type.TabIndex = 4;
             this.grbx_type.TabStop = false;
             this.grbx_type.Text = "Type";
@@ -329,41 +361,28 @@
             // cmbx_type
             // 
             this.cmbx_type.FormattingEnabled = true;
-            this.cmbx_type.Location = new System.Drawing.Point(7, 39);
+            this.cmbx_type.Location = new System.Drawing.Point(5, 32);
+            this.cmbx_type.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_type.Name = "cmbx_type";
-            this.cmbx_type.Size = new System.Drawing.Size(121, 24);
+            this.cmbx_type.Size = new System.Drawing.Size(92, 21);
             this.cmbx_type.TabIndex = 0;
             // 
             // grbx_coord
             // 
-            this.grbx_coord.Location = new System.Drawing.Point(13, 400);
+            this.grbx_coord.Location = new System.Drawing.Point(10, 325);
+            this.grbx_coord.Margin = new System.Windows.Forms.Padding(2);
             this.grbx_coord.Name = "grbx_coord";
-            this.grbx_coord.Size = new System.Drawing.Size(134, 100);
+            this.grbx_coord.Padding = new System.Windows.Forms.Padding(2);
+            this.grbx_coord.Size = new System.Drawing.Size(100, 81);
             this.grbx_coord.TabIndex = 5;
             this.grbx_coord.TabStop = false;
             this.grbx_coord.Text = "Coordinates";
             // 
-            // pctbx_canvas1
-            // 
-            this.pctbx_canvas1.Location = new System.Drawing.Point(7, 7);
-            this.pctbx_canvas1.Name = "pctbx_canvas1";
-            this.pctbx_canvas1.Size = new System.Drawing.Size(539, 401);
-            this.pctbx_canvas1.TabIndex = 0;
-            this.pctbx_canvas1.TabStop = false;
-            // 
-            // pctbx_canvas2
-            // 
-            this.pctbx_canvas2.Location = new System.Drawing.Point(7, 7);
-            this.pctbx_canvas2.Name = "pctbx_canvas2";
-            this.pctbx_canvas2.Size = new System.Drawing.Size(539, 401);
-            this.pctbx_canvas2.TabIndex = 0;
-            this.pctbx_canvas2.TabStop = false;
-            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 514);
+            this.ClientSize = new System.Drawing.Size(541, 418);
             this.Controls.Add(this.grbx_coord);
             this.Controls.Add(this.grbx_type);
             this.Controls.Add(this.grbx_width);
@@ -372,6 +391,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.Text = "Drawing";
             this.menuStrip1.ResumeLayout(false);
@@ -380,13 +400,13 @@
             this.toolStrip1.PerformLayout();
             this.tbcntrl_canvas.ResumeLayout(false);
             this.tbpg_1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas1)).EndInit();
             this.tbpg_2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas2)).EndInit();
             this.grbx_color.ResumeLayout(false);
             this.grbx_width.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmr_width)).EndInit();
             this.grbx_type.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pctbx_canvas2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

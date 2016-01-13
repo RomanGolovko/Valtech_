@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Memento;
 using VectorDrawing_WinForm_.Shapes.Abstract;
+using VectorDrawing_WinForm_.Shapes.Concrete;
+using VectorDrawing_WinForm_.Util;
+using Rectangle = VectorDrawing_WinForm_.Shapes.Concrete.Rectangle;
 
 namespace VectorDrawing_WinForm_
 {
@@ -14,7 +18,49 @@ namespace VectorDrawing_WinForm_
             InitializeComponent();
 
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
-            cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line", "Round rectangle", "Fozzy" };
+            cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
+        }
+
+        private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tbcntrl_canvas.SelectedIndex)
+            {
+                case 0:
+                    _pictureBox = pctbx_canvas1;
+                    break;
+                case 1:
+                    _pictureBox = pctbx_canvas2;
+                    break;
+            }
+        }
+
+        private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            var pctbx = (PictureBox)sender;
+            var data = new XData();
+            data.SetData(cmbx_color.Text, (int)nmr_width.Value, cmbx_type.Text);
+
+            switch (cmbx_type.Text)
+            {
+                case "Rectangle":
+                    {
+                        var rectangle = new Rectangle { Top = e.X, Left = e.Y };
+                        rectangle.DrawShape(pctbx, Color.Red, data.Width);
+                    }
+                    break;
+                case "Ellipse":
+                    {
+                        var ellipse = new Ellipse { Top = e.X, Left = e.Y };
+                        ellipse.DrawShape(pctbx, Color.Red, data.Width);
+                    }
+                    break;
+                case "Line":
+                    {
+                        var line = new Line { Top = e.X, Left = e.Y };
+                        line.DrawShape(pctbx, Color.Red, data.Width);
+                    }
+                    break;
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,18 +112,6 @@ namespace VectorDrawing_WinForm_
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-        }
-
-        private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tbcntrl_canvas.SelectedIndex == 0)
-            {
-                _pictureBox = pctbx_canvas1;
-            }
-            else if (tbcntrl_canvas.SelectedIndex == 1)
-            {
-                _pictureBox = pctbx_canvas2;
-            }
         }
     }
 }

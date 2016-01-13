@@ -3,7 +3,7 @@ using VectorDrawing_WinForm_.Serialization.Concrete;
 
 namespace VectorDrawing_WinForm_.Factory
 {
-    public class SwitchFactory
+    public static class SwitchFactory
     {
         public static IFormat SelectSerializationFormat(int ext)
         {
