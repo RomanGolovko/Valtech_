@@ -142,6 +142,7 @@
             // 
             this.ttcmbx_color.Name = "ttcmbx_color";
             this.ttcmbx_color.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_color.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // widthToolStripMenuItem
             // 
@@ -155,6 +156,7 @@
             // 
             this.ttcmbx_width.Name = "ttcmbx_width";
             this.ttcmbx_width.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_width.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // typeToolStripMenuItem
             // 
@@ -168,6 +170,7 @@
             // 
             this.ttcmd_type.Name = "ttcmd_type";
             this.ttcmd_type.Size = new System.Drawing.Size(121, 28);
+            this.ttcmd_type.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // tabsToolStripMenuItem
             // 
@@ -181,6 +184,7 @@
             // 
             this.ttcmbx_tabs.Name = "ttcmbx_tabs";
             this.ttcmbx_tabs.Size = new System.Drawing.Size(121, 28);
+            this.ttcmbx_tabs.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // aboutToolStripMenuItem
             // 
@@ -320,6 +324,7 @@
             this.cmbx_color.Name = "cmbx_color";
             this.cmbx_color.Size = new System.Drawing.Size(121, 24);
             this.cmbx_color.TabIndex = 0;
+            this.cmbx_color.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // grbx_width
             // 
@@ -337,6 +342,16 @@
             // 
             this.nmr_width.Location = new System.Drawing.Point(7, 39);
             this.nmr_width.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nmr_width.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmr_width.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nmr_width.Name = "nmr_width";
             this.nmr_width.Size = new System.Drawing.Size(120, 22);
             this.nmr_width.TabIndex = 0;
@@ -366,6 +381,7 @@
             this.cmbx_type.Name = "cmbx_type";
             this.cmbx_type.Size = new System.Drawing.Size(121, 24);
             this.cmbx_type.TabIndex = 0;
+            this.cmbx_type.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // grbx_coord
             // 

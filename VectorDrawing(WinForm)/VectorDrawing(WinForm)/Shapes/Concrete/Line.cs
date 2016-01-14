@@ -7,8 +7,9 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
 {
     public class Line : AShape
     {
-        public Line(PictureBox pctbx, ShapeMemento memento)
+        public Line(Form main, PictureBox pctbx, ShapeMemento memento)
         {
+            Main = main;
             PictureBox = pctbx;
             Data = memento;
 
@@ -29,6 +30,12 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
         {
             PictureBox.CreateGraphics().DrawLine(new Pen(Color, LineWidth), Top, Left, Width, Height);
             base.OnPaint(e);
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            Data.GetData(Main);
+            base.OnMouseClick(e);
         }
     }
 }

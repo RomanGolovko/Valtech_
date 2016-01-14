@@ -17,6 +17,14 @@ namespace VectorDrawing_WinForm_
 
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
             cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
+
+            ttcmbx_color.Items.AddRange(new[] { "Black", "Green", "Red" });
+            ttcmbx_color.SelectedIndex = 0;
+            ttcmbx_width.Items.AddRange(new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            ttcmbx_width.SelectedIndex = (int)nmr_width.Value - 1;
+            ttcmd_type.Items.AddRange(new[] { "Rectangle", "Ellipse", "Line" });
+            ttcmd_type.SelectedIndex = 0;
+
         }
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
@@ -36,7 +44,7 @@ namespace VectorDrawing_WinForm_
         {
             var pctbx = (PictureBox)sender;
             var shape = new ShapeMemento();
-            shape.SetData(e.X, e.Y, 15, 15, ChooseColor(), (int)nmr_width.Value, cmbx_type.Text);
+            shape.SetData(e.X, e.Y, 20, 20, ChooseColor(), (int)nmr_width.Value, cmbx_type.Text);
 
             switch (cmbx_type.Text)
             {
@@ -49,14 +57,14 @@ namespace VectorDrawing_WinForm_
                     break;
                 case "Ellipse":
                     {
-                        var ellipse = new Ellipse(pctbx, shape);
+                        var ellipse = new Ellipse(this, pctbx, shape);
                         pctbx.Controls.Add(ellipse);
                         ellipse.DrawShape();
                     }
                     break;
                 case "Line":
                     {
-                        var line = new Line(pctbx, shape);
+                        var line = new Line(this, pctbx, shape);
                         pctbx.Controls.Add(line);
                         line.DrawShape();
                     }
@@ -124,6 +132,7 @@ namespace VectorDrawing_WinForm_
                 foreach (var shape in shapes)
                 {
                     ///TODO: изменить захардкоженный пикчербокс
+                    shape.Main = this;
                     shape.PictureBox = pctbx_canvas1;
                     shape.DrawShape();
                     pctbx_canvas1.Controls.Add(shape);
@@ -138,6 +147,11 @@ namespace VectorDrawing_WinForm_
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void cmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

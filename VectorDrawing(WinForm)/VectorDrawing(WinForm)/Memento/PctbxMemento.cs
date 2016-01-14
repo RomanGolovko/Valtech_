@@ -64,11 +64,11 @@ namespace VectorDrawing_WinForm_.Memento
                 }
                 else if (shapeMemento.Type == "Ellipse")
                 {
-                    shape = new Ellipse(null, shapeMemento);
+                    shape = new Ellipse(null, null, shapeMemento);
                 }
                 else if (shapeMemento.Type == "Line")
                 {
-                    shape = new Line(null, shapeMemento);
+                    shape = new Line(null, null, shapeMemento);
                 }
                 shapes.Add(shape);
             }
