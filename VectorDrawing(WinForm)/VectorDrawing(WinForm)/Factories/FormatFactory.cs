@@ -1,7 +1,7 @@
 ﻿using VectorDrawing_WinForm_.Serialization.Abstract;
 using VectorDrawing_WinForm_.Serialization.Concrete;
 
-namespace VectorDrawing_WinForm_.Factory
+namespace VectorDrawing_WinForm_.Factories
 {
     public static class SwitchFactory
     {

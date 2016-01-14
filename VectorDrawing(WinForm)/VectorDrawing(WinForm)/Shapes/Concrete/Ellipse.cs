@@ -1,17 +1,17 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using VectorDrawing_WinForm_.Memento;
 using VectorDrawing_WinForm_.Shapes.Abstract;
+using VectorDrawing_WinForm_.Util;
 
 namespace VectorDrawing_WinForm_.Shapes.Concrete
 {
     public class Ellipse : AShape
     {
-        public Ellipse(Form main, PictureBox pctbx, ShapeMemento memento)
+        public Ellipse(Form main, PictureBox pctbx, XData data)
         {
             Main = main;
             PictureBox = pctbx;
-            Data = memento;
+            Data = data;
 
             Top = Data.X;
             Left = Data.Y;

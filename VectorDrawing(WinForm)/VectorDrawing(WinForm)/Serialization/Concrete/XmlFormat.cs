@@ -4,8 +4,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using VectorDrawing_WinForm_.Memento;
 using VectorDrawing_WinForm_.Serialization.Abstract;
+using VectorDrawing_WinForm_.Serialization.Memento;
 
 namespace VectorDrawing_WinForm_.Serialization.Concrete
 {
@@ -22,7 +22,7 @@ namespace VectorDrawing_WinForm_.Serialization.Concrete
             }
         }
 
-        public List<ShapeMemento> Load(string path)
+        public IEnumerable<ShapeMemento> Load(string path)
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {

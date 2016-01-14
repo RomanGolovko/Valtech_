@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using VectorDrawing_WinForm_.Memento;
+using VectorDrawing_WinForm_.Factories;
+using VectorDrawing_WinForm_.Serialization.Memento;
 using VectorDrawing_WinForm_.Shapes.Abstract;
-using VectorDrawing_WinForm_.Shapes.Concrete;
+using VectorDrawing_WinForm_.Util;
 
 namespace VectorDrawing_WinForm_
 {
@@ -18,11 +19,11 @@ namespace VectorDrawing_WinForm_
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
             cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
 
-            ttcmbx_color.Items.AddRange(new[] { "Black", "Green", "Red" });
+            ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
             ttcmbx_color.SelectedIndex = 0;
-            ttcmbx_width.Items.AddRange(new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             ttcmbx_width.SelectedIndex = (int)nmr_width.Value - 1;
-            ttcmd_type.Items.AddRange(new[] { "Rectangle", "Ellipse", "Line" });
+            ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
             ttcmd_type.SelectedIndex = 0;
 
         }
@@ -37,60 +38,23 @@ namespace VectorDrawing_WinForm_
                 case 1:
                     _pictureBox = pctbx_canvas2;
                     break;
+                default:
+                    break;
             }
         }
 
         private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)
         {
             var pctbx = (PictureBox)sender;
-            var shape = new ShapeMemento();
-            shape.SetData(e.X, e.Y, 20, 20, ChooseColor(), (int)nmr_width.Value, cmbx_type.Text);
 
-            switch (cmbx_type.Text)
-            {
-                case "Rectangle":
-                    {
-                        var rectangle = new Shapes.Concrete.Rectangle(this, pctbx, shape);
-                        pctbx.Controls.Add(rectangle);
-                        rectangle.DrawShape();
-                    }
-                    break;
-                case "Ellipse":
-                    {
-                        var ellipse = new Ellipse(this, pctbx, shape);
-                        pctbx.Controls.Add(ellipse);
-                        ellipse.DrawShape();
-                    }
-                    break;
-                case "Line":
-                    {
-                        var line = new Line(this, pctbx, shape);
-                        pctbx.Controls.Add(line);
-                        line.DrawShape();
-                    }
-                    break;
-            }
+            var data = new XData();
+            data.SetData(e.X, e.Y, 20, 20, ColorFactory.GetColor(cmbx_color.Text), (int)nmr_width.Value, cmbx_type.Text);
+
+            var shape = ShapeFactory.GetShape(cmbx_type.Text, this, pctbx, data);
+            pctbx.Controls.Add(shape);
+            shape.DrawShape();
+
             Refresh();
-        }
-
-        private Color ChooseColor()
-        {
-            Color color = Color.Black;
-
-            if (cmbx_color.Text == "Black")
-            {
-                color = Color.Black;
-            }
-            else if (cmbx_color.Text == "Green")
-            {
-                color = Color.Green;
-            }
-            else if (cmbx_color.Text == "Red")
-            {
-                color = Color.Red;
-            }
-
-            return color;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,15 +66,8 @@ namespace VectorDrawing_WinForm_
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
-            var shapes = new List<AShape>();
             ///TODO: изменить захардкоженный пикчербокс
-            foreach (var shape in pctbx_canvas1.Controls)
-            {
-                if (shape is AShape)
-                {
-                    shapes.Add(shape as AShape);
-                }
-            }
+            var shapes = pctbx_canvas1.Controls.OfType<AShape>().Select(shape => shape).ToList();
 
             var memento = new PctbxMemento(shapes);
             memento.SaveState(saveFileDialog.FilterIndex, saveFileDialog.FileName);

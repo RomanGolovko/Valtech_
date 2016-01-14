@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using VectorDrawing_WinForm_.Factory;
+using VectorDrawing_WinForm_.Factories;
 using VectorDrawing_WinForm_.Shapes.Abstract;
 using VectorDrawing_WinForm_.Shapes.Concrete;
+using VectorDrawing_WinForm_.Util;
 
-namespace VectorDrawing_WinForm_.Memento
+namespace VectorDrawing_WinForm_.Serialization.Memento
 {
     [Serializable]
     [DataContract]                                      // for json serialization
@@ -16,7 +17,7 @@ namespace VectorDrawing_WinForm_.Memento
 
         public PctbxMemento() { }                       // for xml serialization
 
-        public PctbxMemento(List<AShape> shapes)
+        public PctbxMemento(IEnumerable<AShape> shapes)
         {
             Shapes = new List<ShapeMemento>();
 
@@ -49,27 +50,18 @@ namespace VectorDrawing_WinForm_.Memento
             }
         }
 
-        public static List<AShape> RestoreState(int ext, string format)
+        public static IEnumerable<AShape> RestoreState(int ext, string format)
         {
             var shapesMemento = SwitchFactory.SelectSerializationFormat(ext).Load(format);
-
             var shapes = new List<AShape>();
 
             foreach (var shapeMemento in shapesMemento)
             {
-                AShape shape = null;
-                if (shapeMemento.Type == "Rectangle")
-                {
-                    shape = new Rectangle(null, null, shapeMemento);
-                }
-                else if (shapeMemento.Type == "Ellipse")
-                {
-                    shape = new Ellipse(null, null, shapeMemento);
-                }
-                else if (shapeMemento.Type == "Line")
-                {
-                    shape = new Line(null, null, shapeMemento);
-                }
+                var data = new XData();
+                data.SetData(shapeMemento.X, shapeMemento.Y, shapeMemento.Width, shapeMemento.Height,
+                    shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type);
+
+                var shape = ShapeFactory.GetShape(shapeMemento.Type, null, null, data);
                 shapes.Add(shape);
             }
 
