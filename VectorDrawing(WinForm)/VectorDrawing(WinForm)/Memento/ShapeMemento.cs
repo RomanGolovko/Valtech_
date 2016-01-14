@@ -28,5 +28,17 @@ namespace VectorDrawing_WinForm_.Memento
 
         [DataMember]                        // for json serialization
         public int LineWidth { get; set; }
+
+        public void SetData(int x, int y, int width, int height, Color color, int lineWidth, string type)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+            Color = color;
+            LineWidth = lineWidth;
+            Type = type;
+        }
+
     }
 }

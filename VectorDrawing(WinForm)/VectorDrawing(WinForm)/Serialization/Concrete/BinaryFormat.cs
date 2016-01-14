@@ -18,7 +18,7 @@ namespace VectorDrawing_WinForm_.Serialization.Concrete
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
                 _formatter.Serialize(fs, state);
-                MessageBox.Show(@"Balls state saved", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(@"Shapes state saved", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

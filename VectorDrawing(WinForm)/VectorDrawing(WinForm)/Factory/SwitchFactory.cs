@@ -11,10 +11,10 @@ namespace VectorDrawing_WinForm_.Factory
 
             switch (ext)
             {
-                case 0: format = new BinaryFormat(); break;
-                case 1: format = new XmlFormat(); break;
-                case 2: format = new JsonFormat(); break;
-                case 3: format = new YamlFormat(); break;
+                case 1: format = new BinaryFormat(); break;
+                case 2: format = new XmlFormat(); break;
+                case 3: format = new JsonFormat(); break;
+                case 4: format = new YamlFormat(); break;
                 default:
                     break;
             }

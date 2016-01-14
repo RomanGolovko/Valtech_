@@ -28,7 +28,7 @@ namespace VectorDrawing_WinForm_.Memento
                     Y = shape.Left,
                     Width = shape.Width,
                     Height = shape.Height,
-                    Color = shape.ForeColor,
+                    Color = shape.Color,
                     LineWidth = shape.LineWidth
                 };
 
@@ -60,37 +60,15 @@ namespace VectorDrawing_WinForm_.Memento
                 AShape shape = null;
                 if (shapeMemento.Type == "Rectangle")
                 {
-                    shape = new Rectangle
-                    {
-                        Top = shapeMemento.X,
-                        Left = shapeMemento.Y,
-                        Width = shapeMemento.Width,
-                        Height = shapeMemento.Height,
-                        ForeColor = shapeMemento.Color,
-                        LineWidth = shapeMemento.LineWidth
-                    };
+                    shape = new Rectangle(null, null, shapeMemento);
                 }
                 else if (shapeMemento.Type == "Ellipse")
                 {
-                    shape = new Ellipse
-                    {
-                        Top = shapeMemento.X,
-                        Left = shapeMemento.Y,
-                        Width = shapeMemento.Width,
-                        Height = shapeMemento.Height,
-                        ForeColor = shapeMemento.Color,
-                    };
+                    shape = new Ellipse(null, shapeMemento);
                 }
                 else if (shapeMemento.Type == "Line")
                 {
-                    shape = new Line
-                    {
-                        Top = shapeMemento.X,
-                        Left = shapeMemento.Y,
-                        Width = shapeMemento.Width,
-                        Height = shapeMemento.Height,
-                        ForeColor = shapeMemento.Color,
-                    };
+                    shape = new Line(null, shapeMemento);
                 }
                 shapes.Add(shape);
             }

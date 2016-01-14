@@ -5,8 +5,6 @@ using System.Windows.Forms;
 using VectorDrawing_WinForm_.Memento;
 using VectorDrawing_WinForm_.Shapes.Abstract;
 using VectorDrawing_WinForm_.Shapes.Concrete;
-using VectorDrawing_WinForm_.Util;
-using Rectangle = VectorDrawing_WinForm_.Shapes.Concrete.Rectangle;
 
 namespace VectorDrawing_WinForm_
 {
@@ -37,33 +35,54 @@ namespace VectorDrawing_WinForm_
         private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)
         {
             var pctbx = (PictureBox)sender;
-            var data = new XData();
-            data.SetData(cmbx_color.Text, (int)nmr_width.Value, cmbx_type.Text);
+            var shape = new ShapeMemento();
+            shape.SetData(e.X, e.Y, 15, 15, ChooseColor(), (int)nmr_width.Value, cmbx_type.Text);
 
             switch (cmbx_type.Text)
             {
                 case "Rectangle":
                     {
-                        var rectangle = new Rectangle { Top = e.X, Left = e.Y };
-                        rectangle.DrawShape(pctbx, Color.Red, data.Width);
+                        var rectangle = new Shapes.Concrete.Rectangle(this, pctbx, shape);
                         pctbx.Controls.Add(rectangle);
+                        rectangle.DrawShape();
                     }
                     break;
                 case "Ellipse":
                     {
-                        var ellipse = new Ellipse { Top = e.X, Left = e.Y };
-                        ellipse.DrawShape(pctbx, Color.Red, data.Width);
+                        var ellipse = new Ellipse(pctbx, shape);
                         pctbx.Controls.Add(ellipse);
+                        ellipse.DrawShape();
                     }
                     break;
                 case "Line":
                     {
-                        var line = new Line { Top = e.X, Left = e.Y };
-                        line.DrawShape(pctbx, Color.Red, data.Width);
+                        var line = new Line(pctbx, shape);
                         pctbx.Controls.Add(line);
+                        line.DrawShape();
                     }
                     break;
             }
+            Refresh();
+        }
+
+        private Color ChooseColor()
+        {
+            Color color = Color.Black;
+
+            if (cmbx_color.Text == "Black")
+            {
+                color = Color.Black;
+            }
+            else if (cmbx_color.Text == "Green")
+            {
+                color = Color.Green;
+            }
+            else if (cmbx_color.Text == "Red")
+            {
+                color = Color.Red;
+            }
+
+            return color;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,8 +95,8 @@ namespace VectorDrawing_WinForm_
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
             var shapes = new List<AShape>();
-            ///TODO: изменить захардкоженный пикчербокс, сохраняет неполный объем данных (нет ширины, высоты, толщины и т.д.)
-            foreach (var shape in pctbx_canvas1.Controls) 
+            ///TODO: изменить захардкоженный пикчербокс
+            foreach (var shape in pctbx_canvas1.Controls)
             {
                 if (shape is AShape)
                 {
@@ -104,7 +123,10 @@ namespace VectorDrawing_WinForm_
 
                 foreach (var shape in shapes)
                 {
-                    shape.DrawShape(_pictureBox, shape.ForeColor, shape.LineWidth);
+                    ///TODO: изменить захардкоженный пикчербокс
+                    shape.PictureBox = pctbx_canvas1;
+                    shape.DrawShape();
+                    pctbx_canvas1.Controls.Add(shape);
                 }
             }
             catch (Exception)
