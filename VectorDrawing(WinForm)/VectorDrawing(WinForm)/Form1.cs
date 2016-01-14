@@ -53,8 +53,6 @@ namespace VectorDrawing_WinForm_
             var shape = ShapeFactory.GetShape(cmbx_type.Text, this, pctbx, data);
             pctbx.Controls.Add(shape);
             shape.DrawShape();
-
-            Refresh();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,7 +106,23 @@ namespace VectorDrawing_WinForm_
 
         private void cmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (sender is ComboBox)
+            {
+                switch (((ComboBox)sender).Name)
+                {
+                    case "cmbx_color":
+                        var value = ((ComboBox)sender).SelectedIndex;
+                        ttcmbx_color.SelectedText = ((ComboBox) sender).Text;
+                        lbl_color.Text = ((ComboBox)sender).SelectedText;
+                        break;
+                    case "cmbx_type":
+                        ttcmd_type.SelectedText = ((ComboBox)sender).Text;
+                        lbl_type.Text = ((ComboBox)sender).SelectedText;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
