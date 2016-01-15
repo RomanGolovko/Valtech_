@@ -61,7 +61,7 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
                 data.SetData(shapeMemento.X, shapeMemento.Y, shapeMemento.Width, shapeMemento.Height,
                     shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type);
 
-                var shape = ShapeFactory.GetShape(shapeMemento.Type, null, null, data);
+                var shape = ShapeFactory.GetShape(shapeMemento.Type, , data);
                 shapes.Add(shape);
             }
 

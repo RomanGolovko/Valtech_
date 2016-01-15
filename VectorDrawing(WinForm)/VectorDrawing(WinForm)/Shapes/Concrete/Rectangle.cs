@@ -7,10 +7,9 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
 {
     public class Rectangle : AShape
     {
-        public Rectangle(Form main, PictureBox pctbx, XData data)
+        public Rectangle(Form main, XData data)
         {
             Main = main;
-            PictureBox = pctbx;
             Data = data;
 
             Top = Data.X;
@@ -21,22 +20,20 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
             LineWidth = Data.LineWidth;
         }
 
-        public override void DrawShape()
+        public override void RedrawShape(XData data)
         {
-            PictureBox.CreateGraphics().DrawRectangle(new Pen(Color, LineWidth), Top, Left, Width, Height);
-            Invalidate();
+            Top = Data.X;
+            Left = Data.Y;
+            Width = Data.Width;
+            Height = Data.Height;
+            Color = Data.Color;
+            LineWidth = Data.LineWidth;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            PictureBox.CreateGraphics().DrawRectangle(new Pen(Color, LineWidth), Top, Left, Width, Height);
+            e.Graphics.DrawRectangle(new Pen(Color, LineWidth), 1, 1, Width - 2, Height - 2);
             base.OnPaint(e);
-        }
-
-        protected override void OnMouseClick(MouseEventArgs e)
-        {
-            Data.GetData(Main);
-            base.OnMouseClick(e);
         }
     }
 }

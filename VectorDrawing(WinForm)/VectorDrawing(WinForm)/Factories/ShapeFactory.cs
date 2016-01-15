@@ -7,20 +7,20 @@ namespace VectorDrawing_WinForm_.Factories
 {
     public static class ShapeFactory
     {
-        public static AShape GetShape(string type, Form main, PictureBox pctbx, XData data)
+        public static AShape GetShape(string type, Form main, XData data)
         {
             AShape shape = null;
 
             switch (type)
             {
                 case "Rectangle":
-                    shape = new Rectangle(main, pctbx, data);
+                    shape = new Rectangle(main, data);
                     break;
                 case "Ellipse":
-                    shape = new Ellipse(main, pctbx, data);
+                    shape = new Ellipse(main, data);
                     break;
                 case "Line":
-                    shape = new Line(main, pctbx, data);
+                    shape = new Line(main, data);
                     break;
                 default:
                     break;

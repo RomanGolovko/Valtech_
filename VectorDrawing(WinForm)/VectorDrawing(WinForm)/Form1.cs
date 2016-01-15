@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
@@ -15,6 +16,8 @@ namespace VectorDrawing_WinForm_
         public Main()
         {
             InitializeComponent();
+
+            _pictureBox = pctbx_canvas1;
 
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
             cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
@@ -48,11 +51,11 @@ namespace VectorDrawing_WinForm_
             var pctbx = (PictureBox)sender;
 
             var data = new XData();
-            data.SetData(e.X, e.Y, 20, 20, ColorFactory.GetColor(cmbx_color.Text), (int)nmr_width.Value, cmbx_type.Text);
+            data.SetData(e.X, e.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
 
-            var shape = ShapeFactory.GetShape(cmbx_type.Text, this, pctbx, data);
+            var shape = ShapeFactory.GetShape(lbl_type.Text,this,  data);
+            shape.Location = new Point(data.X, data.Y);
             pctbx.Controls.Add(shape);
-            shape.DrawShape();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,9 +90,6 @@ namespace VectorDrawing_WinForm_
                 foreach (var shape in shapes)
                 {
                     ///TODO: изменить захардкоженный пикчербокс
-                    shape.Main = this;
-                    shape.PictureBox = pctbx_canvas1;
-                    shape.DrawShape();
                     pctbx_canvas1.Controls.Add(shape);
                 }
             }
@@ -111,17 +111,47 @@ namespace VectorDrawing_WinForm_
                 switch (((ComboBox)sender).Name)
                 {
                     case "cmbx_color":
-                        var value = ((ComboBox)sender).SelectedIndex;
-                        ttcmbx_color.SelectedText = ((ComboBox) sender).Text;
-                        lbl_color.Text = ((ComboBox)sender).SelectedText;
+                        lbl_color.Text = ((ComboBox)sender).Text;
                         break;
                     case "cmbx_type":
-                        ttcmd_type.SelectedText = ((ComboBox)sender).Text;
-                        lbl_type.Text = ((ComboBox)sender).SelectedText;
+                        lbl_type.Text = ((ComboBox)sender).Text;
                         break;
                     default:
                         break;
                 }
+            }
+            else if (sender is NumericUpDown)
+            {
+                lbl_color.Text = ((NumericUpDown)sender).Value.ToString();
+            }
+            else if (sender is ToolStripComboBox)
+            {
+                switch (((ToolStripComboBox)sender).Name)
+                {
+                    case "ttcmbx_color":
+                        lbl_color.Text = ((ToolStripComboBox)sender).Text;
+                        break;
+                    case "ttcmd_type":
+                        lbl_type.Text = ((ToolStripComboBox)sender).Text;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void nmr_width_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_width.Text = nmr_width.Value.ToString();
+        }
+
+        private void lbl_TextChanged(object sender, EventArgs e)
+        {
+            if (_pictureBox.Controls.OfType<AShape>().FirstOrDefault(x => x.Name == ((AShape)sender).Name) != null)
+            {
+                var data = new XData();
+                var temp = _pictureBox.Controls.OfType<AShape>().FirstOrDefault(x => x.Name == ((AShape)sender).Name);
+                data.SetData(temp.Data.X, temp.Data.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
             }
         }
     }

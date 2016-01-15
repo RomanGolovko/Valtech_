@@ -55,22 +55,22 @@ namespace VectorDrawing_WinForm_.Util
                         }
                     }
                 }
-                else if (item is ToolStripComboBox)
+                else if (item is MenuStrip)
                 {
-                    switch (((ToolStripComboBox)item).Name)
-                    {
-                        case "ttcmbx_color":
-                            ((ToolStripComboBox) item).SelectedIndex = GetColor();
-                            break;
-                        case "ttcmbx_width":
-                            ((ToolStripComboBox) item).SelectedIndex = LineWidth;
-                            break;
-                        case "ttcmd_type":
-                            ((ToolStripComboBox)item).SelectedIndex = GetShapeType();
-                            break;
-                        default:
-                            break;
-                    }
+                    //    switch (((ToolStripComboBox)item).Name)
+                    //    {
+                    //        case "ttcmbx_color":
+                    //            ((ToolStripComboBox) item).SelectedIndex = GetColor();
+                    //            break;
+                    //        case "ttcmbx_width":
+                    //            ((ToolStripComboBox) item).SelectedIndex = LineWidth;
+                    //            break;
+                    //        case "ttcmd_type":
+                    //            ((ToolStripComboBox)item).SelectedIndex = GetShapeType();
+                    //            break;
+                    //        default:
+                    //            break;
+                    //    }
                 }
                 else if (item is ToolStrip)
                 {
@@ -91,6 +91,23 @@ namespace VectorDrawing_WinForm_.Util
                                 break;
                         }
                     }
+                    //foreach (var tlstrpItem in ((ToolStrip)item).Items.OfType<ToolStripComboBox>())
+                    //{
+                    //    switch (((ToolStripComboBox)item).Name)
+                    //    {
+                    //        case "ttcmbx_color":
+                    //            ((ToolStripComboBox)item).SelectedIndex = GetColor();
+                    //            break;
+                    //        case "ttcmbx_width":
+                    //            ((ToolStripComboBox)item).SelectedIndex = LineWidth;
+                    //            break;
+                    //        case "ttcmd_type":
+                    //            ((ToolStripComboBox)item).SelectedIndex = GetShapeType();
+                    //            break;
+                    //        default:
+                    //            break;
+                    //    }
+                    //}
                 }
             }
         }
