@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
 using VectorDrawing_WinForm_.Shapes.Abstract;
-using VectorDrawing_WinForm_.Shapes.Concrete;
 using VectorDrawing_WinForm_.Util;
 
 namespace VectorDrawing_WinForm_.Serialization.Memento
@@ -30,27 +30,15 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
                     Width = shape.Width,
                     Height = shape.Height,
                     Color = shape.Color,
-                    LineWidth = shape.LineWidth
+                    LineWidth = shape.LineWidth,
+                    Type = shape.Type
                 };
-
-                if (shape is Rectangle)
-                {
-                    shapeMemento.Type = "Rectangle";
-                }
-                else if (shape is Ellipse)
-                {
-                    shapeMemento.Type = "Ellipse";
-                }
-                else if (shape is Line)
-                {
-                    shapeMemento.Type = "Line";
-                }
 
                 Shapes.Add(shapeMemento);
             }
         }
 
-        public static IEnumerable<AShape> RestoreState(int ext, string format)
+        public static IEnumerable<AShape> RestoreState(int ext, Form main, string format)
         {
             var shapesMemento = SwitchFactory.SelectSerializationFormat(ext).Load(format);
             var shapes = new List<AShape>();
@@ -61,7 +49,7 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
                 data.SetData(shapeMemento.X, shapeMemento.Y, shapeMemento.Width, shapeMemento.Height,
                     shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type);
 
-                var shape = ShapeFactory.GetShape(shapeMemento.Type, , data);
+                var shape = ShapeFactory.GetShape(main, data);
                 shapes.Add(shape);
             }
 

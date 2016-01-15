@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
@@ -28,7 +29,6 @@ namespace VectorDrawing_WinForm_
             ttcmbx_width.SelectedIndex = (int)nmr_width.Value - 1;
             ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
             ttcmd_type.SelectedIndex = 0;
-
         }
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace VectorDrawing_WinForm_
             var data = new XData();
             data.SetData(e.X, e.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
 
-            var shape = ShapeFactory.GetShape(lbl_type.Text,this,  data);
+            var shape = ShapeFactory.GetShape(this, data);
             shape.Location = new Point(data.X, data.Y);
             pctbx.Controls.Add(shape);
         }
@@ -85,7 +85,7 @@ namespace VectorDrawing_WinForm_
 
             try
             {
-                var shapes = PctbxMemento.RestoreState(openFileDialog.FilterIndex, openFileDialog.FileName);
+                var shapes = PctbxMemento.RestoreState(openFileDialog.FilterIndex, this, openFileDialog.FileName);
 
                 foreach (var shape in shapes)
                 {
@@ -122,7 +122,7 @@ namespace VectorDrawing_WinForm_
             }
             else if (sender is NumericUpDown)
             {
-                lbl_color.Text = ((NumericUpDown)sender).Value.ToString();
+                lbl_color.Text = ((NumericUpDown)sender).Value.ToString(CultureInfo.InvariantCulture);
             }
             else if (sender is ToolStripComboBox)
             {
@@ -142,17 +142,30 @@ namespace VectorDrawing_WinForm_
 
         private void nmr_width_ValueChanged(object sender, EventArgs e)
         {
-            lbl_width.Text = nmr_width.Value.ToString();
+            lbl_width.Text = nmr_width.Value.ToString(CultureInfo.InvariantCulture);
         }
 
         private void lbl_TextChanged(object sender, EventArgs e)
         {
-            if (_pictureBox.Controls.OfType<AShape>().FirstOrDefault(x => x.Name == ((AShape)sender).Name) != null)
+            var data = default(XData);
+            foreach (var figure in from object shape in _pictureBox.Controls where ((AShape)shape).Focused select shape as AShape)
             {
-                var data = new XData();
-                var temp = _pictureBox.Controls.OfType<AShape>().FirstOrDefault(x => x.Name == ((AShape)sender).Name);
-                data.SetData(temp.Data.X, temp.Data.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
+                data = figure?.Data.SetData(figure.Data.X, figure.Data.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text),
+                    int.Parse(lbl_width.Text), lbl_type.Text);
+                figure.RedrawShape(data);
             }
+
+            if (data == null) return;
+            var color = NumColorFactory.GetColor(data.Color);
+            cmbx_color.SelectedIndex = color;
+            ttcmbx_color.SelectedIndex = color;
+
+            nmr_width.Value = data.LineWidth;
+            ttcmbx_width.SelectedIndex = data.LineWidth;
+
+            var type = NumTypeFactory.GetShapeType(data.Type);
+            cmbx_type.SelectedIndex = type;
+            ttcmd_type.SelectedIndex = type;
         }
     }
 }

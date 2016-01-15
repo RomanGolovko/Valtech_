@@ -11,19 +11,21 @@ namespace VectorDrawing_WinForm_.Shapes.Concrete
         {
             Main = main;
             Data = data;
-            
-            Top = Data.X;
-            Left = Data.Y;
+
+            Left = Data.X;
+            Top = Data.Y;
             Width = Data.Width;
             Height = Data.Height;
             Color = Data.Color;
             LineWidth = Data.LineWidth;
+            BackColor = Color.White;
+            Type = "Ellipse";
         }
 
         public override void RedrawShape(XData data)
         {
-            Top = Data.X;
-            Left = Data.Y;
+            Left = Data.X;
+            Top = Data.Y;
             Width = Data.Width;
             Height = Data.Height;
             Color = Data.Color;

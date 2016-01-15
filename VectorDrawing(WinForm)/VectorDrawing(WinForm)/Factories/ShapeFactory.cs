@@ -7,11 +7,11 @@ namespace VectorDrawing_WinForm_.Factories
 {
     public static class ShapeFactory
     {
-        public static AShape GetShape(string type, Form main, XData data)
+        public static AShape GetShape(Form main, XData data)
         {
             AShape shape = null;
 
-            switch (type)
+            switch (data.Type)
             {
                 case "Rectangle":
                     shape = new Rectangle(main, data);
