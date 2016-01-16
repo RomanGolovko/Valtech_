@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
-using VectorDrawing_WinForm_.Shapes.Abstract;
-using VectorDrawing_WinForm_.Util;
+using VectorDrawing_WinForm_.Shapes;
 
 namespace VectorDrawing_WinForm_.Serialization.Memento
 {
@@ -17,31 +17,29 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
 
         public PctbxMemento() { }                       // for xml serialization
 
-        public PctbxMemento(IEnumerable<AShape> shapes)
+        public PctbxMemento(IEnumerable<Shape> shapes)
         {
             Shapes = new List<ShapeMemento>();
 
-            foreach (var shape in shapes)
+            foreach (var shapeMemento in shapes.Select(shape => new ShapeMemento
             {
-                var shapeMemento = new ShapeMemento
-                {
-                    X = shape.Top,
-                    Y = shape.Left,
-                    Width = shape.Width,
-                    Height = shape.Height,
-                    Color = shape.Color,
-                    LineWidth = shape.LineWidth,
-                    Type = shape.Type
-                };
-
+                X = shape.Left,
+                Y = shape.Top,
+                Width = shape.Width,
+                Height = shape.Height,
+                Color = shape.Color,
+                LineWidth = shape.LineWidth,
+                Type = shape.Type
+            }))
+            {
                 Shapes.Add(shapeMemento);
             }
         }
 
-        public static IEnumerable<AShape> RestoreState(int ext, Form main, string format)
+        public static IEnumerable<Shape> RestoreState(int ext, string format)
         {
             var shapesMemento = SwitchFactory.SelectSerializationFormat(ext).Load(format);
-            var shapes = new List<AShape>();
+            var shapes = new List<Shape>();
 
             foreach (var shapeMemento in shapesMemento)
             {
@@ -49,7 +47,7 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
                 data.SetData(shapeMemento.X, shapeMemento.Y, shapeMemento.Width, shapeMemento.Height,
                     shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type);
 
-                var shape = ShapeFactory.GetShape(main, data);
+                var shape = new Shape(data, data.Type);
                 shapes.Add(shape);
             }
 

@@ -53,9 +53,7 @@
   <ItemGroup>
     <Compile Include="Factories\ColorFactory.cs" />
     <Compile Include="Factories\FormatFactory.cs" />
-    <Compile Include="Factories\NumColorFactory.cs" />
-    <Compile Include="Factories\NumTypeFactory.cs" />
-    <Compile Include="Factories\ShapeFactory.cs" />
+    <Compile Include="Factories\TypeFactory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,19 +69,10 @@
     <Compile Include="Serialization\Concrete\JsonFormat.cs" />
     <Compile Include="Serialization\Concrete\XmlFormat.cs" />
     <Compile Include="Serialization\Concrete\YamlFormat.cs" />
-    <Compile Include="Shapes\Abstract\AShape.cs">
+    <Compile Include="Shapes\Shape.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Shapes\Concrete\Ellipse.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Shapes\Concrete\Line.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Shapes\Concrete\Rectangle.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Util\XData.cs" />
+    <Compile Include="Shapes\XData.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

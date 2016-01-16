@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.Serialization;
-using VectorDrawing_WinForm_.Util;
 
 namespace VectorDrawing_WinForm_.Serialization.Memento
 {
@@ -29,21 +28,5 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
 
         [DataMember]                        // for json serialization
         public int LineWidth { get; set; }
-
-        public void SetMemento(XData data)
-        {
-            X = data.X;
-            Y = data.Y;
-            Width = data.Width;
-            Height = data.Height;
-            Color = data.Color;
-            LineWidth = data.LineWidth;
-            Type = data.Type;
-        }
-
-        public ShapeMemento GetMemento()
-        {
-            return this;
-        }
     }
 }

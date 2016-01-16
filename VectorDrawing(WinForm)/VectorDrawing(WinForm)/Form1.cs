@@ -6,14 +6,16 @@ using System.Linq;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
 using VectorDrawing_WinForm_.Serialization.Memento;
-using VectorDrawing_WinForm_.Shapes.Abstract;
-using VectorDrawing_WinForm_.Util;
+using VectorDrawing_WinForm_.Shapes;
 
 namespace VectorDrawing_WinForm_
 {
     public partial class Main : Form
     {
         private PictureBox _pictureBox;
+
+        public Shape Shape { get; set; }
+
         public Main()
         {
             InitializeComponent();
@@ -25,8 +27,10 @@ namespace VectorDrawing_WinForm_
 
             ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
             ttcmbx_color.SelectedIndex = 0;
+
             ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             ttcmbx_width.SelectedIndex = (int)nmr_width.Value - 1;
+
             ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
             ttcmd_type.SelectedIndex = 0;
         }
@@ -51,9 +55,9 @@ namespace VectorDrawing_WinForm_
             var pctbx = (PictureBox)sender;
 
             var data = new XData();
-            data.SetData(e.X, e.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
+            data.SetData(e.X, e.Y, 40, 40, ColorFactory.GetColorFromString(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
 
-            var shape = ShapeFactory.GetShape(this, data);
+            var shape = new Shape(data, data.Type);
             shape.Location = new Point(data.X, data.Y);
             pctbx.Controls.Add(shape);
         }
@@ -68,7 +72,7 @@ namespace VectorDrawing_WinForm_
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
             ///TODO: изменить захардкоженный пикчербокс
-            var shapes = pctbx_canvas1.Controls.OfType<AShape>().Select(shape => shape).ToList();
+            var shapes = pctbx_canvas1.Controls.OfType<Shape>().Select(shape => shape).ToList();
 
             var memento = new PctbxMemento(shapes);
             memento.SaveState(saveFileDialog.FilterIndex, saveFileDialog.FileName);
@@ -85,7 +89,7 @@ namespace VectorDrawing_WinForm_
 
             try
             {
-                var shapes = PctbxMemento.RestoreState(openFileDialog.FilterIndex, this, openFileDialog.FileName);
+                var shapes = PctbxMemento.RestoreState(openFileDialog.FilterIndex, openFileDialog.FileName);
 
                 foreach (var shape in shapes)
                 {
@@ -147,25 +151,49 @@ namespace VectorDrawing_WinForm_
 
         private void lbl_TextChanged(object sender, EventArgs e)
         {
+            Shape.Focus();
             var data = default(XData);
-            foreach (var figure in from object shape in _pictureBox.Controls where ((AShape)shape).Focused select shape as AShape)
+
+            foreach (var figure in from object shape in _pictureBox.Controls where ((Shape)shape).Focused select shape as Shape)
             {
-                data = figure?.Data.SetData(figure.Data.X, figure.Data.Y, 20, 20, ColorFactory.GetColor(lbl_color.Text),
+                data = figure?.Data.SetData(figure.Data.X, figure.Data.Y, 50, 50, ColorFactory.GetColorFromString(lbl_color.Text),
                     int.Parse(lbl_width.Text), lbl_type.Text);
                 figure.RedrawShape(data);
             }
 
-            if (data == null) return;
-            var color = NumColorFactory.GetColor(data.Color);
+            var color = ColorFactory.GetColorNum(ColorFactory.GetColorFromString(lbl_color.Text)) ;
             cmbx_color.SelectedIndex = color;
             ttcmbx_color.SelectedIndex = color;
 
-            nmr_width.Value = data.LineWidth;
-            ttcmbx_width.SelectedIndex = data.LineWidth;
+            var lineWidth = int.Parse(lbl_width.Text);
+            nmr_width.Value = lineWidth;
+            ttcmbx_width.SelectedIndex = lineWidth - 1;
 
-            var type = NumTypeFactory.GetShapeType(data.Type);
+            var type = TypeFactory.GetNumShapeType(lbl_type.Text);
             cmbx_type.SelectedIndex = type;
             ttcmd_type.SelectedIndex = type;
+        }
+
+        public void SetCurrentValue(XData data)
+        {
+            foreach (var lbl in Controls.OfType<ToolStrip>().SelectMany(control => (control).Items.OfType<ToolStripLabel>()))
+            {
+                switch ((lbl).Name)
+                {
+                                
+                    case "lbl_color":
+                        (lbl).Text = data.Color.ToString();
+                        break;
+                    case "lbl_width":
+                        (lbl).Text = data.LineWidth.ToString();
+                        break;
+                    case "lbl_type":
+                        (lbl).Text = data.Type;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
