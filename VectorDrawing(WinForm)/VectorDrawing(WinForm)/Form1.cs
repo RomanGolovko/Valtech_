@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
@@ -13,8 +12,9 @@ namespace VectorDrawing_WinForm_
     public partial class Main : Form
     {
         private PictureBox _pictureBox;
+        private XData _data;
 
-        public Shape Shape { get; set; }
+        public Shape CurrentShape { get; set; }
 
         public Main()
         {
@@ -22,17 +22,24 @@ namespace VectorDrawing_WinForm_
 
             _pictureBox = pctbx_canvas1;
 
+            _data = new XData
+            {
+                Color = Color.Black,
+                LineWidth = 1,
+                Type = "Rectangle"
+            };
+
+            ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
+            ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
+
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
             cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
 
-            ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
-            ttcmbx_color.SelectedIndex = 0;
+            cmbx_color.SelectedIndexChanged += cmbx_SelectedIndexChanged;
+            cmbx_type.SelectedIndexChanged += cmbx_SelectedIndexChanged;
 
-            ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            ttcmbx_width.SelectedIndex = (int)nmr_width.Value - 1;
-
-            ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
-            ttcmd_type.SelectedIndex = 0;
+            SetValue();
         }
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,11 +61,9 @@ namespace VectorDrawing_WinForm_
         {
             var pctbx = (PictureBox)sender;
 
-            var data = new XData();
-            data.SetData(e.X, e.Y, 40, 40, ColorFactory.GetColorFromString(lbl_color.Text), int.Parse(lbl_width.Text), lbl_type.Text);
+            _data.SetData(e.X, e.Y, 40, 40, _data.Color, _data.LineWidth, _data.Type);
 
-            var shape = new Shape(data, data.Type);
-            shape.Location = new Point(data.X, data.Y);
+            var shape = new Shape(_data, _data.Type) {Location = new Point(_data.X, _data.Y)};
             pctbx.Controls.Add(shape);
         }
 
@@ -115,85 +120,67 @@ namespace VectorDrawing_WinForm_
                 switch (((ComboBox)sender).Name)
                 {
                     case "cmbx_color":
-                        lbl_color.Text = ((ComboBox)sender).Text;
+                        _data.Color = ColorFactory.GetColorFromString(((ComboBox)sender).Text);
                         break;
                     case "cmbx_type":
-                        lbl_type.Text = ((ComboBox)sender).Text;
+                        _data.Type = ((ComboBox)sender).Text;
                         break;
                     default:
                         break;
                 }
-            }
-            else if (sender is NumericUpDown)
-            {
-                lbl_color.Text = ((NumericUpDown)sender).Value.ToString(CultureInfo.InvariantCulture);
             }
             else if (sender is ToolStripComboBox)
             {
                 switch (((ToolStripComboBox)sender).Name)
                 {
                     case "ttcmbx_color":
-                        lbl_color.Text = ((ToolStripComboBox)sender).Text;
+                        _data.Color = ColorFactory.GetColorFromString(((ToolStripComboBox)sender).Text);
                         break;
                     case "ttcmd_type":
-                        lbl_type.Text = ((ToolStripComboBox)sender).Text;
+                        _data.Type = ((ToolStripComboBox)sender).Text;
                         break;
                     default:
                         break;
                 }
             }
+
+            SetValue();
         }
 
         private void nmr_width_ValueChanged(object sender, EventArgs e)
         {
-            lbl_width.Text = nmr_width.Value.ToString(CultureInfo.InvariantCulture);
+            _data.LineWidth = (int)nmr_width.Value;
+            SetValue();
         }
 
-        private void lbl_TextChanged(object sender, EventArgs e)
+        public void SetData(XData data)
         {
-            Shape.Focus();
-            var data = default(XData);
+            _data = data;
+            SetValue();
+        }
 
-            foreach (var figure in from object shape in _pictureBox.Controls where ((Shape)shape).Focused select shape as Shape)
+        private void SetValue()
+        {
+            CurrentShape?.Focus();
+            if (CurrentShape != null && CurrentShape.Focused)
             {
-                data = figure?.Data.SetData(figure.Data.X, figure.Data.Y, 50, 50, ColorFactory.GetColorFromString(lbl_color.Text),
-                    int.Parse(lbl_width.Text), lbl_type.Text);
-                figure.RedrawShape(data);
+               CurrentShape.RedrawShape( CurrentShape.Data.SetData(_data.X, _data.Y, _data.Width, 
+                   _data.Height, _data.Color, _data.LineWidth, _data.Type));
             }
 
-            var color = ColorFactory.GetColorNum(ColorFactory.GetColorFromString(lbl_color.Text)) ;
+            var color = ColorFactory.GetColorNum(_data.Color);
             cmbx_color.SelectedIndex = color;
             ttcmbx_color.SelectedIndex = color;
+            lbl_color.Text = _data.Color.ToString();
 
-            var lineWidth = int.Parse(lbl_width.Text);
-            nmr_width.Value = lineWidth;
-            ttcmbx_width.SelectedIndex = lineWidth - 1;
+            nmr_width.Value = _data.LineWidth;
+            ttcmbx_width.SelectedIndex = _data.LineWidth - 1;
+            lbl_width.Text = _data.LineWidth.ToString();
 
-            var type = TypeFactory.GetNumShapeType(lbl_type.Text);
+            var type = TypeFactory.GetNumShapeType(_data.Type);
             cmbx_type.SelectedIndex = type;
             ttcmd_type.SelectedIndex = type;
-        }
-
-        public void SetCurrentValue(XData data)
-        {
-            foreach (var lbl in Controls.OfType<ToolStrip>().SelectMany(control => (control).Items.OfType<ToolStripLabel>()))
-            {
-                switch ((lbl).Name)
-                {
-                                
-                    case "lbl_color":
-                        (lbl).Text = data.Color.ToString();
-                        break;
-                    case "lbl_width":
-                        (lbl).Text = data.LineWidth.ToString();
-                        break;
-                    case "lbl_type":
-                        (lbl).Text = data.Type;
-                        break;
-                    default:
-                        break;
-                }
-            }
+            lbl_type.Text = _data.Type;
         }
     }
 }

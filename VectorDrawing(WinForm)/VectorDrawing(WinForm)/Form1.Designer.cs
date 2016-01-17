@@ -214,7 +214,6 @@
             this.lbl_color.Name = "lbl_color";
             this.lbl_color.Size = new System.Drawing.Size(35, 22);
             this.lbl_color.Text = "Black";
-            this.lbl_color.TextChanged += new System.EventHandler(this.lbl_TextChanged);
             // 
             // toolStripSeparator2
             // 
@@ -226,7 +225,6 @@
             this.lbl_width.Name = "lbl_width";
             this.lbl_width.Size = new System.Drawing.Size(13, 22);
             this.lbl_width.Text = "1";
-            this.lbl_width.TextChanged += new System.EventHandler(this.lbl_TextChanged);
             // 
             // toolStripSeparator3
             // 
@@ -238,7 +236,6 @@
             this.lbl_type.Name = "lbl_type";
             this.lbl_type.Size = new System.Drawing.Size(59, 22);
             this.lbl_type.Text = "Rectangle";
-            this.lbl_type.TextChanged += new System.EventHandler(this.lbl_TextChanged);
             // 
             // toolStripSeparator4
             // 
@@ -250,7 +247,6 @@
             this.lbl_tabs.Name = "lbl_tabs";
             this.lbl_tabs.Size = new System.Drawing.Size(31, 22);
             this.lbl_tabs.Text = "Tabs";
-            this.lbl_tabs.TextChanged += new System.EventHandler(this.lbl_TextChanged);
             // 
             // tbcntrl_canvas
             // 
@@ -328,7 +324,6 @@
             this.cmbx_color.Name = "cmbx_color";
             this.cmbx_color.Size = new System.Drawing.Size(92, 21);
             this.cmbx_color.TabIndex = 0;
-            this.cmbx_color.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // grbx_width
             // 
@@ -386,7 +381,6 @@
             this.cmbx_type.Name = "cmbx_type";
             this.cmbx_type.Size = new System.Drawing.Size(92, 21);
             this.cmbx_type.TabIndex = 0;
-            this.cmbx_type.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
             // grbx_coord
             // 

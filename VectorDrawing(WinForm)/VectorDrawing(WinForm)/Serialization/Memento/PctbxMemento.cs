@@ -38,7 +38,7 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
 
         public static IEnumerable<Shape> RestoreState(int ext, string format)
         {
-            var shapesMemento = SwitchFactory.SelectSerializationFormat(ext).Load(format);
+            var shapesMemento = FormatFactory.SelectSerializationFormat(ext).Load(format);
             var shapes = new List<Shape>();
 
             foreach (var shapeMemento in shapesMemento)
@@ -56,7 +56,7 @@ namespace VectorDrawing_WinForm_.Serialization.Memento
 
         public void SaveState(int ext, string format)
         {
-            SwitchFactory.SelectSerializationFormat(ext).Save(format, Shapes);
+            FormatFactory.SelectSerializationFormat(ext).Save(format, Shapes);
         }
     }
 }
