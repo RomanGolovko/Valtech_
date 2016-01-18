@@ -1,5 +1,4 @@
-﻿using Drawing_WinForm_.Formats;
-using Drawing_WinForm_.Formats.Factories.ChainOfResponsibility;
+﻿using Drawing_WinForm_.Formats.Factories.ChainOfResponsibility;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
