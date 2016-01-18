@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
 using VectorDrawing_WinForm_.Serialization.Memento;
 using VectorDrawing_WinForm_.Shapes;
+using System.Resources;
 
 namespace VectorDrawing_WinForm_
 {
     public partial class Main : Form
     {
+        private ResourceManager _locale;
         private PictureBox _pictureBox;
         private XData _data;
 
@@ -18,6 +22,8 @@ namespace VectorDrawing_WinForm_
 
         public Main()
         {
+            _locale = new ResourceManager("VectorDrawing_WinForm_.Resources.Locale", typeof(Main).Assembly);
+
             InitializeComponent();
 
             _pictureBox = pctbx_canvas1;
@@ -28,6 +34,9 @@ namespace VectorDrawing_WinForm_
                 LineWidth = 1,
                 Type = "Rectangle"
             };
+
+            tsmi_language.Items.AddRange(new object[] { "English", "Русский", "Українська" });
+            tsmi_language.SelectedIndex = 0;
 
             ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
             ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
@@ -40,6 +49,40 @@ namespace VectorDrawing_WinForm_
             cmbx_type.SelectedIndexChanged += cmbx_SelectedIndexChanged;
 
             SetValue();
+        }
+
+        private void tsmi_language_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tsmi_language.Text)
+            {
+                case "English":
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("");
+                    break;
+                case "Русский":
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+                    break;
+                case "Українська":
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo("uk-UA");
+                    break;
+                default:
+                    break;
+            }
+
+            fileToolStripMenuItem.Text = _locale.GetString("fileToolStripMenuItem");
+            openToolStripMenuItem.Text = _locale.GetString("openToolStripMenuItem");
+            saveToolStripMenuItem.Text = _locale.GetString("saveToolStripMenuItem");
+            exitToolStripMenuItem.Text = _locale.GetString("exitToolStripMenuItem");
+            colorToolStripMenuItem.Text = _locale.GetString("colorToolStripMenuItem");
+            widthToolStripMenuItem.Text = _locale.GetString("widthToolStripMenuItem");
+            typeToolStripMenuItem.Text = _locale.GetString("typeToolStripMenuItem");
+            tabsToolStripMenuItem.Text = _locale.GetString("tabsToolStripMenuItem");
+            aboutToolStripMenuItem.Text = _locale.GetString("aboutToolStripMenuItem");
+            grbx_color.Text = _locale.GetString("grbx_color");
+            grbx_width.Text = _locale.GetString("grbx_width");
+            grbx_type.Text = _locale.GetString("grbx_type");
+            grbx_coord.Text = _locale.GetString("grbx_coord");
+            tbpg_1.Text = _locale.GetString("tbpg_1");
+            tbpg_2.Text = _locale.GetString("tbpg_2");
         }
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)

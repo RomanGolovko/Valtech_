@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
 using VectorDrawing_WinForm_.Shapes;
 

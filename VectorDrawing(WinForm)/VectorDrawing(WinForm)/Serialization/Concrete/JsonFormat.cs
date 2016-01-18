@@ -20,7 +20,6 @@ namespace VectorDrawing_WinForm_.Serialization.Concrete
                 _formatter.WriteObject(fs, state);
                 MessageBox.Show(@"Balls state saved", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
         public IEnumerable<ShapeMemento> Load(string path)
