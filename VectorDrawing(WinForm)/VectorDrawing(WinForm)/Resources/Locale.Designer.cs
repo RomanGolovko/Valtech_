@@ -133,6 +133,15 @@ namespace VectorDrawing_WinForm_.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string languageToolStripMenuItem {
+            get {
+                return ResourceManager.GetString("languageToolStripMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
         internal static string openToolStripMenuItem {
@@ -147,6 +156,24 @@ namespace VectorDrawing_WinForm_.Resources {
         internal static string saveToolStripMenuItem {
             get {
                 return ResourceManager.GetString("saveToolStripMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string settingsToolStripMenuItem {
+            get {
+                return ResourceManager.GetString("settingsToolStripMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        internal static string styleToolStripMenuItem {
+            get {
+                return ResourceManager.GetString("styleToolStripMenuItem", resourceCulture);
             }
         }
         

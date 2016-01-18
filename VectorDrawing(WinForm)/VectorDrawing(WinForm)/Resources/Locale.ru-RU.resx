@@ -141,11 +141,20 @@
   <data name="grbx_width" xml:space="preserve">
     <value>Толщина</value>
   </data>
+  <data name="languageToolStripMenuItem" xml:space="preserve">
+    <value>Язык</value>
+  </data>
   <data name="openToolStripMenuItem" xml:space="preserve">
     <value>Открыть</value>
   </data>
   <data name="saveToolStripMenuItem" xml:space="preserve">
     <value>Сохранить</value>
+  </data>
+  <data name="settingsToolStripMenuItem" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="styleToolStripMenuItem" xml:space="preserve">
+    <value>Стиль</value>
   </data>
   <data name="tabsToolStripMenuItem" xml:space="preserve">
     <value>Вкладки</value>

@@ -141,11 +141,20 @@
   <data name="grbx_width" xml:space="preserve">
     <value>Width</value>
   </data>
+  <data name="languageToolStripMenuItem" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="openToolStripMenuItem" xml:space="preserve">
     <value>Open</value>
   </data>
   <data name="saveToolStripMenuItem" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="settingsToolStripMenuItem" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="styleToolStripMenuItem" xml:space="preserve">
+    <value>Style</value>
   </data>
   <data name="tabsToolStripMenuItem" xml:space="preserve">
     <value>Tabs</value>

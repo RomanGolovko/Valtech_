@@ -76,6 +76,9 @@ namespace VectorDrawing_WinForm_
             widthToolStripMenuItem.Text = _locale.GetString("widthToolStripMenuItem");
             typeToolStripMenuItem.Text = _locale.GetString("typeToolStripMenuItem");
             tabsToolStripMenuItem.Text = _locale.GetString("tabsToolStripMenuItem");
+            settingsToolStripMenuItem.Text = _locale.GetString("settingsToolStripMenuItem");
+            languageToolStripMenuItem.Text = _locale.GetString("languageToolStripMenuItem");
+            styleToolStripMenuItem.Text = _locale.GetString("styleToolStripMenuItem");
             aboutToolStripMenuItem.Text = _locale.GetString("aboutToolStripMenuItem");
             grbx_color.Text = _locale.GetString("grbx_color");
             grbx_width.Text = _locale.GetString("grbx_width");

@@ -133,15 +133,6 @@
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="tsmi_language.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
   </data>
@@ -157,11 +148,17 @@
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="ttcmbx_color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 28</value>
+  </data>
   <data name="colorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 24</value>
   </data>
   <data name="colorToolStripMenuItem.Text" xml:space="preserve">
     <value>Color</value>
+  </data>
+  <data name="ttcmbx_width.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 28</value>
   </data>
   <data name="widthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 24</value>
@@ -169,17 +166,50 @@
   <data name="widthToolStripMenuItem.Text" xml:space="preserve">
     <value>Width</value>
   </data>
+  <data name="ttcmd_type.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 28</value>
+  </data>
   <data name="typeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 24</value>
   </data>
   <data name="typeToolStripMenuItem.Text" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="ttcmbx_tabs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 28</value>
+  </data>
   <data name="tabsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 24</value>
   </data>
   <data name="tabsToolStripMenuItem.Text" xml:space="preserve">
     <value>Tabs</value>
+  </data>
+  <data name="tsmi_language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 28</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="blueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 28</value>
+  </data>
+  <data name="blueToolStripMenuItem.Text" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="styleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="styleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 24</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 24</value>
@@ -216,45 +246,9 @@
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="ttcmbx_color.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 28</value>
-  </data>
-  <data name="ttcmbx_width.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 28</value>
-  </data>
-  <data name="ttcmd_type.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 28</value>
-  </data>
-  <data name="ttcmbx_tabs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 28</value>
-  </data>
   <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>152, 17</value>
   </metadata>
-  <data name="toolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 28</value>
-  </data>
-  <data name="toolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>721, 25</value>
-  </data>
-  <data name="toolStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="toolStrip.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip.Name" xml:space="preserve">
-    <value>toolStrip</value>
-  </data>
-  <data name="&gt;&gt;toolStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStrip.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="lbl_color.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 22</value>
   </data>
@@ -288,53 +282,41 @@
   <data name="lbl_tabs.Text" xml:space="preserve">
     <value>Tabs</value>
   </data>
-  <data name="&gt;&gt;tbpg_1.Name" xml:space="preserve">
-    <value>tbpg_1</value>
+  <data name="toolStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 28</value>
   </data>
-  <data name="&gt;&gt;tbpg_1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>721, 25</value>
   </data>
-  <data name="&gt;&gt;tbpg_1.Parent" xml:space="preserve">
-    <value>tbcntrl_canvas</value>
-  </data>
-  <data name="&gt;&gt;tbpg_1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tbpg_2.Name" xml:space="preserve">
-    <value>tbpg_2</value>
-  </data>
-  <data name="&gt;&gt;tbpg_2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbpg_2.Parent" xml:space="preserve">
-    <value>tbcntrl_canvas</value>
-  </data>
-  <data name="&gt;&gt;tbpg_2.ZOrder" xml:space="preserve">
+  <data name="toolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tbcntrl_canvas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 57</value>
+  <data name="toolStrip.Text" xml:space="preserve">
+    <value>toolStrip1</value>
   </data>
-  <data name="tbcntrl_canvas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
+  <data name="&gt;&gt;toolStrip.Name" xml:space="preserve">
+    <value>toolStrip</value>
   </data>
-  <data name="tbcntrl_canvas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>560, 443</value>
+  <data name="&gt;&gt;toolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tbcntrl_canvas.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tbcntrl_canvas.Name" xml:space="preserve">
-    <value>tbcntrl_canvas</value>
-  </data>
-  <data name="&gt;&gt;tbcntrl_canvas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbcntrl_canvas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;toolStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tbcntrl_canvas.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;toolStrip.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="pctbx_canvas1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 7</value>
+  </data>
+  <data name="pctbx_canvas1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="pctbx_canvas1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>539, 401</value>
+  </data>
+  <data name="pctbx_canvas1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;pctbx_canvas1.Name" xml:space="preserve">
     <value>pctbx_canvas1</value>
@@ -378,28 +360,16 @@
   <data name="&gt;&gt;tbpg_1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="pctbx_canvas1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="pctbx_canvas2.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 7</value>
   </data>
-  <data name="pctbx_canvas1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="pctbx_canvas2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="pctbx_canvas1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pctbx_canvas2.Size" type="System.Drawing.Size, System.Drawing">
     <value>539, 401</value>
   </data>
-  <data name="pctbx_canvas1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pctbx_canvas1.Name" xml:space="preserve">
-    <value>pctbx_canvas1</value>
-  </data>
-  <data name="&gt;&gt;pctbx_canvas1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pctbx_canvas1.Parent" xml:space="preserve">
-    <value>tbpg_1</value>
-  </data>
-  <data name="&gt;&gt;pctbx_canvas1.ZOrder" xml:space="preserve">
+  <data name="pctbx_canvas2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;pctbx_canvas2.Name" xml:space="preserve">
@@ -444,28 +414,40 @@
   <data name="&gt;&gt;tbpg_2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="pctbx_canvas2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 7</value>
+  <data name="tbcntrl_canvas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 57</value>
   </data>
-  <data name="pctbx_canvas2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tbcntrl_canvas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="pctbx_canvas2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>539, 401</value>
+  <data name="tbcntrl_canvas.Size" type="System.Drawing.Size, System.Drawing">
+    <value>560, 443</value>
   </data>
-  <data name="pctbx_canvas2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="tbcntrl_canvas.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;pctbx_canvas2.Name" xml:space="preserve">
-    <value>pctbx_canvas2</value>
+  <data name="&gt;&gt;tbcntrl_canvas.Name" xml:space="preserve">
+    <value>tbcntrl_canvas</value>
   </data>
-  <data name="&gt;&gt;pctbx_canvas2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tbcntrl_canvas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pctbx_canvas2.Parent" xml:space="preserve">
-    <value>tbpg_2</value>
+  <data name="&gt;&gt;tbcntrl_canvas.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;pctbx_canvas2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tbcntrl_canvas.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cmbx_color.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 39</value>
+  </data>
+  <data name="cmbx_color.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="cmbx_color.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 24</value>
+  </data>
+  <data name="cmbx_color.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;cmbx_color.Name" xml:space="preserve">
@@ -510,28 +492,16 @@
   <data name="&gt;&gt;grbx_color.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="cmbx_color.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="nmr_width.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 39</value>
   </data>
-  <data name="cmbx_color.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="nmr_width.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="cmbx_color.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
+  <data name="nmr_width.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
   </data>
-  <data name="cmbx_color.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmbx_color.Name" xml:space="preserve">
-    <value>cmbx_color</value>
-  </data>
-  <data name="&gt;&gt;cmbx_color.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbx_color.Parent" xml:space="preserve">
-    <value>grbx_color</value>
-  </data>
-  <data name="&gt;&gt;cmbx_color.ZOrder" xml:space="preserve">
+  <data name="nmr_width.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;nmr_width.Name" xml:space="preserve">
@@ -576,28 +546,16 @@
   <data name="&gt;&gt;grbx_width.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="nmr_width.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbx_type.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 39</value>
   </data>
-  <data name="nmr_width.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="cmbx_type.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
-  <data name="nmr_width.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+  <data name="cmbx_type.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 24</value>
   </data>
-  <data name="nmr_width.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nmr_width.Name" xml:space="preserve">
-    <value>nmr_width</value>
-  </data>
-  <data name="&gt;&gt;nmr_width.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nmr_width.Parent" xml:space="preserve">
-    <value>grbx_width</value>
-  </data>
-  <data name="&gt;&gt;nmr_width.ZOrder" xml:space="preserve">
+  <data name="cmbx_type.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;cmbx_type.Name" xml:space="preserve">
@@ -641,30 +599,6 @@
   </data>
   <data name="&gt;&gt;grbx_type.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="cmbx_type.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 39</value>
-  </data>
-  <data name="cmbx_type.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="cmbx_type.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 24</value>
-  </data>
-  <data name="cmbx_type.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cmbx_type.Name" xml:space="preserve">
-    <value>cmbx_type</value>
-  </data>
-  <data name="&gt;&gt;cmbx_type.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbx_type.Parent" xml:space="preserve">
-    <value>grbx_type</value>
-  </data>
-  <data name="&gt;&gt;cmbx_type.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="grbx_coord.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 400</value>
@@ -740,18 +674,6 @@
   </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;languageToolStripMenuItem.Name" xml:space="preserve">
-    <value>languageToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;languageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmi_language.Name" xml:space="preserve">
-    <value>tsmi_language</value>
-  </data>
-  <data name="&gt;&gt;tsmi_language.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colorToolStripMenuItem.Name" xml:space="preserve">
     <value>colorToolStripMenuItem</value>
@@ -848,6 +770,36 @@
   </data>
   <data name="&gt;&gt;lbl_tabs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageToolStripMenuItem.Name" xml:space="preserve">
+    <value>languageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;languageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmi_language.Name" xml:space="preserve">
+    <value>tsmi_language</value>
+  </data>
+  <data name="&gt;&gt;tsmi_language.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;styleToolStripMenuItem.Name" xml:space="preserve">
+    <value>styleToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;styleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;blueToolStripMenuItem.Name" xml:space="preserve">
+    <value>blueToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;blueToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Main</value>
