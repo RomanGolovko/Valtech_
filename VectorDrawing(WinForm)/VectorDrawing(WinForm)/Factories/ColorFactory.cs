@@ -26,7 +26,7 @@ namespace VectorDrawing_WinForm_.Factories
             return value;
         }
 
-        public static int GetColorNum(Color color)
+        public static int GetNumColor(Color color)
         {
             var numColor = 0;
 

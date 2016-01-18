@@ -7,7 +7,7 @@ namespace VectorDrawing_WinForm_.Shapes
 {
     public class Shape : Control
     {
-        private bool _isPresed;
+        private bool _isPressed;
         private bool _isMoved;
         private bool _isResized;
         private int _dx;
@@ -80,7 +80,7 @@ namespace VectorDrawing_WinForm_.Shapes
 
                     _colorMenu = new ToolStripComboBox();
                     _colorMenu.Items.AddRange(new object[] { "Black", "Green", "Red" });
-                    _colorMenu.SelectedIndex = ColorFactory.GetColorNum(Color);
+                    _colorMenu.SelectedIndex = ColorFactory.GetNumColor(Color);
                     _colorMenu.SelectedIndexChanged += cmbx_SelectedIndexChanged;
 
                     _lineWidthMenu = new ToolStripComboBox();
@@ -129,7 +129,7 @@ namespace VectorDrawing_WinForm_.Shapes
         {
             Focus();
 
-            _isPresed = true;
+            _isPressed = true;
             if (e.X >= Width - 10 && e.Y >= Height - 10)
             {
                 _isResized = true;
@@ -147,7 +147,7 @@ namespace VectorDrawing_WinForm_.Shapes
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            _isPresed = false;
+            _isPressed = false;
             _isMoved = false;
             _isResized = false;
         }
@@ -168,7 +168,7 @@ namespace VectorDrawing_WinForm_.Shapes
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (!_isPresed) return;
+            if (!_isPressed) return;
 
             if (_isMoved)
             {

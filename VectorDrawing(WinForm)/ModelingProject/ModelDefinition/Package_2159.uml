@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="b9d5db6f-c9ba-42e7-aeec-94017a100fd3"
+  name="Serialization" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3cd3264b-5516-4f3e-ba6c-be183dbf9c23"
+        LastKnownName="Abstract"
+        LastKnownLocation="Package1_2159.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="db50bc36-8d4d-454f-883a-7fd8fecb3131"
+        LastKnownName="Concrete"
+        LastKnownLocation="Package_2200.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="43a68a53-6575-4f82-ba59-63504f2183d6"
+        LastKnownName="Memento"
+        LastKnownLocation="Package_2205.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7c5f4880-b837-4f43-9205-2b5fc2a456ea"
+        LastKnownName="Factories"
+        LastKnownLocation="Package_2209.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

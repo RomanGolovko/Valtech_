@@ -61,42 +61,6 @@ namespace VectorDrawing_WinForm_.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        internal static string aboutToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("aboutToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Color.
-        /// </summary>
-        internal static string colorToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("colorToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exit.
-        /// </summary>
-        internal static string exitToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("exitToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        internal static string fileToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("fileToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         internal static string grbx_color {
@@ -133,60 +97,6 @@ namespace VectorDrawing_WinForm_.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
-        /// </summary>
-        internal static string languageToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("languageToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open.
-        /// </summary>
-        internal static string openToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("openToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        internal static string saveToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("saveToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        internal static string settingsToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("settingsToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Style.
-        /// </summary>
-        internal static string styleToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("styleToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tabs.
-        /// </summary>
-        internal static string tabsToolStripMenuItem {
-            get {
-                return ResourceManager.GetString("tabsToolStripMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Canvas 1.
         /// </summary>
         internal static string tbpg_1 {
@@ -205,20 +115,110 @@ namespace VectorDrawing_WinForm_.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type.
+        ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string typeToolStripMenuItem {
+        internal static string tsmi_about {
             get {
-                return ResourceManager.GetString("typeToolStripMenuItem", resourceCulture);
+                return ResourceManager.GetString("tsmi_about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        internal static string tsmi_color {
+            get {
+                return ResourceManager.GetString("tsmi_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string tsmi_exit {
+            get {
+                return ResourceManager.GetString("tsmi_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string tsmi_file {
+            get {
+                return ResourceManager.GetString("tsmi_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string tsmi_lang {
+            get {
+                return ResourceManager.GetString("tsmi_lang", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Width.
         /// </summary>
-        internal static string widthToolStripMenuItem {
+        internal static string tsmi_lineWidth {
             get {
-                return ResourceManager.GetString("widthToolStripMenuItem", resourceCulture);
+                return ResourceManager.GetString("tsmi_lineWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string tsmi_open {
+            get {
+                return ResourceManager.GetString("tsmi_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string tsmi_save {
+            get {
+                return ResourceManager.GetString("tsmi_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string tsmi_settings {
+            get {
+                return ResourceManager.GetString("tsmi_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        internal static string tsmi_style {
+            get {
+                return ResourceManager.GetString("tsmi_style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tabs.
+        /// </summary>
+        internal static string tsmi_tabs {
+            get {
+                return ResourceManager.GetString("tsmi_tabs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string tsmi_type {
+            get {
+                return ResourceManager.GetString("tsmi_type", resourceCulture);
             }
         }
     }
