@@ -332,6 +332,12 @@
                     <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
                   </type_NamedElement>
                 </property>
+                <property Id="38ac1cf6-359a-48e3-8bcf-30cedd4c3bf6" name="TabIndex" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="327318fc-4e56-41da-b795-2e65a786948c" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
               </ownedAttributesInternal>
               <ownedOperationsInternal>
                 <operation Id="efb53532-504f-4230-b912-754bd90a8b59" name="SetData" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
@@ -797,22 +803,16 @@
               <referencedTypeMoniker Id="b79cd823-8420-4609-87ac-79bb42855187" LastKnownName="ResourceManager" />
             </type_NamedElement>
           </property>
-          <property Id="2d8404b9-be67-41ae-9713-8f9028f158e4" name="_pictureBox" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-            <elementDefinition Id="cda4de84-18e5-4adf-b13c-f8da3ce9a894" />
-            <type_NamedElement>
-              <referencedTypeMoniker Id="c2185b70-fcd9-4eb7-afbb-978cada189f6" LastKnownName="PictureBox" />
-            </type_NamedElement>
-          </property>
           <property Id="e21fd569-0818-4917-a2bd-c445add8197a" name="_dat" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="76add029-e4a5-41f5-9569-00414c158975" />
             <type_NamedElement>
               <referencedTypeMoniker Id="5d8979a7-fa49-4dee-9afc-1b3bc8920e95" LastKnownName="XData" />
             </type_NamedElement>
           </property>
-          <property Id="62b5a131-2c9d-4d5f-9532-88bf8f2e287a" name="CurrentShape" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="62b5a131-2c9d-4d5f-9532-88bf8f2e287a" name="_currentShape" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="1a226ded-a925-419f-b776-7c47e6399569" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="cc81eb26-c654-4f20-985d-7f27157067fb" LastKnownName="Shape" />
+              <referencedTypeMoniker Id="791e168a-c5db-4a90-bffa-20fd06bd1468" LastKnownName="Shape" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
@@ -1035,6 +1035,29 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation Id="18e4561d-d164-44c6-8541-6f87d69990a9" name="tsmi_theme_SelectIndexChanged" visibility="Private" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5363657d-b2e4-43de-96d0-e800779a6b2b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="07a4fe74-6a61-4085-b71e-5f63be8058bf" name="object" direction="In" isUnique="false">
+                  <elementDefinition Id="e50da077-2bed-430c-a2a6-458f1d461180" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="a30ad4d1-ca23-4f78-bd86-dc1e7275c20d" name="EventArgs" direction="In" isUnique="false">
+                  <elementDefinition Id="a8c47cd5-b407-486e-bec0-471822ff6eff" />
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="1da62ba5-5f18-4d8d-aaf0-37272f5b5426" direction="Return" isUnique="false">
+                  <elementDefinition Id="8a523def-320f-4752-b959-820f6d4d7233" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="00480033-7241-4f02-99a8-019e02df353e" LastKnownName="void" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -1109,11 +1132,6 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="7b6f7fe3-f5df-4f3e-85de-191ea027636b" name="IFormat" isAbstract="false" isLeaf="false" cachedFullName="IFormat">
-        <elementDefinition Id="0a969baa-96db-4c7f-a519-ac1f7f2343ea" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <package Id="7c0e6d3f-d102-4aeb-8023-b9f9c78d5e40" name="Factories">
         <elementDefinition Id="7c5f4880-b837-4f43-9205-2b5fc2a456ea" />
         <packagedElements>
@@ -1121,19 +1139,58 @@
             <class Id="f5afe453-fe96-4e6a-b933-8fa8dc4d2d5d" name="ColorFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="e1af167b-652e-4ef8-8ee4-2a3346de14ea" />
               <ownedOperationsInternal>
-                <operation Id="44cb56f9-1646-48e3-93f8-21e6bf5e783a" name="SelectSerializationFormat" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
+                <operation Id="44cb56f9-1646-48e3-93f8-21e6bf5e783a" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
                   <elementDefinition Id="2cadcf39-a59b-4340-a7ef-79700c52a106" />
+                </operation>
+                <operation Id="ab957658-494c-4017-992e-cbe9d6b9a815" name="GetColorFromNum" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="84bf681f-3521-4acb-8307-e534a02c3f6e" />
                   <ownedParameters>
                     <operationHasOwnedParameters>
-                      <parameter Id="ca7c1894-10d7-4017-b9d8-05d3cac71c26" name="int" direction="In" isUnique="false">
-                        <elementDefinition Id="228aeeac-0d8b-48e5-a9a4-9d328ce74104" />
+                      <parameter Id="f83a0e36-95b7-4219-a047-8282432841c7" name="int" direction="In" isUnique="false">
+                        <elementDefinition Id="d7ab6422-c050-41c4-b2b6-1842084b5313" />
                       </parameter>
                     </operationHasOwnedParameters>
                     <operationHasOwnedParameters>
-                      <parameter Id="b9c65758-a2b9-459d-b2ea-1315ee41c98f" direction="Return" isUnique="false">
-                        <elementDefinition Id="9b39b7ce-92b9-41b5-9ad4-9ad042d7d8cb" />
+                      <parameter Id="d027d3ab-ca36-430f-bc71-1b05762ef4df" direction="Return" isUnique="false">
+                        <elementDefinition Id="2bb7dbf2-5e5b-4982-9ae3-112420d3d828" />
                         <type_NamedElement>
-                          <referencedTypeMoniker Id="7b6f7fe3-f5df-4f3e-85de-191ea027636b" LastKnownName="IFormat" />
+                          <referencedTypeMoniker Id="aa63217e-8513-4223-93f8-815a1d763dc4" LastKnownName="Color" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="62e2a142-25a5-444a-a039-a2b7f6ab3c64" name="GetColorFromString" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="5c90bea9-d765-440b-a59a-8a9b4d3aaed8" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="853caeaf-3b7b-490b-8dea-c448dfde4733" name="string" direction="In" isUnique="false">
+                        <elementDefinition Id="007786ac-adee-4684-9309-9ce51d1d3fc2" />
+                      </parameter>
+                    </operationHasOwnedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="f4116ae9-b0f1-4afe-9e92-25851df3e938" direction="Return" isUnique="false">
+                        <elementDefinition Id="cf4c0d35-53a6-463e-ade9-04749d4f22c8" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="aa63217e-8513-4223-93f8-815a1d763dc4" LastKnownName="Color" />
+                        </type_NamedElement>
+                      </parameter>
+                    </operationHasOwnedParameters>
+                  </ownedParameters>
+                </operation>
+                <operation Id="6613e59f-bc8f-40cb-8da0-bc3210c3ff75" name="GetNumColor" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="8233a071-1ffe-4b05-be43-4b719f971c2f" />
+                  <ownedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="8d106143-6b27-40d9-8597-614561227b9c" name="Color" direction="In" isUnique="false">
+                        <elementDefinition Id="ce976569-167a-4132-8987-0c32681aa59b" />
+                      </parameter>
+                    </operationHasOwnedParameters>
+                    <operationHasOwnedParameters>
+                      <parameter Id="68bbce5c-57e3-4136-b5c5-2557374c756b" direction="Return" isUnique="false">
+                        <elementDefinition Id="f7b37784-6b1e-4e24-adf4-c80913c0ed84" />
+                        <type_NamedElement>
+                          <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
                         </type_NamedElement>
                       </parameter>
                     </operationHasOwnedParameters>
@@ -1212,55 +1269,19 @@
                 </association>
               </targetEnds>
               <ownedOperationsInternal>
-                <operation Id="04b09aa5-525d-4c08-aeb8-e6221bc5a377" name="GetColorFromString" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
-                  <elementDefinition Id="f831fcee-1140-4f67-a133-74e7b98fd804" />
+                <operation Id="e11cc17d-f523-4ce9-a52a-d8d9ca4d8544" name="SelectSerializationFormat" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="167e1c87-2b59-45a2-90d5-04a13b3507a9" />
                   <ownedParameters>
                     <operationHasOwnedParameters>
-                      <parameter Id="ba3fcdc9-1a83-49dd-94b9-17f7a31139cc" name="string" direction="In" isUnique="false">
-                        <elementDefinition Id="8464f8cc-a168-4d6e-9c36-f0b28e586c11" />
+                      <parameter Id="37b35cd9-d118-46ba-8c37-cfaad536e7f4" name="int" direction="In" isUnique="false">
+                        <elementDefinition Id="844c36ea-5afa-46e8-a3f7-c1fd54b59311" />
                       </parameter>
                     </operationHasOwnedParameters>
                     <operationHasOwnedParameters>
-                      <parameter Id="dd42b1ad-3c15-4c61-bccc-7c7e222e5a7e" direction="Return" isUnique="false">
-                        <elementDefinition Id="69beda1f-19da-4a36-9269-d4f949e6569d" />
+                      <parameter Id="6c1d20ac-60f6-465c-b605-902fa435a37b" direction="Return" isUnique="false">
+                        <elementDefinition Id="7fd7851b-7cbf-408e-b8ad-7809de038b05" />
                         <type_NamedElement>
-                          <referencedTypeMoniker Id="aa63217e-8513-4223-93f8-815a1d763dc4" LastKnownName="Color" />
-                        </type_NamedElement>
-                      </parameter>
-                    </operationHasOwnedParameters>
-                  </ownedParameters>
-                </operation>
-                <operation Id="0bda423f-ec7c-4fcf-8d74-cabebcd75b4f" name="GetNumColor" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
-                  <elementDefinition Id="2199c257-1c71-4d6f-bb16-5047a6ba8595" />
-                  <ownedParameters>
-                    <operationHasOwnedParameters>
-                      <parameter Id="dd5209c3-e3d9-4e7e-9065-98655ca0b893" name="Color" direction="In" isUnique="false">
-                        <elementDefinition Id="3aeb969f-eaa1-4431-a700-72b2f3eb8f51" />
-                      </parameter>
-                    </operationHasOwnedParameters>
-                    <operationHasOwnedParameters>
-                      <parameter Id="e88d47a4-132f-49b0-bd89-69cd641dcb72" direction="Return" isUnique="false">
-                        <elementDefinition Id="566acb81-9e97-4c70-acf6-9beda3838b6f" />
-                        <type_NamedElement>
-                          <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
-                        </type_NamedElement>
-                      </parameter>
-                    </operationHasOwnedParameters>
-                  </ownedParameters>
-                </operation>
-                <operation Id="d7b22190-adec-4f08-886d-3e6b61837410" name="GetColorFromNum" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
-                  <elementDefinition Id="7a9fa47a-d95d-4d64-b2ef-8c68a94de569" />
-                  <ownedParameters>
-                    <operationHasOwnedParameters>
-                      <parameter Id="7ea783e7-a628-4e04-b7f5-a1a7bfe057f4" name="int" direction="In" isUnique="false">
-                        <elementDefinition Id="253197f1-af03-4ee8-bcef-af8c6dff3696" />
-                      </parameter>
-                    </operationHasOwnedParameters>
-                    <operationHasOwnedParameters>
-                      <parameter Id="b180a8b9-1a57-4027-841d-879092e06c57" direction="Return" isUnique="false">
-                        <elementDefinition Id="82356d12-d258-49ff-afe1-2a0274509590" />
-                        <type_NamedElement>
-                          <referencedTypeMoniker Id="aa63217e-8513-4223-93f8-815a1d763dc4" LastKnownName="Color" />
+                          <referencedTypeMoniker Id="db6f245a-808f-4714-9490-9e9045fffbeb" LastKnownName="IFormat" />
                         </type_NamedElement>
                       </parameter>
                     </operationHasOwnedParameters>
@@ -1483,6 +1504,12 @@
                     <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
                   </type_NamedElement>
                 </property>
+                <property Id="0bd24e7c-0248-443c-8ff8-8ef8d415a0da" name="TabIndex" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="fb082c5e-1303-4fb5-b403-2f4c9f916866" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6855bb74-6faa-44a7-b9f6-63af19975b50" LastKnownName="int" />
+                  </type_NamedElement>
+                </property>
               </ownedAttributesInternal>
             </class>
           </packageHasNamedElement>
@@ -1495,17 +1522,17 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="c2185b70-fcd9-4eb7-afbb-978cada189f6" name="PictureBox" isAbstract="false" isLeaf="false" cachedFullName="PictureBox">
-        <elementDefinition Id="fd5656de-ba14-409c-a64a-d09062086257" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="5d8979a7-fa49-4dee-9afc-1b3bc8920e95" name="XData" isAbstract="false" isLeaf="false" cachedFullName="XData">
         <elementDefinition Id="2c649cd8-81c3-48bc-8daf-e913543cf8be" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="cc81eb26-c654-4f20-985d-7f27157067fb" name="Shape" isAbstract="false" isLeaf="false" cachedFullName="Shape">
+      <referencedType Id="db6f245a-808f-4714-9490-9e9045fffbeb" name="IFormat" isAbstract="false" isLeaf="false" cachedFullName="IFormat">
+        <elementDefinition Id="0a969baa-96db-4c7f-a519-ac1f7f2343ea" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="791e168a-c5db-4a90-bffa-20fd06bd1468" name="Shape" isAbstract="false" isLeaf="false" cachedFullName="Shape">
         <elementDefinition Id="e0bd9a0e-ddff-417d-88ba-e8ca41e13d85" />
       </referencedType>
     </packageHasNamedElement>

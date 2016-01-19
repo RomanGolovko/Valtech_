@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
 
@@ -151,7 +152,7 @@ namespace VectorDrawing_WinForm_.Shapes
         {
             BackColor = default(Color);
 
-            Data.SetData(Left, Top, Width, Height, Color, LineWidth, Type, Data.TabIndex); 
+            Data.SetData(Left, Top, Width, Height, Color, LineWidth, Type, Data.TabIndex);
             var main = FindForm() as Main;
             main.SetData(this);
         }

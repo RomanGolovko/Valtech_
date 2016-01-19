@@ -1099,6 +1099,24 @@
                 LastKnownLocation="Package_2136.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="327318fc-4e56-41da-b795-2e65a786948c"
+            name="TabIndex"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="5f6ccd83-4bd4-4c02-8beb-4ca3369a046b"
+                LastKnownName="int"
+                LastKnownLocation="Package_2136.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation

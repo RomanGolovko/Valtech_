@@ -15,7 +15,6 @@ namespace VectorDrawing_WinForm_
     public partial class Main : Form
     {
         private readonly ResourceManager _locale;
-        private PictureBox _pictureBox;
         private Shape _currentShape;
         private XData _data;
 
@@ -25,8 +24,6 @@ namespace VectorDrawing_WinForm_
             _locale = new ResourceManager("VectorDrawing_WinForm_.Resources.Locale", typeof(Main).Assembly);
 
             InitializeComponent();
-
-            _pictureBox = pctbx_canvas1;
 
             _data = new XData
             {
@@ -44,6 +41,8 @@ namespace VectorDrawing_WinForm_
             ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
             ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
+
+            ttcmbx_tabs.Items.AddRange(new object[] {"1", "2"});
 
             cmbx_color.DataSource = new List<string> { "Black", "Green", "Red" };
             cmbx_type.DataSource = new List<string> { "Rectangle", "Ellipse", "Line" };
@@ -133,17 +132,7 @@ namespace VectorDrawing_WinForm_
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tbcntrl_canvas.SelectedIndex)
-            {
-                case 0:
-                    _pictureBox = pctbx_canvas1;
-                    break;
-                case 1:
-                    _pictureBox = pctbx_canvas2;
-                    break;
-                default:
-                    break;
-            }
+            ttcmbx_tabs.SelectedIndex = tbcntrl_canvas.SelectedIndex;
         }
 
         private void pctbx_canvas_MouseClick(object sender, MouseEventArgs e)

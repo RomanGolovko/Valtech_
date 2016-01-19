@@ -255,25 +255,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="cda4de84-18e5-4adf-b13c-f8da3ce9a894"
-            name="_pictureBox"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="fd5656de-ba14-409c-a64a-d09062086257"
-                LastKnownName="PictureBox"
-                LastKnownLocation="ModelingProject.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="76add029-e4a5-41f5-9569-00414c158975"
             name="_dat"
             visibility="Private"
@@ -294,7 +275,8 @@
           </property>
           <property
             Id="1a226ded-a925-419f-b776-7c47e6399569"
-            name="CurrentShape"
+            name="_currentShape"
+            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -685,6 +667,45 @@
                   name="EventArgs"
                   direction="In"
                   isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5363657d-b2e4-43de-96d0-e800779a6b2b"
+            name="tsmi_theme_SelectIndexChanged"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e50da077-2bed-430c-a2a6-458f1d461180"
+                  name="object"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a8c47cd5-b407-486e-bec0-471822ff6eff"
+                  name="EventArgs"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8a523def-320f-4752-b959-820f6d4d7233"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="f2e64866-f903-4303-a20c-1b43a4b2b631"
+                      LastKnownName="void"
+                      LastKnownLocation="Package_2136.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>

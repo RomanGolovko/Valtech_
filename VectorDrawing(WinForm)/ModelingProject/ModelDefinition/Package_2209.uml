@@ -14,30 +14,99 @@
         <ownedOperationsInternal>
           <operation
             Id="2cadcf39-a59b-4340-a7ef-79700c52a106"
-            name="SelectSerializationFormat"
             isLeaf="false"
             isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="84bf681f-3521-4acb-8307-e534a02c3f6e"
+            name="GetColorFromNum"
+            isLeaf="false"
+            isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="228aeeac-0d8b-48e5-a9a4-9d328ce74104"
+                  Id="d7ab6422-c050-41c4-b2b6-1842084b5313"
                   name="int"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="9b39b7ce-92b9-41b5-9ad4-9ad042d7d8cb"
+                  Id="2bb7dbf2-5e5b-4982-9ae3-112420d3d828"
                   direction="Return"
                   isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="0a969baa-96db-4c7f-a519-ac1f7f2343ea"
-                      LastKnownName="IFormat"
-                      LastKnownLocation="Package_2209.uml" />
+                      Id="76a346c5-5cc7-4c21-8c6b-49ae7e490762"
+                      LastKnownName="Color"
+                      LastKnownLocation="Package_2136.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5c90bea9-d765-440b-a59a-8a9b4d3aaed8"
+            name="GetColorFromString"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="007786ac-adee-4684-9309-9ce51d1d3fc2"
+                  name="string"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cf4c0d35-53a6-463e-ade9-04749d4f22c8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="76a346c5-5cc7-4c21-8c6b-49ae7e490762"
+                      LastKnownName="Color"
+                      LastKnownLocation="Package_2136.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8233a071-1ffe-4b05-be43-4b719f971c2f"
+            name="GetNumColor"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ce976569-167a-4132-8987-0c32681aa59b"
+                  name="Color"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f7b37784-6b1e-4e24-adf4-c80913c0ed84"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5f6ccd83-4bd4-4c02-8beb-4ca3369a046b"
+                      LastKnownName="int"
+                      LastKnownLocation="Package_2136.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
@@ -213,93 +282,31 @@
         </targetEnds>
         <ownedOperationsInternal>
           <operation
-            Id="f831fcee-1140-4f67-a133-74e7b98fd804"
-            name="GetColorFromString"
+            Id="167e1c87-2b59-45a2-90d5-04a13b3507a9"
+            name="SelectSerializationFormat"
             isLeaf="false"
-            isStatic="true"
+            isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false">
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="8464f8cc-a168-4d6e-9c36-f0b28e586c11"
-                  name="string"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="69beda1f-19da-4a36-9269-d4f949e6569d"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="76a346c5-5cc7-4c21-8c6b-49ae7e490762"
-                      LastKnownName="Color"
-                      LastKnownLocation="Package_2136.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
-            Id="2199c257-1c71-4d6f-bb16-5047a6ba8595"
-            name="GetNumColor"
-            isLeaf="false"
-            isStatic="true"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="3aeb969f-eaa1-4431-a700-72b2f3eb8f51"
-                  name="Color"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="566acb81-9e97-4c70-acf6-9beda3838b6f"
-                  direction="Return"
-                  isUnique="false">
-                  <type_NamedElement>
-                    <undefinedTypeMoniker
-                      Id="5f6ccd83-4bd4-4c02-8beb-4ca3369a046b"
-                      LastKnownName="int"
-                      LastKnownLocation="Package_2136.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
-          <operation
-            Id="7a9fa47a-d95d-4d64-b2ef-8c68a94de569"
-            name="GetColorFromNum"
-            isLeaf="false"
-            isStatic="true"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="253197f1-af03-4ee8-bcef-af8c6dff3696"
+                  Id="844c36ea-5afa-46e8-a3f7-c1fd54b59311"
                   name="int"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="82356d12-d258-49ff-afe1-2a0274509590"
+                  Id="7fd7851b-7cbf-408e-b8ad-7809de038b05"
                   direction="Return"
                   isUnique="false">
                   <type_NamedElement>
                     <undefinedTypeMoniker
-                      Id="76a346c5-5cc7-4c21-8c6b-49ae7e490762"
-                      LastKnownName="Color"
-                      LastKnownLocation="Package_2136.uml" />
+                      Id="0a969baa-96db-4c7f-a519-ac1f7f2343ea"
+                      LastKnownName="IFormat"
+                      LastKnownLocation="Package_2209.uml" />
                   </type_NamedElement>
                 </parameter>
               </operationHasOwnedParameters>
