@@ -194,8 +194,7 @@ namespace VectorDrawing_WinForm_
 
                 foreach (var shape in shapes)
                 {
-                    tbcntrl_canvas.TabIndex = shape.TabIndex;
-                    tbcntrl_canvas.Controls.OfType<TabPage>().FirstOrDefault().Controls.OfType<PictureBox>().FirstOrDefault().Controls.Add(shape);
+                    tbcntrl_canvas.Controls[shape.TabIndex].Controls.OfType<PictureBox>().FirstOrDefault().Controls.Add(shape);
                 }
             }
             catch (Exception)
