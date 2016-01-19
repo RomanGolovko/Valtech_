@@ -4,8 +4,8 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using VectorDrawing_WinForm_.Memento;
 using VectorDrawing_WinForm_.Serialization.Abstract;
-using VectorDrawing_WinForm_.Serialization.Memento;
 
 namespace VectorDrawing_WinForm_.Serialization.Concrete
 {

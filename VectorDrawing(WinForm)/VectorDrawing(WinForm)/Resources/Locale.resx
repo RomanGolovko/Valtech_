@@ -117,18 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="aboutToolStripMenuItem" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="colorToolStripMenuItem" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="exitToolStripMenuItem" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="fileToolStripMenuItem" xml:space="preserve">
-    <value>File</value>
-  </data>
   <data name="grbx_color" xml:space="preserve">
     <value>Color</value>
   </data>
@@ -141,34 +129,46 @@
   <data name="grbx_width" xml:space="preserve">
     <value>Width</value>
   </data>
-  <data name="languageToolStripMenuItem" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="openToolStripMenuItem" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="saveToolStripMenuItem" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="settingsToolStripMenuItem" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="styleToolStripMenuItem" xml:space="preserve">
-    <value>Style</value>
-  </data>
-  <data name="tabsToolStripMenuItem" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
   <data name="tbpg_1" xml:space="preserve">
     <value>Canvas 1</value>
   </data>
   <data name="tbpg_2" xml:space="preserve">
     <value>Canvas 2</value>
   </data>
-  <data name="typeToolStripMenuItem" xml:space="preserve">
-    <value>Type</value>
+  <data name="tsmi_about" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="widthToolStripMenuItem" xml:space="preserve">
+  <data name="tsmi_color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="tsmi_exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="tsmi_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="tsmi_lang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="tsmi_lineWidth" xml:space="preserve">
     <value>Width</value>
+  </data>
+  <data name="tsmi_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="tsmi_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tsmi_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="tsmi_style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="tsmi_tabs" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="tsmi_type" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>

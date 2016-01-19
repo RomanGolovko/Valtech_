@@ -6,19 +6,19 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using VectorDrawing_WinForm_.Factories;
-using VectorDrawing_WinForm_.Serialization.Memento;
 using VectorDrawing_WinForm_.Shapes;
 using System.Resources;
+using VectorDrawing_WinForm_.Memento;
 
 namespace VectorDrawing_WinForm_
 {
     public partial class Main : Form
     {
-        private ResourceManager _locale;
+        private readonly ResourceManager _locale;
         private PictureBox _pictureBox;
         private XData _data;
 
-        public Shape CurrentShape { get; set; }
+        public Shape CurrentShape { private get; set; }
 
         public Main()
         {
@@ -68,18 +68,18 @@ namespace VectorDrawing_WinForm_
                     break;
             }
 
-            fileToolStripMenuItem.Text = _locale.GetString("fileToolStripMenuItem");
-            openToolStripMenuItem.Text = _locale.GetString("openToolStripMenuItem");
-            saveToolStripMenuItem.Text = _locale.GetString("saveToolStripMenuItem");
-            exitToolStripMenuItem.Text = _locale.GetString("exitToolStripMenuItem");
-            colorToolStripMenuItem.Text = _locale.GetString("colorToolStripMenuItem");
-            widthToolStripMenuItem.Text = _locale.GetString("widthToolStripMenuItem");
-            typeToolStripMenuItem.Text = _locale.GetString("typeToolStripMenuItem");
-            tabsToolStripMenuItem.Text = _locale.GetString("tabsToolStripMenuItem");
-            settingsToolStripMenuItem.Text = _locale.GetString("settingsToolStripMenuItem");
-            languageToolStripMenuItem.Text = _locale.GetString("languageToolStripMenuItem");
-            styleToolStripMenuItem.Text = _locale.GetString("styleToolStripMenuItem");
-            aboutToolStripMenuItem.Text = _locale.GetString("aboutToolStripMenuItem");
+            tsmi_file.Text = _locale.GetString("tsmi_file");
+            tsmi_open.Text = _locale.GetString("tsmi_open");
+            tsmi_save.Text = _locale.GetString("tsmi_save");
+            tsmi_exit.Text = _locale.GetString("tsmi_exit");
+            tsmi_color.Text = _locale.GetString("tsmi_color");
+            tsmi_lineWidth.Text = _locale.GetString("tsmi_lineWidth");
+            tsmi_type.Text = _locale.GetString("tsmi_type");
+            tsmi_tabs.Text = _locale.GetString("tsmi_tabs");
+            tsmi_settings.Text = _locale.GetString("tsmi_settings");
+            tsmi_lang.Text = _locale.GetString("tsmi_lang");
+            tsmi_style.Text = _locale.GetString("tsmi_style");
+            tsmi_about.Text = _locale.GetString("tsmi_about");
             grbx_color.Text = _locale.GetString("grbx_color");
             grbx_width.Text = _locale.GetString("grbx_width");
             grbx_type.Text = _locale.GetString("grbx_type");
@@ -113,12 +113,12 @@ namespace VectorDrawing_WinForm_
             pctbx.Controls.Add(shape);
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmi_save_Click(object sender, EventArgs e)
         {
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = @"Binary format (*.dat)|*.dat|XML format (*.xml)|*.xml|" +
-                         @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
+             @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
@@ -129,12 +129,12 @@ namespace VectorDrawing_WinForm_
             memento.SaveState(saveFileDialog.FilterIndex, saveFileDialog.FileName);
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmi_open_Click(object sender, EventArgs e)
         {
             var openFileDialog = new OpenFileDialog
             {
                 Filter = @"Binary format (*.dat)|*.dat|XML format (*.xml)|*.xml|" +
-                         @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
+             @"JSON format (*.json)|*.json|YAML format (*.yaml)|*.yaml"
             };
             if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
@@ -152,11 +152,6 @@ namespace VectorDrawing_WinForm_
             {
                 MessageBox.Show(@"There is no saved data!!!", @"Balls", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
         }
 
         private void cmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,7 +209,7 @@ namespace VectorDrawing_WinForm_
                    _data.Height, _data.Color, _data.LineWidth, _data.Type));
             }
 
-            var color = ColorFactory.GetColorNum(_data.Color);
+            var color = ColorFactory.GetNumColor(_data.Color);
             cmbx_color.SelectedIndex = color;
             ttcmbx_color.SelectedIndex = color;
             lbl_color.Text = _data.Color.ToString();
@@ -227,6 +222,11 @@ namespace VectorDrawing_WinForm_
             cmbx_type.SelectedIndex = type;
             ttcmd_type.SelectedIndex = type;
             lbl_type.Text = _data.Type;
+        }
+
+        private void tsmi_exit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

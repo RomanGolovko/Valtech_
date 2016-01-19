@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using VectorDrawing_WinForm_.Serialization.Memento;
+using VectorDrawing_WinForm_.Memento;
 
 namespace VectorDrawing_WinForm_.Serialization.Abstract
 {

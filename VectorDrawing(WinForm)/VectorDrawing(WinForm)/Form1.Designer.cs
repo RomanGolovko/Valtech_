@@ -30,20 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_open = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_color = new System.Windows.Forms.ToolStripMenuItem();
             this.ttcmbx_color = new System.Windows.Forms.ToolStripComboBox();
-            this.widthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_lineWidth = new System.Windows.Forms.ToolStripMenuItem();
             this.ttcmbx_width = new System.Windows.Forms.ToolStripComboBox();
-            this.typeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_type = new System.Windows.Forms.ToolStripMenuItem();
             this.ttcmd_type = new System.Windows.Forms.ToolStripComboBox();
-            this.tabsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_tabs = new System.Windows.Forms.ToolStripMenuItem();
             this.ttcmbx_tabs = new System.Windows.Forms.ToolStripComboBox();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_settings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_lang = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_language = new System.Windows.Forms.ToolStripComboBox();
+            this.tsmi_style = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.lbl_color = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -64,11 +69,6 @@
             this.grbx_type = new System.Windows.Forms.GroupBox();
             this.cmbx_type = new System.Windows.Forms.ComboBox();
             this.grbx_coord = new System.Windows.Forms.GroupBox();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_language = new System.Windows.Forms.ToolStripComboBox();
-            this.styleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tbcntrl_canvas.SuspendLayout();
@@ -86,55 +86,55 @@
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.colorToolStripMenuItem,
-            this.widthToolStripMenuItem,
-            this.typeToolStripMenuItem,
-            this.tabsToolStripMenuItem,
-            this.settingsToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.tsmi_file,
+            this.tsmi_color,
+            this.tsmi_lineWidth,
+            this.tsmi_type,
+            this.tsmi_tabs,
+            this.tsmi_settings,
+            this.tsmi_about});
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
             // 
-            // fileToolStripMenuItem
+            // tsmi_file
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
+            this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_open,
+            this.tsmi_save,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            this.tsmi_exit});
+            this.tsmi_file.Name = "tsmi_file";
+            resources.ApplyResources(this.tsmi_file, "tsmi_file");
             // 
-            // openToolStripMenuItem
+            // tsmi_open
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.tsmi_open.Name = "tsmi_open";
+            resources.ApplyResources(this.tsmi_open, "tsmi_open");
+            this.tsmi_open.Click += new System.EventHandler(this.tsmi_open_Click);
             // 
-            // saveToolStripMenuItem
+            // tsmi_save
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.tsmi_save.Name = "tsmi_save";
+            resources.ApplyResources(this.tsmi_save, "tsmi_save");
+            this.tsmi_save.Click += new System.EventHandler(this.tsmi_save_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // exitToolStripMenuItem
+            // tsmi_exit
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.tsmi_exit.Name = "tsmi_exit";
+            resources.ApplyResources(this.tsmi_exit, "tsmi_exit");
+            this.tsmi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
-            // colorToolStripMenuItem
+            // tsmi_color
             // 
-            this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_color.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_color});
-            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            resources.ApplyResources(this.colorToolStripMenuItem, "colorToolStripMenuItem");
+            this.tsmi_color.Name = "tsmi_color";
+            resources.ApplyResources(this.tsmi_color, "tsmi_color");
             // 
             // ttcmbx_color
             // 
@@ -142,12 +142,12 @@
             resources.ApplyResources(this.ttcmbx_color, "ttcmbx_color");
             this.ttcmbx_color.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
-            // widthToolStripMenuItem
+            // tsmi_lineWidth
             // 
-            this.widthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_lineWidth.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_width});
-            this.widthToolStripMenuItem.Name = "widthToolStripMenuItem";
-            resources.ApplyResources(this.widthToolStripMenuItem, "widthToolStripMenuItem");
+            this.tsmi_lineWidth.Name = "tsmi_lineWidth";
+            resources.ApplyResources(this.tsmi_lineWidth, "tsmi_lineWidth");
             // 
             // ttcmbx_width
             // 
@@ -155,12 +155,12 @@
             resources.ApplyResources(this.ttcmbx_width, "ttcmbx_width");
             this.ttcmbx_width.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
-            // typeToolStripMenuItem
+            // tsmi_type
             // 
-            this.typeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_type.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmd_type});
-            this.typeToolStripMenuItem.Name = "typeToolStripMenuItem";
-            resources.ApplyResources(this.typeToolStripMenuItem, "typeToolStripMenuItem");
+            this.tsmi_type.Name = "tsmi_type";
+            resources.ApplyResources(this.tsmi_type, "tsmi_type");
             // 
             // ttcmd_type
             // 
@@ -168,12 +168,12 @@
             resources.ApplyResources(this.ttcmd_type, "ttcmd_type");
             this.ttcmd_type.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
-            // tabsToolStripMenuItem
+            // tsmi_tabs
             // 
-            this.tabsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_tabs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttcmbx_tabs});
-            this.tabsToolStripMenuItem.Name = "tabsToolStripMenuItem";
-            resources.ApplyResources(this.tabsToolStripMenuItem, "tabsToolStripMenuItem");
+            this.tsmi_tabs.Name = "tsmi_tabs";
+            resources.ApplyResources(this.tsmi_tabs, "tsmi_tabs");
             // 
             // ttcmbx_tabs
             // 
@@ -181,10 +181,43 @@
             resources.ApplyResources(this.ttcmbx_tabs, "ttcmbx_tabs");
             this.ttcmbx_tabs.SelectedIndexChanged += new System.EventHandler(this.cmbx_SelectedIndexChanged);
             // 
-            // aboutToolStripMenuItem
+            // tsmi_settings
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.tsmi_settings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_lang,
+            this.tsmi_style});
+            this.tsmi_settings.Name = "tsmi_settings";
+            resources.ApplyResources(this.tsmi_settings, "tsmi_settings");
+            // 
+            // tsmi_lang
+            // 
+            this.tsmi_lang.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_language});
+            this.tsmi_lang.Name = "tsmi_lang";
+            resources.ApplyResources(this.tsmi_lang, "tsmi_lang");
+            // 
+            // tsmi_language
+            // 
+            this.tsmi_language.Name = "tsmi_language";
+            resources.ApplyResources(this.tsmi_language, "tsmi_language");
+            this.tsmi_language.SelectedIndexChanged += new System.EventHandler(this.tsmi_language_SelectedIndexChanged);
+            // 
+            // tsmi_style
+            // 
+            this.tsmi_style.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blueToolStripMenuItem});
+            this.tsmi_style.Name = "tsmi_style";
+            resources.ApplyResources(this.tsmi_style, "tsmi_style");
+            // 
+            // blueToolStripMenuItem
+            // 
+            this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
+            resources.ApplyResources(this.blueToolStripMenuItem, "blueToolStripMenuItem");
+            // 
+            // tsmi_about
+            // 
+            this.tsmi_about.Name = "tsmi_about";
+            resources.ApplyResources(this.tsmi_about, "tsmi_about");
             // 
             // toolStrip
             // 
@@ -332,39 +365,6 @@
             this.grbx_coord.Name = "grbx_coord";
             this.grbx_coord.TabStop = false;
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.languageToolStripMenuItem,
-            this.styleToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
-            // 
-            // languageToolStripMenuItem
-            // 
-            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_language});
-            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
-            // 
-            // tsmi_language
-            // 
-            this.tsmi_language.Name = "tsmi_language";
-            resources.ApplyResources(this.tsmi_language, "tsmi_language");
-            this.tsmi_language.SelectedIndexChanged += new System.EventHandler(this.tsmi_language_SelectedIndexChanged);
-            // 
-            // styleToolStripMenuItem
-            // 
-            this.styleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blueToolStripMenuItem});
-            this.styleToolStripMenuItem.Name = "styleToolStripMenuItem";
-            resources.ApplyResources(this.styleToolStripMenuItem, "styleToolStripMenuItem");
-            // 
-            // blueToolStripMenuItem
-            // 
-            this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
-            resources.ApplyResources(this.blueToolStripMenuItem, "blueToolStripMenuItem");
-            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -399,20 +399,20 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_file;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_open;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_save;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_exit;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_color;
         private System.Windows.Forms.ToolStripComboBox ttcmbx_color;
-        private System.Windows.Forms.ToolStripMenuItem widthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_lineWidth;
         private System.Windows.Forms.ToolStripComboBox ttcmbx_width;
-        private System.Windows.Forms.ToolStripMenuItem typeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_type;
         private System.Windows.Forms.ToolStripComboBox ttcmd_type;
-        private System.Windows.Forms.ToolStripMenuItem tabsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_tabs;
         private System.Windows.Forms.ToolStripComboBox ttcmbx_tabs;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_about;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripLabel lbl_color;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -433,10 +433,10 @@
         private System.Windows.Forms.GroupBox grbx_coord;
         private System.Windows.Forms.PictureBox pctbx_canvas1;
         private System.Windows.Forms.PictureBox pctbx_canvas2;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_settings;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_lang;
         private System.Windows.Forms.ToolStripComboBox tsmi_language;
-        private System.Windows.Forms.ToolStripMenuItem styleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_style;
         private System.Windows.Forms.ToolStripComboBox blueToolStripMenuItem;
     }
 }

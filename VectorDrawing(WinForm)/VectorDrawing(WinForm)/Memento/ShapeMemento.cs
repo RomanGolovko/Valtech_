@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.Serialization;
 
-namespace VectorDrawing_WinForm_.Serialization.Memento
+namespace VectorDrawing_WinForm_.Memento
 {
     [Serializable]
     [DataContract]                          // for json serialization
