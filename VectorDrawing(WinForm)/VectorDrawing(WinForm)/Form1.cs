@@ -38,6 +38,9 @@ namespace VectorDrawing_WinForm_
             tsmi_language.Items.AddRange(new object[] { "English", "Русский", "Українська" });
             tsmi_language.SelectedIndex = 0;
 
+            tsmi_theme.Items.AddRange(new object[] { "Gray", "Blue", "Dark" });
+            tsmi_theme.SelectedIndex = 0;
+
             ttcmbx_color.Items.AddRange(new object[] { "Black", "Green", "Red" });
             ttcmbx_width.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
             ttcmd_type.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
@@ -86,6 +89,46 @@ namespace VectorDrawing_WinForm_
             grbx_coord.Text = _locale.GetString("grbx_coord");
             tbpg_1.Text = _locale.GetString("tbpg_1");
             tbpg_2.Text = _locale.GetString("tbpg_2");
+        }
+
+        private void tsmi_theme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var themeColor = default(Color);
+
+            switch (tsmi_theme.Text)
+            {
+                case "Gray":
+                    themeColor = default(Color);
+                    break;
+                case "Blue":
+                    themeColor = Color.Blue;
+                    break;
+                case"Dark":
+                    themeColor = Color.DarkGray;
+                    break;
+                default:
+                    break;
+            }
+
+            BackColor = themeColor;
+
+            foreach (var control in Controls)
+            {
+                if (control is MenuStrip)
+                {
+                    ((MenuStrip)control).BackColor = themeColor;
+                }
+                else if (control is GroupBox)
+                {
+                    ((GroupBox)control).BackColor = themeColor;
+                }
+                else if (control is ToolStrip)
+                {
+                    ((ToolStrip)control).BackColor = themeColor;
+                }
+            }
+
+            Invalidate();
         }
 
         private void tbcntrl_canvas_SelectedIndexChanged(object sender, EventArgs e)

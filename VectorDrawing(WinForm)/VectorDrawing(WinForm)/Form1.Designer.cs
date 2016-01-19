@@ -47,7 +47,7 @@
             this.tsmi_lang = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_language = new System.Windows.Forms.ToolStripComboBox();
             this.tsmi_style = new System.Windows.Forms.ToolStripMenuItem();
-            this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            this.tsmi_theme = new System.Windows.Forms.ToolStripComboBox();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.lbl_color = new System.Windows.Forms.ToolStripLabel();
@@ -205,14 +205,15 @@
             // tsmi_style
             // 
             this.tsmi_style.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blueToolStripMenuItem});
+            this.tsmi_theme});
             this.tsmi_style.Name = "tsmi_style";
             resources.ApplyResources(this.tsmi_style, "tsmi_style");
             // 
-            // blueToolStripMenuItem
+            // tsmi_theme
             // 
-            this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
-            resources.ApplyResources(this.blueToolStripMenuItem, "blueToolStripMenuItem");
+            this.tsmi_theme.Name = "tsmi_theme";
+            resources.ApplyResources(this.tsmi_theme, "tsmi_theme");
+            this.tsmi_theme.SelectedIndexChanged += new System.EventHandler(this.tsmi_theme_SelectedIndexChanged);
             // 
             // tsmi_about
             // 
@@ -437,7 +438,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_lang;
         private System.Windows.Forms.ToolStripComboBox tsmi_language;
         private System.Windows.Forms.ToolStripMenuItem tsmi_style;
-        private System.Windows.Forms.ToolStripComboBox blueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox tsmi_theme;
     }
 }
 
