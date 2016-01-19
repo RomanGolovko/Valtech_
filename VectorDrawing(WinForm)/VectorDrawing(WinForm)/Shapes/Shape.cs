@@ -67,48 +67,7 @@ namespace VectorDrawing_WinForm_.Shapes
             }
         }
 
-        protected override void OnMouseClick(MouseEventArgs e)
-        {
-            Focus();
-
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    break;
-                case MouseButtons.Right:
-                    var shapeMenu = new ContextMenuStrip();
-
-                    _colorMenu = new ToolStripComboBox();
-                    _colorMenu.Items.AddRange(new object[] { "Black", "Green", "Red" });
-                    _colorMenu.SelectedIndex = ColorFactory.GetColorNum(Color);
-                    _colorMenu.SelectedIndexChanged += cmbx_SelectedIndexChanged;
-
-                    _lineWidthMenu = new ToolStripComboBox();
-                    _lineWidthMenu.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-                    _lineWidthMenu.SelectedIndex = LineWidth - 1;
-                    _lineWidthMenu.SelectedIndexChanged += cmbx_SelectedIndexChanged;
-
-                    _typeMenu = new ToolStripComboBox();
-                    _typeMenu.Items.AddRange(new object[] { "Rectangle", "Ellipse", "Line" });
-                    _typeMenu.SelectedIndex = TypeFactory.GetNumShapeType(Type);
-                    _typeMenu.SelectedIndexChanged += cmbx_SelectedIndexChanged;
-
-                    shapeMenu.Items.AddRange(new ToolStripItem[] { _colorMenu, _lineWidthMenu, _typeMenu });
-                    ContextMenuStrip = shapeMenu;
-                    break;
-                case MouseButtons.None:
-                    break;
-                case MouseButtons.Middle:
-                    break;
-                case MouseButtons.XButton1:
-                    break;
-                case MouseButtons.XButton2:
-                    break;
-                default:
-                    break;
-            }
-        }
-
+ 
         private void cmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             Color = ColorFactory.GetColorFromNum(_colorMenu.SelectedIndex);
