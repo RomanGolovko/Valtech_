@@ -16,9 +16,9 @@ namespace VectorDrawing_WinForm_
     {
         private readonly ResourceManager _locale;
         private PictureBox _pictureBox;
+        private Shape _currentShape;
         private XData _data;
 
-        public Shape CurrentShape { private get; set; }
 
         public Main()
         {
@@ -103,7 +103,7 @@ namespace VectorDrawing_WinForm_
                 case "Blue":
                     themeColor = Color.Blue;
                     break;
-                case"Dark":
+                case "Dark":
                     themeColor = Color.DarkGray;
                     break;
                 default:
@@ -150,9 +150,9 @@ namespace VectorDrawing_WinForm_
         {
             var pctbx = (PictureBox)sender;
 
-            _data.SetData(e.X, e.Y, 40, 40, _data.Color, _data.LineWidth, _data.Type);
+            _data.SetData(e.X, e.Y, 40, 40, _data.Color, _data.LineWidth, _data.Type, tbcntrl_canvas.SelectedIndex);
 
-            var shape = new Shape(_data, _data.Type) {Location = new Point(_data.X, _data.Y)};
+            var shape = new Shape(_data, _data.Type) { Location = new Point(_data.X, _data.Y) };
             pctbx.Controls.Add(shape);
         }
 
@@ -165,8 +165,15 @@ namespace VectorDrawing_WinForm_
             };
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel) return;
 
-            ///TODO: изменить захардкоженный пикчербокс
-            var shapes = pctbx_canvas1.Controls.OfType<Shape>().Select(shape => shape).ToList();
+            List<Shape> shapes = new List<Shape>();
+
+            foreach (var item in tbcntrl_canvas.TabPages)
+            {
+                foreach (var pctbx in ((TabPage)item).Controls)
+                {
+                    shapes.AddRange(((PictureBox)pctbx).Controls.OfType<Shape>().Select(shape => shape).ToList());
+                }
+            }
 
             var memento = new PctbxMemento(shapes);
             memento.SaveState(saveFileDialog.FilterIndex, saveFileDialog.FileName);
@@ -187,8 +194,8 @@ namespace VectorDrawing_WinForm_
 
                 foreach (var shape in shapes)
                 {
-                    ///TODO: изменить захардкоженный пикчербокс
-                    pctbx_canvas1.Controls.Add(shape);
+                    tbcntrl_canvas.TabIndex = shape.TabIndex;
+                    tbcntrl_canvas.Controls.OfType<TabPage>().FirstOrDefault().Controls.OfType<PictureBox>().FirstOrDefault().Controls.Add(shape);
                 }
             }
             catch (Exception)
@@ -237,20 +244,17 @@ namespace VectorDrawing_WinForm_
             SetValue();
         }
 
-        public void SetData(XData data)
+        public void SetData(Shape shape)
         {
-            _data = data;
+            _data = shape.Data;
+            _currentShape = shape;
             SetValue();
         }
 
         private void SetValue()
         {
-            CurrentShape?.Focus();
-            if (CurrentShape != null && CurrentShape.Focused)
-            {
-               CurrentShape.RedrawShape( CurrentShape.Data.SetData(_data.X, _data.Y, _data.Width, 
-                   _data.Height, _data.Color, _data.LineWidth, _data.Type));
-            }
+            _currentShape?.RedrawShape(_data);
+            _currentShape?.Focus();
 
             var color = ColorFactory.GetNumColor(_data.Color);
             cmbx_color.SelectedIndex = color;

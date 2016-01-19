@@ -28,7 +28,8 @@ namespace VectorDrawing_WinForm_.Memento
                 Height = shape.Height,
                 Color = shape.Color,
                 LineWidth = shape.LineWidth,
-                Type = shape.Type
+                Type = shape.Type,
+                TabIndex = shape.TabIndex
             }))
             {
                 Shapes.Add(shapeMemento);
@@ -44,7 +45,7 @@ namespace VectorDrawing_WinForm_.Memento
             {
                 var data = new XData();
                 data.SetData(shapeMemento.X, shapeMemento.Y, shapeMemento.Width, shapeMemento.Height,
-                    shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type);
+                    shapeMemento.Color, shapeMemento.LineWidth, shapeMemento.Type, shapeMemento.TabIndex);
 
                 var shape = new Shape(data, data.Type);
                 shapes.Add(shape);

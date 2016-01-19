@@ -26,14 +26,14 @@ namespace VectorDrawing_WinForm_.Serialization.Concrete
         {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate))
             {
-                try
-                {
+                //try
+                //{
                     return (List<ShapeMemento>)_formatter.ReadObject(fs);
-                }
-                catch (Exception)
-                {
-                    throw new SerializationException();
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    throw new SerializationException();
+                //}
             }
         }
     }

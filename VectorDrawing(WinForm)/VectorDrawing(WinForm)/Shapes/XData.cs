@@ -11,8 +11,10 @@ namespace VectorDrawing_WinForm_.Shapes
         public Color Color { get; set; }
         public string Type { get; set; }
         public int LineWidth { get; set; }
+        public int TabIndex { get; set; }
 
-        public XData SetData(int x, int y, int width, int height, Color color, int lineWidth, string type)
+        public XData SetData(int x, int y, int width, int height,
+            Color color, int lineWidth, string type, int tabIndex)
         {
             X = x;
             Y = y;
@@ -21,6 +23,7 @@ namespace VectorDrawing_WinForm_.Shapes
             Color = color;
             LineWidth = lineWidth;
             Type = type;
+            TabIndex = tabIndex;
 
             return this;
         }

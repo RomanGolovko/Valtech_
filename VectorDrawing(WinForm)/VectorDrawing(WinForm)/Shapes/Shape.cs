@@ -31,8 +31,9 @@ namespace VectorDrawing_WinForm_.Shapes
             Height = Data.Height;
             Color = Data.Color;
             LineWidth = Data.LineWidth;
-            BackColor = Color.White;
             Type = type;
+            TabIndex = Data.TabIndex;
+            BackColor = Color.White;
         }
 
         public void RedrawShape(XData data)
@@ -44,13 +45,11 @@ namespace VectorDrawing_WinForm_.Shapes
             Color = data.Color;
             LineWidth = data.LineWidth;
             Type = data.Type;
-            Invalidate();
+            TabIndex = data.TabIndex;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-
             switch (Type)
             {
                 case "Rectangle":
@@ -115,14 +114,10 @@ namespace VectorDrawing_WinForm_.Shapes
             LineWidth = _lineWidthMenu.SelectedIndex + 1;
             Type = TypeFactory.GetStrShapeType(_typeMenu.SelectedIndex);
 
-            RedrawShape(Data.SetData(Left, Top, Width, Height, Color, LineWidth, Type));
+            RedrawShape(Data.SetData(Left, Top, Width, Height, Color, LineWidth, Type, TabIndex));
 
-            var pctbx = Parent;
-            var tbPg = pctbx.Parent;
-            var tbCntrl = tbPg.Parent;
-            var main = tbCntrl.Parent as Main;
-            main.SetData(Data);
-            main.CurrentShape = this;
+            var main = FindForm() as Main;
+            main.SetData(this);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -156,9 +151,9 @@ namespace VectorDrawing_WinForm_.Shapes
         {
             BackColor = default(Color);
 
-            var main = Parent.Parent.Parent.Parent as Main;
-            main.SetData(Data);
-            main.CurrentShape = this;
+            Data.SetData(Left, Top, Width, Height, Color, LineWidth, Type, Data.TabIndex); 
+            var main = FindForm() as Main;
+            main.SetData(this);
         }
 
         protected override void OnLostFocus(EventArgs e)

@@ -28,5 +28,8 @@ namespace VectorDrawing_WinForm_.Memento
 
         [DataMember]                        // for json serialization
         public int LineWidth { get; set; }
+
+        [DataMember]                        // for json serialization
+        public int TabIndex { get; set; }
     }
 }
