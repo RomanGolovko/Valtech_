@@ -18,7 +18,6 @@ namespace VectorDrawing_WinForm_
         private Shape _currentShape;
         private XData _data;
 
-
         public Main()
         {
             _locale = new ResourceManager("VectorDrawing_WinForm_.Resources.Locale", typeof(Main).Assembly);
