@@ -2,19 +2,18 @@
 using DAL.Entities;
 using LiteDB;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DAL.DB.Concrete.LiteDb
 {
     public class LiteDbRepository : IRepository<Person>
     {
-        LiteDatabase db = new LiteDatabase("Person.db");
+        private readonly LiteDatabase _db = new LiteDatabase("Person.db");
 
         public Person Get(int id)
         {
             var person = new Person();
 
-            foreach (var item in db.GetCollection<Person>("Persons").Find(p => p.Id == id))
+            foreach (var item in _db.GetCollection<Person>("Persons").Find(p => p.Id == id))
             {
                 person.Id = item.Id;
                 person.FirstName = item.FirstName;
@@ -27,22 +26,22 @@ namespace DAL.DB.Concrete.LiteDb
 
         public IEnumerable<Person> GetAll()
         {
-            return db.GetCollection<Person>("Persons").FindAll().AsEnumerable();
+            return _db.GetCollection<Person>("Persons").FindAll();
         }
 
         public void Create(Person person)
         {
-            db.GetCollection<Person>("Persons").Insert(person);
+            _db.GetCollection<Person>("Persons").Insert(person);
         }
 
         public void Update(Person person)
         {
-            db.GetCollection<Person>("Persons").Update(person);
+            _db.GetCollection<Person>("Persons").Update(person);
         }
 
         public void Delete(int id)
         {
-            db.GetCollection<Person>("Persons").Delete(p => p.Id == id);
+            _db.GetCollection<Person>("Persons").Delete(p => p.Id == id);
         }
     }
 }

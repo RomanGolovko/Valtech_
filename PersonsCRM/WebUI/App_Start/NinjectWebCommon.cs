@@ -41,7 +41,7 @@ namespace WebUI.App_Start
         private static IKernel CreateKernel()
         {
             var modules = new INinjectModule[] { new ServiceModule("DefaultConnection") };
-            var kernel = new StandardKernel();
+            var kernel = new StandardKernel(modules);
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -63,7 +63,7 @@ namespace WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            System.Web.Mvc.DependencyResolver.SetResolver(new PersonsCRM.webUI.NinjectDependencyResolver(kernel));
+            System.Web.Mvc.DependencyResolver.SetResolver(new WebUI.Util.NinjectDependencyResolver(kernel));
         }        
     }
 }

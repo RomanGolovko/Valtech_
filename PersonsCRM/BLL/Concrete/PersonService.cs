@@ -10,7 +10,7 @@ namespace BLL.Concrete
 {
     public class PersonService : IService<PersonDTO>
     {
-        IRepository<Person> db { get; set; }
+        private IRepository<Person> db { get; set; }
 
         public PersonService(IRepository<Person> repo)
         {
