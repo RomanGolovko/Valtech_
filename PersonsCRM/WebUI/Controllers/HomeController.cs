@@ -5,6 +5,7 @@ using BLL.Abstract;
 using BLL.DTO;
 using WebUI.Models;
 using Cross_Cutting.Security;
+using Newtonsoft.Json;
 
 namespace WebUI.Controllers
 {
@@ -32,6 +33,19 @@ namespace WebUI.Controllers
             var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
 
             return View(persons);
+        }
+
+        public ActionResult jqGrid()
+        {
+            return View();
+        }
+
+        public string GetData()
+        {
+            Mapper.CreateMap<PersonDTO, PersonViewModel>();
+            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
+
+            return JsonConvert.SerializeObject(persons);
         }
 
         // Get: Home/Create
