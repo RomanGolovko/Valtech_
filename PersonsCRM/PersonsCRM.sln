@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{53F7FBEF-F4EC-4AE1-8192-5BF99FACBB88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cross-Cutting", "Cross-Cutting\Cross-Cutting.csproj", "{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{53F7FBEF-F4EC-4AE1-8192-5BF99FACBB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F7FBEF-F4EC-4AE1-8192-5BF99FACBB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F7FBEF-F4EC-4AE1-8192-5BF99FACBB88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

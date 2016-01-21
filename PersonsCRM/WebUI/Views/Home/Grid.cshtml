@@ -1,0 +1,18 @@
+﻿@using GridMvc.Html
+@model System.Collections.Generic.IEnumerable<WebUI.Models.PersonViewModel>
+
+    <h2>Grid</h2>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="@Url.Content('~/Content/Gridmvc.css')" rel="stylesheet" />
+        <link href="@Url.Content('~/Content/bootstrap.min.css')" rel="stylesheet" />
+        <script src="@Url.Content(' ~/Scripts/jquery-1.10.2.min.js')"></script>
+    </head>
+    <body>
+        @Html.Grid(Model).AutogenerateColumns().Sortable()
+        div>
+        @Html.ActionLink("Back to List", "Index")
+    </body>
+</html>

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using BLL.Abstract;
 using BLL.DTO;
 using WebUI.Models;
+using Cross_Cutting.Security;
 
 namespace WebUI.Controllers
 {
@@ -12,16 +12,25 @@ namespace WebUI.Controllers
     {
         private readonly IService<PersonDTO> _db;
 
-        public HomeController(IService<PersonDTO>personService )
+        public HomeController(IService<PersonDTO> personService)
         {
             _db = personService;
-        } 
+        }
 
         // GET: Home
         public ActionResult Index()
         {
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
             var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
+
+            return View(persons);
+        }
+
+        public ActionResult Grid()
+        {
+            Mapper.CreateMap<PersonDTO, PersonViewModel>();
+            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
+
             return View(persons);
         }
 
@@ -44,12 +53,20 @@ namespace WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(PersonViewModel personModel)
         {
-            Mapper.CreateMap<PersonViewModel, PersonDTO>();
-            var person = Mapper.Map<PersonViewModel, PersonDTO>(personModel);
-            _db.Save(person);
-            TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
+            try
+            {
+                Mapper.CreateMap<PersonViewModel, PersonDTO>();
+                var person = Mapper.Map<PersonViewModel, PersonDTO>(personModel);
+                _db.Save(person);
+                TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View(personModel);
+            }
         }
 
         // GET: Home/Delete/5
@@ -58,14 +75,13 @@ namespace WebUI.Controllers
             try
             {
                 _db.Delete(id);
+                return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (ValidationException ex)
             {
-                
-                throw;
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View();
             }
-
-            return RedirectToAction("Index");
         }
 
         public ActionResult About()

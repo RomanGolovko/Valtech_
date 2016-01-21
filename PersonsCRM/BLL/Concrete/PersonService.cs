@@ -50,14 +50,7 @@ namespace BLL.Concrete
                 Age = item.Age
             };
 
-            if (db.Get(item.Id) == null)
-            {
-                db.Create(person);
-            }
-            else
-            {
-                db.Update(person);
-            }
+            db.Create(person);
         }
 
         public void Delete(int? id)
