@@ -80,7 +80,7 @@ namespace WebUI.Controllers
             catch (ValidationException ex)
             {
                 ModelState.AddModelError(ex.Property, ex.Message);
-                return View();
+                return View("Index");
             }
         }
 

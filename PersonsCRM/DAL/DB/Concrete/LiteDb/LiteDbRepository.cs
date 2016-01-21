@@ -8,7 +8,7 @@ namespace DAL.DB.Concrete.LiteDb
 {
     public class LiteDbRepository : IRepository<Person>
     {
-        private readonly LiteDatabase _db = new LiteDatabase(@"C:\Users\Roman\Documents\Person.db");
+        private readonly LiteDatabase _db = new LiteDatabase("Person.db");
 
         public Person Get(int id)
         {
