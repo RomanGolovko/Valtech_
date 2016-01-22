@@ -51,10 +51,15 @@
     <Compile Include="Abstract\IService.cs" />
     <Compile Include="Concrete\PersonService.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PhoneDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
+      <Project>{e1e6c4e5-1cde-4b84-b6d9-4d4fcf1e3e91}</Project>
+      <Name>Cross-Cutting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{37521825-5d32-4368-ba4b-711f5109a4bc}</Project>
       <Name>DAL</Name>

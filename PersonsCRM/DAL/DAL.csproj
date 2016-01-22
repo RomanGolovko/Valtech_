@@ -59,12 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Abstract\IRepository.cs" />
+    <Compile Include="DB\Abstract\IUnitOfWork.cs" />
+    <Compile Include="DB\Concrete\LiteDb\LiteDbPhoneRepository.cs" />
+    <Compile Include="DB\Concrete\LiteDb\LiteDbUnitOfWork.cs" />
     <Compile Include="DB\Concrete\MSSQL\ADO\AdoRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\Dapper\DapperRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfDbContext.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfRepository.cs" />
-    <Compile Include="DB\Concrete\LiteDb\LiteDbRepository.cs" />
+    <Compile Include="DB\Concrete\LiteDb\LiteDbPersonsRepository.cs" />
     <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\Phone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

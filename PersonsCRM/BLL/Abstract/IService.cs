@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using BLL.DTO;
+using System.Collections.Generic;
 
 namespace BLL.Abstract
 {
-    public interface IService<T> where T : class
+    public interface IService
     {
-        T GetCurrent(int? id);
-        IEnumerable<T> GetAll();
-        void Save(T item);
-        void Delete(int? id);
+        PersonDTO GetPerson(int? id);
+        IEnumerable<PersonDTO> GetAllPersons();
+        void SavePerson(PersonDTO person);
+        void SavePhone(int? personId, PhoneDTO phone);
+        void DeletePerson(int? id);
+        void DeletePhone(int? personId, int? id);
     }
 }

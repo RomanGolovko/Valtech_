@@ -1,4 +1,6 @@
-﻿namespace BLL.DTO
+﻿using System.Collections.Generic;
+
+namespace BLL.DTO
 {
     public class PersonDTO
     {
@@ -6,5 +8,6 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public List<PhoneDTO> Phones { get; set; }
     }
 }

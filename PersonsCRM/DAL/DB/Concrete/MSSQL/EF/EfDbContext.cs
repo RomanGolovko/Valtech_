@@ -6,7 +6,6 @@ namespace DAL.DB.Concrete.EF
     public class EfDbContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
-
-        public EfDbContext() : base("PersonDB"){}
+        public DbSet<Phone> Phones { get; set; }
     }
 }

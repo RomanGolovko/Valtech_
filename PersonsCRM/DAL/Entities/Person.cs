@@ -1,4 +1,6 @@
-﻿namespace DAL.Entities
+﻿using System.Collections.Generic;
+
+namespace DAL.Entities
 {
     public class Person
     {
@@ -6,5 +8,6 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public List<Phone> Phones { get; set; }
     }
 }

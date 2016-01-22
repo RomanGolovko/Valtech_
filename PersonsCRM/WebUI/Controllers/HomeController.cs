@@ -45,7 +45,8 @@ namespace WebUI.Controllers
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
             var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
 
-            return JsonConvert.SerializeObject(persons);
+            var data = JsonConvert.SerializeObject(persons);
+            return data;
         }
 
         // Get: Home/Create

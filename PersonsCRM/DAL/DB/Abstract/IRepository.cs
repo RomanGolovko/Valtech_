@@ -7,6 +7,7 @@ namespace DAL.DB.Abstract
         T Get(int id);
         IEnumerable<T> GetAll();
         void Create(T item);
+        void Update(T item);
         void Delete(int id);
     }
 }
