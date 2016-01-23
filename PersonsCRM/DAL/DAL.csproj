@@ -65,13 +65,20 @@
     <Compile Include="DB\Concrete\MSSQL\ADO\AdoRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\Dapper\DapperRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfDbContext.cs" />
-    <Compile Include="DB\Concrete\MSSQL\EF\EfRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\EF\EfPersonRepository.cs" />
     <Compile Include="DB\Concrete\LiteDb\LiteDbPersonsRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\EF\EfPhoneRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\EF\EfUnitOfWork.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
+      <Project>{e1e6c4e5-1cde-4b84-b6d9-4d4fcf1e3e91}</Project>
+      <Name>Cross-Cutting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -51,6 +51,11 @@ namespace DAL.DB.Concrete.MSSQL.Dapper
             }
         }
 
+        public void Update(Person item)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Delete(int id)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))

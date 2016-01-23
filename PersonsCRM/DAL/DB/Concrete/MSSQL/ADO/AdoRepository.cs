@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using DAL.DB.Abstract;
@@ -106,6 +107,11 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public void Update(Person item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

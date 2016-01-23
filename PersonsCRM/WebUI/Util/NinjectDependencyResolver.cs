@@ -1,6 +1,5 @@
 ﻿using BLL.Abstract;
 using BLL.Concrete;
-using BLL.DTO;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace WebUI.Util
         }
         private void AddBindings()
         {
-            _kernel.Bind<IService<PersonDTO>>().To<PersonService>();
+            _kernel.Bind<IService>().To<PersonService>();
         }
     }
 }

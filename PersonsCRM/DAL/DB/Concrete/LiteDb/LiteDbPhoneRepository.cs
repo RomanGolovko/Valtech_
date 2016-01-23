@@ -18,6 +18,8 @@ namespace DAL.DB.Concrete.LiteDb
                 phone.Id = item.Id;
                 phone.Number = item.Number;
                 phone.Type = item.Type;
+                phone.PersonId = item.PersonId;
+                phone.Person = item.Person;
             }
 
             return phone;
@@ -40,7 +42,7 @@ namespace DAL.DB.Concrete.LiteDb
 
         public void Delete(int id)
         {
-            var person = _db.GetCollection<Phone>("Phones").Delete(p => p.Id == id);
+            _db.GetCollection<Phone>("Phones").Delete(p => p.Id == id);
         }
     }
 }

@@ -90,8 +90,8 @@
                     },
                     afterSubmit: function (response, postdata) {
                         // обновление грида
-                        $(this).jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid')
-                        return [true, "", 0]
+                        $(this).jqGrid('setGridParam', { datatype: 'json' }).trigger('reloadGrid');
+                        return [true, "", 0];
                     }
                 };
             };

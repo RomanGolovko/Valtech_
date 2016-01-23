@@ -4,14 +4,13 @@ using BLL.DTO;
 using Cross_Cutting.Security;
 using DAL.DB.Abstract;
 using DAL.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace BLL.Concrete
 {
     public class PersonService : IService
     {
-        private IUnitOfWork _db { get; set; }
+        private readonly IUnitOfWork _db;
 
         public PersonService(IUnitOfWork uow)
         {
@@ -22,43 +21,52 @@ namespace BLL.Concrete
         {
             if (id == null)
             {
-                throw new NullReferenceException();
+                throw new ValidationException("Wrong inserted parameters", "");
             }
 
             var person = _db.Persons.Get(id.Value);
             if (person == null)
             {
-                throw new ArgumentNullException("Person not found", "");
+                throw new ValidationException(@"Person not found", "");
             }
 
             Mapper.CreateMap<Person, PersonDTO>();
+            Mapper.CreateMap<Phone, PhoneDTO>();
+
             return Mapper.Map<Person, PersonDTO>(person);
         }
 
         public IEnumerable<PersonDTO> GetAllPersons()
         {
+            Mapper.CreateMap<Phone, PhoneDTO>();
             Mapper.CreateMap<Person, PersonDTO>();
-            return Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
+            var result = Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
+
+            return result;
         }
 
         public void SavePerson(PersonDTO person)
         {
             Mapper.CreateMap<PersonDTO, Person>();
-            var currentPerson = Mapper.Map<PersonDTO, Person>(person);
+            Mapper.CreateMap<PhoneDTO, Phone>();
 
+            var currentPerson = Mapper.Map<PersonDTO, Person>(person);
 
             if (_db.Persons.Get(person.Id) == null)
             {
                 _db.Persons.Create(currentPerson);
+                foreach (var phone in person.Phones)
+                {
+                    SavePhone(currentPerson.Id, phone);
+                }
             }
-            else
-            {
-                _db.Persons.Update(currentPerson);
-            }
+
+            _db.Persons.Update(currentPerson);
         }
 
         public void SavePhone(int? personId, PhoneDTO phone)
         {
+            if (personId == null) return;
             var person = _db.Persons.Get(personId.Value);
             if (person == null)
             {
@@ -67,6 +75,7 @@ namespace BLL.Concrete
 
             Mapper.CreateMap<PhoneDTO, Phone>();
             var currentPhone = Mapper.Map<PhoneDTO, Phone>(phone);
+            currentPhone.Person = person;
 
             if (phone.Id == 0)
             {
@@ -85,7 +94,7 @@ namespace BLL.Concrete
         {
             if (id == null)
             {
-                throw new ValidationException("Wrong insert parameters", "");
+                throw new ValidationException("Wrong inserted parameters", "");
             }
 
             var person = _db.Persons.Get(id.Value);
@@ -93,24 +102,29 @@ namespace BLL.Concrete
             {
                 throw new ValidationException("Person not found", "");
             }
-            else
+
+            if (person.Phones != null)
             {
                 foreach (var phone in person.Phones)
                 {
                     _db.Phones.Delete(phone.Id);
                 }
             }
-
-            _db.Phones.Delete(id.Value);
+            _db.Persons.Delete(id.Value);
         }
 
         public void DeletePhone(int? personId, int? id)
         {
             var person = _db.Persons.Get(personId.Value);
-            var phone = _db.Phones.Get(id.Value);
-            if (phone == null || person == null)
+            if (person == null)
             {
-                throw new ValidationException("Person or phone not found", "");
+                throw new ValidationException("Person not found", "");
+            }
+
+            var phone = _db.Phones.Get(id.Value);
+            if (phone == null)
+            {
+                throw new ValidationException("Phone not found", "");
             }
 
             person.Phones.Remove(phone);

@@ -1,8 +1,8 @@
 ﻿using DAL.DB.Abstract;
-using DAL.DB.Concrete.EF;
 using DAL.DB.Concrete.LiteDb;
 using DAL.DB.Concrete.MSSQL.ADO;
 using DAL.DB.Concrete.MSSQL.Dapper;
+using DAL.DB.Concrete.MSSQL.EF;
 using DAL.Entities;
 using Ninject.Modules;
 
@@ -20,9 +20,9 @@ namespace BLL.Infrastructure
         public override void Load()
         {
             Bind<IUnitOfWork>().To<LiteDbUnitOfWork>();
-            //Bind<IRepository<Person>>().To<EfRepository>().WithConstructorArgument(_connectionString);
-            //Bind<IRepository<Person>>().To<DapperRepository>().WithConstructorArgument(_connectionString);
-            //Bind<IRepository<Person>>().To<AdoRepository>().WithConstructorArgument(_connectionString);
+            //Bind<IUnitOfWork>().To<EfUnitOfWork>().WithConstructorArgument(_connectionString);
+            //Bind<IUnitOfWork>().To<DapperRepository>().WithConstructorArgument(_connectionString);
+            //Bind<IUnitOfWork>().To<AdoRepository>().WithConstructorArgument(_connectionString);
 
         }
     }

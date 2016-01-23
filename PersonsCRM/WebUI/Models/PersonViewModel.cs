@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace WebUI.Models
@@ -17,5 +18,7 @@ namespace WebUI.Models
         [Required(ErrorMessage = "Please enter persons age")]
         [Range(1, 100, ErrorMessage = "This age is incorrect")]
         public int Age { get; set; }
+
+        public List<PhoneViewModel> Phones { get; set; }
     }
 }

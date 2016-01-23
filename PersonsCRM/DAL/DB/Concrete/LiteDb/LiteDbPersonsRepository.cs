@@ -11,15 +11,18 @@ namespace DAL.DB.Concrete.LiteDb
 
         public Person Get(int id)
         {
-            var person = new Person();
+            Person person = null;
 
             foreach (var item in _db.GetCollection<Person>("Persons").Find(p => p.Id == id))
             {
-                person.Id = item.Id;
-                person.FirstName = item.FirstName;
-                person.LastName = item.LastName;
-                person.Age = item.Age;
-                person.Phones = item.Phones;
+                person = new Person
+                {
+                    Id = item.Id,
+                    FirstName = item.FirstName,
+                    LastName = item.LastName,
+                    Age = item.Age,
+                    Phones = item.Phones
+                };
             }
 
             return person;
@@ -42,7 +45,7 @@ namespace DAL.DB.Concrete.LiteDb
 
         public void Delete(int id)
         {
-            var person = _db.GetCollection<Person>("Persons").Delete(p => p.Id == id);
+            _db.GetCollection<Person>("Persons").Delete(p => p.Id == id);
         }
     }
 }

@@ -5,31 +5,11 @@ namespace DAL.DB.Concrete.LiteDb
 {
     public class LiteDbUnitOfWork : IUnitOfWork
     {
-        private LiteDbPersonsRepository personRepository;
-        private LiteDbPhoneRepository phoneRepository;
+        private LiteDbPersonsRepository _personRepository;
+        private LiteDbPhoneRepository _phoneRepository;
 
-        public IRepository<Person> Persons
-        {
-            get
-            {
-                if (personRepository == null)
-                {
-                    personRepository = new LiteDbPersonsRepository();
-                }
-                return personRepository;
-            }
-        }
+        public IRepository<Person> Persons => _personRepository ?? (_personRepository = new LiteDbPersonsRepository());
 
-        public IRepository<Phone> Phones
-        {
-            get
-            {
-                if (phoneRepository == null)
-                {
-                    phoneRepository = new LiteDbPhoneRepository();
-                }
-                return phoneRepository;
-            }
-        }
+        public IRepository<Phone> Phones => _phoneRepository ?? (_phoneRepository = new LiteDbPhoneRepository());
     }
 }

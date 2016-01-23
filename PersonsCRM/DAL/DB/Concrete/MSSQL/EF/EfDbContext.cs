@@ -1,7 +1,7 @@
-﻿using DAL.Entities;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using DAL.Entities;
 
-namespace DAL.DB.Concrete.EF
+namespace DAL.DB.Concrete.MSSQL.EF
 {
     public class EfDbContext : DbContext
     {
