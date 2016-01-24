@@ -21,9 +21,8 @@ namespace BLL.Infrastructure
         {
             Bind<IUnitOfWork>().To<LiteDbUnitOfWork>();
             //Bind<IUnitOfWork>().To<EfUnitOfWork>().WithConstructorArgument(_connectionString);
-            //Bind<IUnitOfWork>().To<DapperRepository>().WithConstructorArgument(_connectionString);
-            //Bind<IUnitOfWork>().To<AdoRepository>().WithConstructorArgument(_connectionString);
-
+            //Bind<IUnitOfWork>().To<DapperUnitOfWork>().WithConstructorArgument(_connectionString);
+            //Bind<IUnitOfWork>().To<AdoUnitOfWork>().WithConstructorArgument(_connectionString);
         }
     }
 }

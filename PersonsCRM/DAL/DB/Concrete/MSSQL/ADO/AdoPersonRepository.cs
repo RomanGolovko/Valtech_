@@ -7,15 +7,16 @@ using DAL.Entities;
 
 namespace DAL.DB.Concrete.MSSQL.ADO
 {
-    public class AdoRepository : IRepository<Person>
+    public class AdoPersonRepository : IRepository<Person>
     {
-        //private readonly string _connectionString;
-        string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        //public AdoRepository(string connection)
-        //{
-        //    _connectionString = connection;
-        //}
+        private string _connectionString;
+
+        public AdoPersonRepository(string connection)
+        {
+            _connectionString = connection;
+        }
 
         public Person Get(int id)
         {
@@ -69,7 +70,7 @@ namespace DAL.DB.Concrete.MSSQL.ADO
             return persons;
         }
 
-        public void Create(Person item)
+        public void Create(Person person)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -77,18 +78,40 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 
                 var command = new SqlCommand
                 {
-                    CommandText = item.Id == 0
-                        ? "INSERT INTO Persons (FirstName, LastName, Age) VALUES (@FirstName, @LastName, @Age)"
-                        : "UPDATE Persons SET FirstName = @FirstName, LastName = @LastName, Age = @Age"
+                    CommandText = "INSERT INTO Persons (FirstName, LastName, Age) VALUES (@FirstName, @LastName, @Age)"
                 };
 
-                var firstNameParam = new SqlParameter("@FirstName", item.FirstName);
+                var firstNameParam = new SqlParameter("@FirstName", person.FirstName);
                 command.Parameters.Add(firstNameParam);
 
-                var lastNameParam = new SqlParameter("@LastName", item.LastName);
+                var lastNameParam = new SqlParameter("@LastName", person.LastName);
                 command.Parameters.Add(lastNameParam);
 
-                var ageParam = new SqlParameter("@Age", item.Age);
+                var ageParam = new SqlParameter("@Age", person.Age);
+                command.Parameters.Add(ageParam);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Update(Person person)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                var command = new SqlCommand
+                {
+                    CommandText = "UPDATE Persons SET FirstName = @FirstName, LastName = @LastName, Age = @Age"
+                };
+
+                var firstNameParam = new SqlParameter("@FirstName", person.FirstName);
+                command.Parameters.Add(firstNameParam);
+
+                var lastNameParam = new SqlParameter("@LastName", person.LastName);
+                command.Parameters.Add(lastNameParam);
+
+                var ageParam = new SqlParameter("@Age", person.Age);
                 command.Parameters.Add(ageParam);
 
                 command.ExecuteNonQuery();
@@ -107,11 +130,6 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 
                 command.ExecuteNonQuery();
             }
-        }
-
-        public void Update(Person item)
-        {
-            throw new NotImplementedException();
         }
     }
 }

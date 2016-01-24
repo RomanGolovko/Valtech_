@@ -5,6 +5,7 @@ using Cross_Cutting.Security;
 using DAL.DB.Abstract;
 using DAL.Entities;
 using System.Collections.Generic;
+using DAL.DB.Concrete.MSSQL.EF;
 
 namespace BLL.Concrete
 {
@@ -78,19 +79,10 @@ namespace BLL.Concrete
 
             Mapper.CreateMap<PhoneDTO, Phone>();
             var currentPhone = Mapper.Map<PhoneDTO, Phone>(phone);
-            currentPhone.Person = person;
 
-            if (phone.Id == 0)
+            if (_db is EfUnitOfWork)
             {
-                phone.PersonId = person.Id;
-                person.Phones.Add(currentPhone);
-
-                _db.Phones.Create(currentPhone);
-                _db.Persons.Update(person);
-            }
-            else
-            {
-                _db.Phones.Update(currentPhone);
+                currentPhone.Person = person;
             }
         }
 

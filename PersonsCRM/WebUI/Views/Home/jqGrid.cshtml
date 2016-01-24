@@ -32,12 +32,14 @@
             $("#jqg").jqGrid({
                 url: '@Url.Action("GetData")',
                 datatype: "json",
-                colNames: ['Id', 'First Name', 'Last Name', 'Age'],
+                colNames: ['Id', 'First Name', 'Last Name', 'Age', 'Phone Number', 'Type'],
                 colModel: [
                 { name: 'Id', index: 'Id', width: 30, stype: 'text', key: true },
                 { name: 'FirstName', index: 'FirstName', width: 150, editable: true, edittype: 'text', sortable: true },
                 { name: 'LastName', index: 'LastName', width: 150, editable: true, edittype: 'text', sortable: true },
-                { name: 'Age', index: 'Age', width: 80, align: "right", editable: true, edittype: 'text', sortable: true }
+                { name: 'Age', index: 'Age', width: 80, align: "right", editable: true, edittype: 'text', sortable: true },
+                { name: "Number", index: 'Phones[0].Number', width: 150, editable: true, edittype: 'text', sortable: true },
+                { name: "Type", index: 'Phones[0].Type', width: 150, editable: true, edittype: 'text', sortable: true }
                 ],
                 rowNum: 10,
                 rowList: [10, 20, 30],
@@ -99,4 +101,3 @@
     </script>
 </body>
 </html>
-

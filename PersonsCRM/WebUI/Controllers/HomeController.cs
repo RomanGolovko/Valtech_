@@ -86,9 +86,11 @@ namespace WebUI.Controllers
                 {
                     person.Phones.Find(p => p.Id == phone.Id).Number = phone.Number;
                     person.Phones.Find(p => p.Id == phone.Id).Type = phone.Type;
+                    person.Phones.Find(p => p.Id == phone.Id).PersonId = person.Id;
                 }
                 else
                 {
+                    phone.PersonId = person.Id;
                     person.Phones.Add(phone);
                 }
 

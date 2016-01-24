@@ -1,7 +1,6 @@
 ﻿using DAL.DB.Abstract;
 using DAL.Entities;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,14 +8,14 @@ using Dapper;
 
 namespace DAL.DB.Concrete.MSSQL.Dapper
 {
-    public class DapperRepository : IRepository<Person>
+    public class DapperPersonRepository : IRepository<Person>
     {
-        //private readonly string _connectionString;
-        string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        //public DapperRepository(string connection)
-        //{
-        //    _connectionString = connection;
-        //}
+        private readonly string _connectionString;
+
+        public DapperPersonRepository(string connection)
+        {
+            _connectionString = connection;
+        }
 
         public Person Get(int id)
         {
@@ -44,16 +43,18 @@ namespace DAL.DB.Concrete.MSSQL.Dapper
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                var sqlQuery = item.Id == 0 ? "INSERT INTO Persons (FirstName, LastName, Age) VALUES(@FirstName, @LastName, @Age)" : 
-                    "UPDATE Persons SET FirstName = @FirstName, LastName = @LastName, Age = @Age";
-
+                var sqlQuery = "INSERT INTO Persons (FirstName, LastName, Age) VALUES(@FirstName, @LastName, @Age)";
                 db.Execute(sqlQuery, item);
             }
         }
 
         public void Update(Person item)
         {
-            throw new System.NotImplementedException();
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var sqlQuery = "UPDATE Persons SET FirstName = @FirstName, LastName = @LastName, Age = @Age";
+                db.Execute(sqlQuery, item);
+            }
         }
 
         public void Delete(int id)

@@ -62,8 +62,12 @@
     <Compile Include="DB\Abstract\IUnitOfWork.cs" />
     <Compile Include="DB\Concrete\LiteDb\LiteDbPhoneRepository.cs" />
     <Compile Include="DB\Concrete\LiteDb\LiteDbUnitOfWork.cs" />
-    <Compile Include="DB\Concrete\MSSQL\ADO\AdoRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\ADO\AdoPersonRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\ADO\AdoPhoneRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\ADO\AdoUnitOfWork.cs" />
+    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperPersonRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperPhoneRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperUnitOfWork.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfDbContext.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfPersonRepository.cs" />
     <Compile Include="DB\Concrete\LiteDb\LiteDbPersonsRepository.cs" />
