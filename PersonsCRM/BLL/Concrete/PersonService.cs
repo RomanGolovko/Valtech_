@@ -55,13 +55,16 @@ namespace BLL.Concrete
             if (_db.Persons.Get(person.Id) == null)
             {
                 _db.Persons.Create(currentPerson);
-                foreach (var phone in person.Phones)
-                {
-                    SavePhone(currentPerson.Id, phone);
-                }
+            }
+            else
+            {
+                _db.Persons.Update(currentPerson);
             }
 
-            _db.Persons.Update(currentPerson);
+            foreach (var phone in person.Phones)
+            {
+                SavePhone(currentPerson.Id, phone);
+            }
         }
 
         public void SavePhone(int? personId, PhoneDTO phone)
@@ -81,6 +84,7 @@ namespace BLL.Concrete
             {
                 phone.PersonId = person.Id;
                 person.Phones.Add(currentPhone);
+
                 _db.Phones.Create(currentPhone);
                 _db.Persons.Update(person);
             }

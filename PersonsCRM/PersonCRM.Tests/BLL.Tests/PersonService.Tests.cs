@@ -8,13 +8,12 @@ using DAL.Entities;
 using Moq;
 using NUnit.Framework;
 
-namespace PersonCRM.Tests
+namespace PersonCRM.Tests.BLL.Tests
 {
     [TestFixture]
-    public class UnitTest1
+    public class PersonServiceTests
     {
         #region Init
-
         private readonly PersonDTO _persDto1 = new PersonDTO
         {
             Id = 1,
@@ -268,6 +267,8 @@ namespace PersonCRM.Tests
             var mock = new Mock<IUnitOfWork>();
             mock.Setup(x => x.Persons.Create(_pers1)).Verifiable();
             mock.Setup(x => x.Persons.Update(_pers1)).Verifiable();
+            mock.Setup(x => x.Phones.Update(_pers1.Phones[0])).Verifiable();
+            mock.Setup(x => x.Phones.Update(_pers1.Phones[1])).Verifiable();
             mock.Setup(x => x.Persons.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
             var personService = new PersonService(mock.Object);
 
