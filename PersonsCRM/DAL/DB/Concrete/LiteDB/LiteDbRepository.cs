@@ -3,9 +3,9 @@ using DAL.Entities;
 using LiteDB;
 using System.Collections.Generic;
 
-namespace DAL.DB.Concrete.LiteDb
+namespace DAL.DB.Concrete.LiteDB
 {
-    public class LiteDbPersonsRepository : IRepository<Person>
+    public class LiteDbRepository : IRepository<Person>
     {
         private readonly LiteDatabase _db = new LiteDatabase("Person.db");
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E1E6C4E5-1CDE-4B84-B6D9-4D4FCF1E3E91}</ProjectGuid>
+    <ProjectGuid>{1D5D8C53-E1CF-4584-BD60-819EEBC31A75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cross_Cutting</RootNamespace>

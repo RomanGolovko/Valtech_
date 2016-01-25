@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{37521825-5D32-4368-BA4B-711F5109A4BC}</ProjectGuid>
+    <ProjectGuid>{9A45D21C-6D36-4C28-B9B2-49FE863617DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
@@ -48,7 +48,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,33 +58,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Abstract\IRepository.cs" />
-    <Compile Include="DB\Abstract\IUnitOfWork.cs" />
-    <Compile Include="DB\Concrete\LiteDb\LiteDbPhoneRepository.cs" />
-    <Compile Include="DB\Concrete\LiteDb\LiteDbUnitOfWork.cs" />
-    <Compile Include="DB\Concrete\MSSQL\ADO\AdoPersonRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\ADO\AdoPhoneRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\ADO\AdoUnitOfWork.cs" />
-    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperPersonRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperPhoneRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperUnitOfWork.cs" />
+    <Compile Include="DB\Concrete\LiteDB\LiteDbRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\ADO\AdoRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\Dapper\DapperRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfDbContext.cs" />
-    <Compile Include="DB\Concrete\MSSQL\EF\EfPersonRepository.cs" />
-    <Compile Include="DB\Concrete\LiteDb\LiteDbPersonsRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\EF\EfPhoneRepository.cs" />
-    <Compile Include="DB\Concrete\MSSQL\EF\EfUnitOfWork.cs" />
+    <Compile Include="DB\Concrete\MSSQL\EF\EfRepository.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Phone.cs" />
+    <Compile Include="Migrations\201601251039448_InitialCreate.cs" />
+    <Compile Include="Migrations\201601251039448_InitialCreate.Designer.cs">
+      <DependentUpon>201601251039448_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601251238347_PersonsDB.cs" />
+    <Compile Include="Migrations\201601251238347_PersonsDB.Designer.cs">
+      <DependentUpon>201601251238347_PersonsDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
-      <Project>{e1e6c4e5-1cde-4b84-b6d9-4d4fcf1e3e91}</Project>
-      <Name>Cross-Cutting</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
+      <Project>{1d5d8c53-e1cf-4584-bd60-819eebc31a75}</Project>
+      <Name>Cross-Cutting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601251039448_InitialCreate.resx">
+      <DependentUpon>201601251039448_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601251238347_PersonsDB.resx">
+      <DependentUpon>201601251238347_PersonsDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,10 +8,10 @@ using DAL.Entities;
 using Moq;
 using NUnit.Framework;
 
-namespace PersonCRM.Tests.BLL.Tests
+namespace PersonsCRM.Tests.BLL.Tests
 {
     [TestFixture]
-    public class PersonServiceTests
+    public class PersonServiceTest
     {
         #region Init
         private readonly PersonDTO _persDto1 = new PersonDTO
@@ -145,8 +145,8 @@ namespace PersonCRM.Tests.BLL.Tests
 
             var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.GetAll()).Returns(persons);
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
             var personService = new PersonService(mock.Object);
 
             var result = personService.GetAllPersons().ToList();
@@ -166,8 +166,8 @@ namespace PersonCRM.Tests.BLL.Tests
 
             var persons = new List<Person> { _pers1, _pers2 };
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.GetAll()).Returns(persons);
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
             var personService = new PersonService(mock.Object);
 
             var result = personService.GetAllPersons().ToList();
@@ -182,13 +182,11 @@ namespace PersonCRM.Tests.BLL.Tests
             var expected = new List<PersonDTO> { _persDto1 };
             _pers1.Phones[0].Person = _pers1;
 
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Phones.GetAll())
-                .Returns(new List<Phone>
-                {
-                    new Phone {Id = 1, Number = "111-111", Type = "test", PersonId = 1, Person = _pers1}
-                });
-            mock.Setup(p => p.Persons.GetAll()).Returns(new List<Person> { _pers1 });
+            var persons = new List<Person> { _pers1 };
+
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
+            mock.Setup(p => p.GetAll()).Returns(new List<Person> { _pers1 });
             var personService = new PersonService(mock.Object);
 
             var result = personService.GetAllPersons().ToList();
@@ -200,8 +198,8 @@ namespace PersonCRM.Tests.BLL.Tests
         public void Get_All_Persons_From_Empty_Db()
         {
             var expected = new List<PersonDTO>();
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(p => p.Persons.GetAll()).Returns(new List<Person>());
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(p => p.GetAll()).Returns(new List<Person>());
             var personService = new PersonService(mock.Object);
 
             var result = personService.GetAllPersons();
@@ -222,8 +220,8 @@ namespace PersonCRM.Tests.BLL.Tests
 
             var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
             var id = 3;
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.Get(id)).Returns(persons.Find(x => x.Id == id));
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
             var personService = new PersonService(mock.Object);
 
             var result = personService.GetPerson(id);
@@ -242,8 +240,8 @@ namespace PersonCRM.Tests.BLL.Tests
 
             var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
             var id = 8;
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.Get(id)).Returns(persons.Find(x => x.Id == id));
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
             var personService = new PersonService(mock.Object);
 
             Assert.Throws<ValidationException>(() => personService.GetPerson(id));
@@ -252,7 +250,7 @@ namespace PersonCRM.Tests.BLL.Tests
         [Test]
         public void Get_Person_With_Null_Id_Parameter()
         {
-            var mock = new Mock<IUnitOfWork>();
+            var mock = new Mock<IRepository<Person>>();
             var personService = new PersonService(mock.Object);
 
             Assert.Throws<ValidationException>(() => personService.GetPerson(null));
@@ -264,12 +262,10 @@ namespace PersonCRM.Tests.BLL.Tests
         public void Save_Person()
         {
             var persons = new List<Person> { _pers1 };
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.Create(_pers1)).Verifiable();
-            mock.Setup(x => x.Persons.Update(_pers1)).Verifiable();
-            mock.Setup(x => x.Phones.Update(_pers1.Phones[0])).Verifiable();
-            mock.Setup(x => x.Phones.Update(_pers1.Phones[1])).Verifiable();
-            mock.Setup(x => x.Persons.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Create(_pers1)).Verifiable();
+            mock.Setup(x => x.Update(_pers1)).Verifiable();
+            mock.Setup(x => x.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
             var personService = new PersonService(mock.Object);
 
             personService.SavePerson(_persDto1);
@@ -281,18 +277,9 @@ namespace PersonCRM.Tests.BLL.Tests
         public void Delete_Person_From_Db_With_Many_Persons()
         {
             var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
-            var phones = new List<Phone>
-            {
-                _pers1.Phones[0],
-                _pers1.Phones[1],
-                _pers2.Phones[0],
-                _pers3.Phones[0],
-                _pers4.Phones[0]
-            };
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.Delete(_pers1.Phones[1].Id)).Verifiable();
-            mock.Setup(x => x.Persons.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
-            mock.Setup(x => x.Phones.Get(_pers1.Phones[1].Id)).Returns(phones.Find(x => x.Id == _pers1.Phones[1].Id));
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(_pers1.Id)).Returns(_pers1);
+            mock.Setup(x => x.Delete(_persDto1.Id)).Verifiable();
             var personService = new PersonService(mock.Object);
 
             personService.DeletePerson(_persDto1.Id);
@@ -301,11 +288,11 @@ namespace PersonCRM.Tests.BLL.Tests
         [Test]
         public void Delete_Person_From_Db_With_0_Persons()
         {
-            var mock = new Mock<IUnitOfWork>();
-            mock.Setup(x => x.Persons.Get(2));
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(2));
             var personService = new PersonService(mock.Object);
 
-           Assert.Throws<ValidationException>(() => personService.DeletePerson(2));
+            Assert.Throws<ValidationException>(() => personService.DeletePerson(2));
         }
         #endregion
     }

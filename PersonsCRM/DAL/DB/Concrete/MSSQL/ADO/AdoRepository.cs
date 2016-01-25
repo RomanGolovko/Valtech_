@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using DAL.DB.Abstract;
 using DAL.Entities;
 
 namespace DAL.DB.Concrete.MSSQL.ADO
 {
-    public class AdoPersonRepository : IRepository<Person>
+    public class AdoRepository : IRepository<Person>
     {
         //string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        private string _connectionString;
+        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\GitHub Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf';Integrated Security=True";
 
-        public AdoPersonRepository(string connection)
-        {
-            _connectionString = connection;
-        }
 
         public Person Get(int id)
         {
@@ -24,7 +18,7 @@ namespace DAL.DB.Concrete.MSSQL.ADO
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand { CommandText = $"SELECT * FROM Persons WHERE Id = {id}" };
+                var command = new SqlCommand {CommandText = $"SELECT * FROM Persons WHERE Id = {id}"};
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return person;
@@ -49,7 +43,7 @@ namespace DAL.DB.Concrete.MSSQL.ADO
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand { CommandText = "SELECT * FROM Persons" };
+                var command = new SqlCommand {CommandText = "SELECT * FROM Persons"};
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return persons;

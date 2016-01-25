@@ -8,8 +8,8 @@ namespace BLL.Abstract
         PersonDTO GetPerson(int? id);
         IEnumerable<PersonDTO> GetAllPersons();
         void SavePerson(PersonDTO person);
-        void SavePhone(int? personId, PhoneDTO phone);
+        //void SavePhone(int? personId, PhoneDTO phone);
         void DeletePerson(int? id);
-        void DeletePhone(int? personId, int? id);
+        //void DeletePhone(int? personId, int? id);
     }
 }

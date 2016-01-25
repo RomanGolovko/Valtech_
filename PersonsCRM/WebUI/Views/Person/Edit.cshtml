@@ -7,10 +7,10 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit", "Home"))
+@using (Html.BeginForm("Edit", "Person"))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>PersonViewModel</h4>
         <hr />
@@ -46,23 +46,24 @@
         }
         @do
         {
+            @Html.HiddenFor(model => model.Phones[count].Id)
             <div class="form-group">
-                @Html.LabelFor(model => model.Phones[count].Number, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.Phones[count].Number, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Phones[count].Number, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Phones[count].Number, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.Phones[count].Number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phones[count].Number, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Phones[count].Type, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.Phones[count].Type, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Phones[count].Type, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Phones[count].Type, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.Phones[count].Type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phones[count].Type, "", new { @class = "text-danger" })
                 </div>
             </div>
             count++;
-        }while(count < Model.Phones?.Count);
+        } while (count < Model.Phones?.Count);
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

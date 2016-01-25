@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A86CFBA0-5F2E-4077-9F39-BBE51E862C3A}</ProjectGuid>
+    <ProjectGuid>{C8E6A884-7D9E-498E-AD37-B378E6528B69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
@@ -57,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
-      <Project>{e1e6c4e5-1cde-4b84-b6d9-4d4fcf1e3e91}</Project>
+      <Project>{1d5d8c53-e1cf-4584-bd60-819eebc31a75}</Project>
       <Name>Cross-Cutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{37521825-5d32-4368-ba4b-711f5109a4bc}</Project>
+      <Project>{9a45d21c-6d36-4c28-b9b2-49fe863617dd}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,30 +1,30 @@
 ﻿using DAL.DB.Abstract;
 using DAL.Entities;
+using Dapper;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
-using Dapper;
+using System.Linq;
 
 namespace DAL.DB.Concrete.MSSQL.Dapper
 {
-    public class DapperPersonRepository : IRepository<Person>
+    public class DapperRepository : IRepository<Person>
     {
-        private readonly string _connectionString;
-
-        public DapperPersonRepository(string connection)
-        {
-            _connectionString = connection;
-        }
+        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\GitHub Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf';Integrated Security=True";
 
         public Person Get(int id)
         {
             Person person;
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            var query = "SELECT * FROM Persons WHERE Id = @id; SELECT * FROM Phones WHERE PersonId = @id";
+            IDbConnection db = new SqlConnection(_connectionString);
+            using (var multipleresult = db.QueryMultiple(query, new {id = id}))
             {
-                person = db.Query<Person>("SELECT * FROM Persons WHERE Id = @id", new { id }).FirstOrDefault();
+                person = multipleresult.Read<Person>().FirstOrDefault();
+                var phones = multipleresult.Read<Phone>().ToList();
+                person?.Phones.AddRange(phones);
             }
+
             return person;
         }
 
@@ -38,7 +38,7 @@ namespace DAL.DB.Concrete.MSSQL.Dapper
 
             return persons;
         }
-
+        ///TODO: finish with query
         public void Create(Person item)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))

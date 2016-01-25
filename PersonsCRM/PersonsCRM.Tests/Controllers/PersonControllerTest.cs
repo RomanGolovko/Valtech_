@@ -7,17 +7,17 @@ using NUnit.Framework;
 using WebUI.Controllers;
 using WebUI.Models;
 
-namespace PersonCRM.Tests.WebUI.Tests
+namespace PersonsCRM.Tests.Controllers
 {
     [TestFixture]
-    public class HomeControllerTests
+    public class PersonControllerTest
     {
         [Test]
         public void IndexViewModelNotNull()
         {
             var mock = new Mock<IService>();
             mock.Setup(x => x.GetAllPersons()).Returns(new List<PersonDTO>());
-            var controller = new HomeController(mock.Object);
+            var controller = new PersonController(mock.Object);
 
             var result = controller.Index() as ViewResult;
 
@@ -28,7 +28,7 @@ namespace PersonCRM.Tests.WebUI.Tests
         public void CreateViewModelNotNull()
         {
             var mock = new Mock<IService>();
-            var controller = new HomeController(mock.Object);
+            var controller = new PersonController(mock.Object);
 
             var result = controller.Create() as ViewResult;
 
@@ -42,7 +42,7 @@ namespace PersonCRM.Tests.WebUI.Tests
             var person = new PersonDTO();
             var mock = new Mock<IService>();
             mock.Setup(a => a.GetPerson(person.Id)).Returns(new PersonDTO());
-            var controller = new HomeController(mock.Object);
+            var controller = new PersonController(mock.Object);
 
             var result = controller.Edit(person.Id) as ViewResult;
 
@@ -53,13 +53,12 @@ namespace PersonCRM.Tests.WebUI.Tests
         public void EditPostAction_RedirectToIndexView()
         {
             var personViewModel = new PersonViewModel();
-            var phoneViewModel = new PhoneViewModel();
             var person = new PersonDTO();
             var mock = new Mock<IService>();
             mock.Setup(x => x.SavePerson(person)).Verifiable();
-            var controller = new HomeController(mock.Object);
+            var controller = new PersonController(mock.Object);
 
-            var result = controller.Edit(personViewModel, phoneViewModel) as RedirectToRouteResult;
+            var result = controller.Edit(personViewModel) as RedirectToRouteResult;
 
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
@@ -70,31 +69,11 @@ namespace PersonCRM.Tests.WebUI.Tests
         {
             var person = new PersonDTO();
             var mock = new Mock<IService>();
-            var controller = new HomeController(mock.Object);
+            var controller = new PersonController(mock.Object);
 
             var result = controller.Delete(person.Id) as RedirectToRouteResult;
 
             mock.Verify(a => a.DeletePerson(person.Id));
-        }
-
-        [Test]
-        public void About()
-        {
-            var controller = new HomeController(null);
-
-            var result = controller.About() as ViewResult;
-
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [Test]
-        public void Contact()
-        {
-            var controller = new HomeController(null);
-
-            var result = controller.Contact() as ViewResult;
-
-            Assert.IsNotNull(result);
         }
     }
 }
