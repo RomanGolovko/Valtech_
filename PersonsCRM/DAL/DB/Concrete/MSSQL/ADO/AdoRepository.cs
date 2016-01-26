@@ -9,7 +9,7 @@ namespace DAL.DB.Concrete.MSSQL.ADO
     {
         //string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Roman\Documents\Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf;Integrated Security=True";
+        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\GitHub Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf';Integrated Security=True";
 
 
         public Person Get(int id)
@@ -18,7 +18,11 @@ namespace DAL.DB.Concrete.MSSQL.ADO
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand {CommandText = $"SELECT * FROM People WHERE Id = {id}; SELECT * FROM Phones WHERE PersonId = {id}" };
+                var command = new SqlCommand
+                {
+                    CommandText = $"SELECT * FROM People WHERE Id = {id}; SELECT * FROM Phones WHERE PersonId = {id}",
+                    Connection = connection
+                };
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return person;
@@ -52,8 +56,11 @@ namespace DAL.DB.Concrete.MSSQL.ADO
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand {CommandText = "SELECT * FROM People"};
-                command.Connection = connection;
+                var command = new SqlCommand
+                {
+                    CommandText = "SELECT * FROM People JOIN Phones ON Phones.PersonId = People.Id",
+                    Connection = connection
+                };
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return persons;
@@ -65,41 +72,19 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                         Id = dataReader.GetInt32(0),
                         FirstName = dataReader.GetString(1),
                         LastName = dataReader.GetString(2),
-                        Age = dataReader.GetInt32(3)
+                        Age = dataReader.GetInt32(3),
+                        Phones = new List<Phone>
+                        {
+                            new Phone
+                            {
+                                Number = dataReader.GetString(5),
+                                Type = dataReader.GetString(6),
+                                PersonId = dataReader.GetInt32(7)
+                            }
+                        }
                     };
 
                     persons.Add(person);
-                }
-
-                using (var phoneConnection = new SqlConnection(_connectionString))
-                {
-                    phoneConnection.Open();
-                    var phoneCommand = new SqlCommand { CommandText = "SELECT * FROM People" };
-                    phoneCommand.Connection = phoneConnection;
-                    var phoneDataReader = phoneCommand.ExecuteReader();
-
-
-                    foreach (var person in persons)
-                    {
-                        phoneCommand = new SqlCommand { CommandText = $"SELECT * FROM Phone WHERE PersonId = {person.Id}" };
-                        phoneCommand.Connection = phoneConnection;
-
-                        if (!phoneDataReader.HasRows) break;
-
-                        while (phoneDataReader.Read())
-                        {
-                            var phone = new Phone
-                            {
-                                ///TODO: finish the query
-                                Id = dataReader.GetInt32(0),
-                                Number = dataReader.GetString(1),
-                                Type = dataReader.GetString(2),
-                                PersonId = dataReader.GetInt32(3)
-                            };
-
-                            person.Phones.Add(phone);
-                        }
-                    }
                 }
             }
 
