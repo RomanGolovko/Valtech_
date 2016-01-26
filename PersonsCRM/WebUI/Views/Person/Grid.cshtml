@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WebUI.Models.PersonViewModel>
+
+@{
+    ViewBag.Title = "Grid";
+}
+
+<h2>Grid</h2>
+
+
+@using (Html.BeginForm("Grid", "Person"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PersonViewModel</h4>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phones.FirstOrDefault().Number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phones.FirstOrDefault().Type)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                @Html.HiddenFor(model => item.Id)
+
+                <tr>
+                    <td>
+                        @Html.TextBoxFor(modelItem => item.FirstName)
+                        @Html.ValidationMessageFor(model => item.FirstName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(modelItem => item.LastName)
+                        @Html.ValidationMessageFor(model => item.LastName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(modelItem => item.Age)
+                        @Html.ValidationMessageFor(model => item.Age, "", new { @class = "text-danger" })
+                    </td>
+                    @foreach (var phone in item.Phones)
+                    {
+                        <td>
+                            @Html.TextBoxFor(modelItem => phone.Number)
+                            @Html.ValidationMessageFor(modelItem => phone.Number, "", new { @class = "text-danger" })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(modelItem => phone.Type)
+                            @Html.ValidationMessageFor(modelItem => phone.Type, "", new { @class = "text-danger" })
+                        </td>
+                    }
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+            </table>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

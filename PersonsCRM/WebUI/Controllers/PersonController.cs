@@ -4,7 +4,6 @@ using BLL.DTO;
 using Cross_Cutting.Security;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -16,6 +15,7 @@ namespace WebUI.Controllers
         public PersonController(IService serv)
         {
             _db = serv;
+
         }
 
         // GET: Person
@@ -28,19 +28,26 @@ namespace WebUI.Controllers
             return View(persons);
         }
 
-        // GET: Home/JqGrid
-        public ActionResult JqGrid()
+        // GET: Person/Grid
+        public ActionResult Grid()
         {
-            return View();
-        }
-
-        public string GetData()
-        {
-            Mapper.CreateMap<PersonDTO, PersonViewModel>();
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
+            Mapper.CreateMap<PersonDTO, PersonViewModel>();
             var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAllPersons());
 
-            return JsonConvert.SerializeObject(persons);
+            return View(persons);
+        }
+
+        // POST: Person/Grid
+        [HttpPost]
+        public ActionResult Grid(List<PersonViewModel> personsViewModel)
+        {
+            foreach (var person in personsViewModel)
+            {
+                Edit(person);
+            }
+
+            return View();
         }
 
         // Get: Person/Create
@@ -62,24 +69,24 @@ namespace WebUI.Controllers
 
         // POST: Person/Edit/5
         [HttpPost]
-        public ActionResult Edit(PersonViewModel personModel)
+        public ActionResult Edit(PersonViewModel personViewModel)
         {
             try
             {
                 Mapper.CreateMap<PersonViewModel, PersonDTO>();
                 Mapper.CreateMap<PhoneViewModel, PhoneDTO>();
 
-                var person = Mapper.Map<PersonViewModel, PersonDTO>(personModel);
+                var person = Mapper.Map<PersonViewModel, PersonDTO>(personViewModel);
 
                 _db.SavePerson(person);
                 TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Grid");
             }
             catch (ValidationException ex)
             {
                 ModelState.AddModelError(ex.Property, ex.Message);
-                return View(personModel);
+                return View(personViewModel);
             }
         }
 
