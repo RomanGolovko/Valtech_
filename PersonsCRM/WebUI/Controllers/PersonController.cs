@@ -40,8 +40,11 @@ namespace WebUI.Controllers
 
         // POST: Person/Grid
         [HttpPost]
-        public ActionResult Grid(List<PersonViewModel> personsViewModel)
+        public ActionResult Grid(FormCollection formData)
         {
+            var personsViewModel = new List<PersonViewModel>();
+            UpdateModel(personsViewModel);
+
             foreach (var person in personsViewModel)
             {
                 Edit(person);

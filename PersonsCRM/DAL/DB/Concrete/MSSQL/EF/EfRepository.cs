@@ -16,7 +16,7 @@ namespace DAL.DB.Concrete.MSSQL.EF
             var person = _db.Persons.Find(id);
             if (person != null)
             {
-                person.Phones = _db.Phones.Where(x => x.PersonId == person.Id).ToList(); 
+                person.Phones = _db.Phones.Where(x => x.PersonId == person.Id).ToList();
             }
             return person;
         }
@@ -46,11 +46,18 @@ namespace DAL.DB.Concrete.MSSQL.EF
                 foreach (var phone in person.Phones)
                 {
                     var dbEntryPhone = _db.Phones.Find(phone.Id);
-                    dbEntryPhone.Number = phone.Number;
-                    dbEntryPhone.Type = phone.Type;
-                    tempPhones.Add(dbEntryPhone);
+                    if (dbEntryPhone == null)
+                    {
+                        _db.Phones.Add(phone);
+                    }
+                    else
+                    {
+                        dbEntryPhone.Number = phone.Number;
+                        dbEntryPhone.Type = phone.Type;
+                        tempPhones.Add(dbEntryPhone);
+                    }
                 }
-                dbEntryPerson.Phones = tempPhones; 
+                dbEntryPerson.Phones = tempPhones;
             }
 
             _db.SaveChanges();
