@@ -16,12 +16,12 @@ namespace DAL.DB.Concrete.Cassandra
         private const string KEYSPACE = "PersonsDB";
         private const string COLUMNFAMILY = "Persons";
 
-        Cluster cluster = Cluster.Builder().AddContactPoint(HOST).Build();
+        private readonly Cluster _cluster = Cluster.Builder().AddContactPoint(HOST).Build();
 
         public Person Get(int id)
         {
-            ISession session = cluster.Connect("PersonsDB");
-            var row = session.Execute($"select * from Persons where Id = {id}").FirstOrDefault();
+            var session = _cluster.Connect("PersonsDB");
+            var row = session.Execute($"SELECT * FROM Persons WHERE Id = {id}").FirstOrDefault();
             var person = new Person
             {
                 Id = (int)row["Id"],
@@ -41,18 +41,24 @@ namespace DAL.DB.Concrete.Cassandra
             //    var records = (from x in context.ColumnList where x.ColumnFamily == COLUMNFAMILY select x.ToObject<Person>());
             //    persons = records.ToList().Where(x => x != null).AsEnumerable();
             //}
-            ISession session = cluster.Connect("PersonsDB");
-            var rows = session.Execute($"select * from Persons");
+            var session = _cluster.Connect("PersonsDB");
+            var rows = session.Execute("SELECT * FROM Persons");
+            var persons = rows.Select(row => new Person
+            {
+                Id = (int) row["Id"],
+                FirstName = row["FirstName"].ToString(),
+                LastName = row["LastName"].ToString(),
+                Age = (int) row["Age"]
+            }).ToList();
 
-
-            return null;
+            return persons;
         }
 
         public void Create(Person person)
         {
-            ISession session = cluster.Connect("PersonsDB");
-
-            session.Execute($"insert into Persons (Id, FirstName, LastName, Age) values ({person.Id}, {person.FirstName}, {person.LastName}, {person.Age})");
+            var session = _cluster.Connect("PersonsDB");
+            session.Execute("INSERT INTO Persons (Id, FirstName, LastName, Age) " +
+                            $"values ({person.Id}, {person.FirstName}, {person.LastName}, {person.Age})");
         }
 
         public void Update(Person person)
@@ -64,18 +70,20 @@ namespace DAL.DB.Concrete.Cassandra
             //    context.SubmitChanges();
             //}
 
-            ISession session = cluster.Connect("PersonsDB");
-
-            session.Execute($"insert into Persons (Id, FirstName, LastName, Age) values ({person.Id}, {person.FirstName}, {person.LastName}, {person.Age})");
+            var session = _cluster.Connect("PersonsDB");
+            session.Execute($"UPDATE Persons SET Id = {person.Id}, FirstName = {person.FirstName}, " +
+                            $"LastName = {person.LastName}, Age  = {person.Age}");
         }
 
         public void Delete(int id)
         {
-            using (var context = new CassandraContext(HOST, PORT, KEYSPACE))
-            {
-                context.Column.DeleteOnSubmit(x => x.ColumnFamily == COLUMNFAMILY && x.Key == id);
-                context.SubmitChanges();
-            }
+            //using (var context = new CassandraContext(HOST, PORT, KEYSPACE))
+            //{
+            //    context.Column.DeleteOnSubmit(x => x.ColumnFamily == COLUMNFAMILY && x.Key == id);
+            //    context.SubmitChanges();
+            //}
+            var session = _cluster.Connect("PersonsDB");
+            session.Execute($"DELETE FROM Persons WHERE Id = {id}");
         }
     }
 }

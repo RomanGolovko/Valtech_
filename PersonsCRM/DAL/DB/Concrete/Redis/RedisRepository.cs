@@ -11,10 +11,12 @@ namespace DAL.DB.Concrete.Redis
         public Person Get(int id)
         {
             Person person;
+
             using (var redisClient = new RedisClient())
             {
                 person = redisClient.As<Person>().GetById(id);
             }
+
             return person;
         }
 

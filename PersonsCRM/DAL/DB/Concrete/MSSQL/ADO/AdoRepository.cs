@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using DAL.DB.Abstract;
 using DAL.Entities;
@@ -7,10 +9,8 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 {
     public class AdoRepository : IRepository<Person>
     {
-        //string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\GitHub Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf';Integrated Security=True";
-
+        private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;" +
+            @"AttachDbFilename='D:\GitHub Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf';Integrated Security=True";
 
         public Person Get(int id)
         {
@@ -20,9 +20,13 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                 connection.Open();
                 var command = new SqlCommand
                 {
-                    CommandText = $"SELECT * FROM People WHERE Id = {id}; SELECT * FROM Phones WHERE PersonId = {id}",
+                    CommandText = "SELECT * FROM People, Phones WHERE People.Id = @id AND Phones.PersonId = @id",
                     Connection = connection
                 };
+
+                var idParameter = new SqlParameter(@"id", id);
+                command.Parameters.Add(idParameter);
+
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return person;
@@ -39,9 +43,9 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                         {
                             new Phone
                             {
-                                Number = dataReader.GetString(4),
-                                Type = dataReader.GetString(5),
-                                PersonId = dataReader.GetInt32(6)
+                                Number = dataReader.GetString(5),
+                                Type = dataReader.GetString(6),
+                                PersonId = dataReader.GetInt32(7)
                             }
                         }
                     };
@@ -61,6 +65,7 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                     CommandText = "SELECT * FROM People JOIN Phones ON Phones.PersonId = People.Id",
                     Connection = connection
                 };
+
                 var dataReader = command.ExecuteReader();
 
                 if (!dataReader.HasRows) return persons;
@@ -99,7 +104,9 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 
                 var command = new SqlCommand
                 {
-                    CommandText = "INSERT INTO People (FirstName, LastName, Age) VALUES (@FirstName, @LastName, @Age)"
+                    CommandText = "INSERT INTO People (FirstName, LastName, Age) VALUES (@FirstName, @LastName, @Age); " +
+                                  @"SELECT @ID = SCOPE_IDENTITY()",
+                    Connection = connection
                 };
 
                 var firstNameParam = new SqlParameter("@FirstName", person.FirstName);
@@ -111,22 +118,28 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                 var ageParam = new SqlParameter("@Age", person.Age);
                 command.Parameters.Add(ageParam);
 
+                var output = new SqlParameter(@"ID", SqlDbType.Int);
+                command.Parameters.Add(output);
+                output.Direction = ParameterDirection.Output;
+
                 command.ExecuteNonQuery();
 
                 foreach (var phone in person.Phones)
                 {
                     var phoneCommand = new SqlCommand
                     {
-                        CommandText = "INSERT INTO Phones (Number, Type, PersonId) VALUES (@Number, @Type, @PersonId)"
+                        CommandText = "INSERT INTO Phones (Number, Type, PersonId) VALUES (@Number, @Type, @PersonId)",
+                        Connection = connection
                     };
+
                     var numberParam = new SqlParameter("@Number", phone.Number);
-                    phoneCommand.Parameters.Add(firstNameParam);
+                    phoneCommand.Parameters.Add(numberParam);
 
                     var typeParam = new SqlParameter("@Type", phone.Type);
-                    phoneCommand.Parameters.Add(lastNameParam);
+                    phoneCommand.Parameters.Add(typeParam);
 
-                    var personIdParam = new SqlParameter("@PersonId", phone.PersonId);
-                    phoneCommand.Parameters.Add(ageParam);
+                    var personIdParam = new SqlParameter("@PersonId", Convert.ToInt32(output.Value));
+                    phoneCommand.Parameters.Add(personIdParam);
 
                     phoneCommand.ExecuteNonQuery();
                 }
@@ -141,7 +154,8 @@ namespace DAL.DB.Concrete.MSSQL.ADO
 
                 var command = new SqlCommand
                 {
-                    CommandText = "UPDATE People SET FirstName = @FirstName, LastName = @LastName, Age = @Age"
+                    CommandText = "UPDATE People SET FirstName = @FirstName, LastName = @LastName, Age = @Age",
+                    Connection = connection
                 };
 
                 var firstNameParam = new SqlParameter("@FirstName", person.FirstName);
@@ -159,16 +173,17 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                 {
                     var phoneCommand = new SqlCommand
                     {
-                        CommandText = "UPDATE Phones SET Number = @Number, Type = @Type, PersonId = @PersonId"
+                        CommandText = "UPDATE Phones SET Number = @Number, Type = @Type, PersonId = @PersonId",
+                        Connection = connection
                     };
                     var numberParam = new SqlParameter("@Number", phone.Number);
-                    phoneCommand.Parameters.Add(firstNameParam);
+                    phoneCommand.Parameters.Add(numberParam);
 
                     var typeParam = new SqlParameter("@Type", phone.Type);
-                    phoneCommand.Parameters.Add(lastNameParam);
+                    phoneCommand.Parameters.Add(typeParam);
 
-                    var personIdParam = new SqlParameter("@PersonId", phone.PersonId);
-                    phoneCommand.Parameters.Add(ageParam);
+                    var personIdParam = new SqlParameter("@PersonId", person.Id);
+                    phoneCommand.Parameters.Add(personIdParam);
 
                     phoneCommand.ExecuteNonQuery();
                 }
@@ -182,8 +197,12 @@ namespace DAL.DB.Concrete.MSSQL.ADO
                 connection.Open();
                 var command = new SqlCommand
                 {
-                    CommandText = $"DELETE FROM People WHERE Id = {id}; DELETE FROM Phones WHERE PhoneId = {id}"
+                    CommandText = "DELETE FROM Phones WHERE PersonId = @id; DELETE FROM People WHERE Id = @id",
+                    Connection = connection
                 };
+
+                var idParameter = new SqlParameter(@"id", id);
+                command.Parameters.Add(idParameter);
 
                 command.ExecuteNonQuery();
             }
