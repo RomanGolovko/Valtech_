@@ -1,4 +1,5 @@
 ﻿using DAL.DB.Abstract;
+using DAL.DB.Concrete.Cassandra;
 using DAL.DB.Concrete.LiteDB;
 using DAL.DB.Concrete.MSSQL.ADO;
 using DAL.DB.Concrete.MSSQL.Dapper;
@@ -22,7 +23,9 @@ namespace BLL.Infrastructure
             //Bind<IRepository<Person>>().To<LiteDbRepository>();
             //Bind<IRepository<Person>>().To<EfRepository>().WithConstructorArgument(_connectionString);
             //Bind<IRepository<Person>>().To<DapperRepository>();
-            Bind<IRepository<Person>>().To<AdoRepository>();
+            //Bind<IRepository<Person>>().To<AdoRepository>();
+            //Bind<IRepository<Person>>().To<RedisRepository>();
+            Bind<IRepository<Person>>().To<CassandraRepository>();
         }
     }
 }
