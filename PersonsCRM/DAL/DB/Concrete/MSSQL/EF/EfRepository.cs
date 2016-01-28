@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DAL.DB.Concrete.MSSQL.EF
 {
-    public class RedisRepository : IRepository<Person>
+    public class EfRepository : IRepository<Person>
     {
         private readonly EfDbContext _db = new EfDbContext();
 
