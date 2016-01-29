@@ -20,7 +20,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Persons", "index", "Person")</li>
+                    <li>@Html.ActionLink("Persons", "Index", "Person")</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -34,9 +34,58 @@
         {
             <div class="alert alert-success">@TempData["message"]</div>
         }
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Action("Calculator", "Home")
+            </div>
 
-        @RenderBody()
+            <div class="col-md-4">
+                @RenderBody()
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <!-- clock widget start -->
+                    <span id="pendule"></span>
+                    <!-- clock widget end -->
+                </div>
+
+                <div>
+                    <!-- clock widget start -->
+                    <script type="text/javascript"> var css_file = document.createElement("link"); css_file.setAttribute("rel", "stylesheet"); css_file.setAttribute("type", "text/css"); css_file.setAttribute("href", "//s.bookcdn.com//css/cl/bw-cl-180x170r9.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> <div id="tw_19_184318128"><div style="width:120px; height:140px; margin: 0 auto;"><a href="//ibooked.ru/time/dnipropetrovsk-w6737">Днепропетровск</a><br /></div></div>
+                    <script type="text/javascript"> function setWidgetData_184318128(data) { if (typeof (data) != 'undefined' && data.results.length > 0) { for (var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_' + params.widget_type + '_' + params.widget_id); if (objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_184318128 = -1; </script>
+                    <script type="text/javascript" charset="UTF-8" src="http://ibooked.ru/?page=get_time_info&ver=2&domid=589&type=19&id=184318128&scode=2&city_id=w6737&wlangid=20&mode=2&details=0&background=ffffff&color=363636&add_background=ffffff&add_color=333333&head_color=ffffff&border=0&transparent=0"></script>
+                    <!-- clock widget end -->
+                </div>
+
+                <div>
+                    <!-- currency exchange widget start -->
+                    <div id='kurs-com-ua-informer-main-ukraine-300x130-blue-container'><a href="http://kurs.com.ua/informer" id="kurs-com-ua-informer-main-ukraine-300x130-blue" title="Курс валют информер Украина" target="_blank">Информер курса валют</a></div>
+                    <script type='text/javascript'>
+                        (function () { var iframe = '<ifr' + 'ame src="http://kurs.com.ua/informer/inf2?color=blue" width="300" height="130" frameborder="0" vspace="0" scrolling="no" hspace="0"></ifr' + 'ame>'; var container = document.getElementById('kurs-com-ua-informer-main-ukraine-300x130-blue'); container.parentNode.innerHTML = iframe; })();
+                    </script>
+                    <noscript><img src='http://kurs.com.ua/static/images/informer/kurs.png' width='52' height='26' alt='kurs.com.ua: курс валют в Украине!' title='Курс валют' border='0' /></noscript>
+                    <!-- currency exchange widget end -->
+                </div>
+            </div>
+        </div>
+
         <hr />
+
+        <div class="row">
+            <div class="col-md-5">
+                <!-- google map widget start -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d330.69049419985765!2d35.05174658336161!3d48.46566275338624!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xcfc3a528f42e99cf!2z0KLQpiDQndC-0LLRi9C5INCm0LXQvdGC0YA!5e0!3m2!1sru!2sua!4v1454066637040" width="500" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <!-- google map widget end -->
+            </div>
+
+            <div class="col-md-offset-2 col-md-5">
+                <!-- yandex map widget start -->
+                <script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=2u2L2LEgu8stlUiq79cB9W03y8iYxjiF&width=500&height=400&lang=ru_UA&sourceType=constructor" width="500" height="400" frameborder="0" style="border:0" allowfullscreen></script>
+                <!-- yandex map widget end -->
+            </div>
+        </div>
+
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
@@ -45,5 +94,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/calculator.js"></script>
+    <script src="~/Scripts/clock.js"></script>
 </body>
 </html>
