@@ -21,6 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Persons", "Index", "Person")</li>
+                    <li>@Html.ActionLink("Single Page", "Index", "SinglePage")</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -35,15 +36,15 @@
             <div class="alert alert-success">@TempData["message"]</div>
         }
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 @Html.Action("Calculator", "Home")
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-8">
                 @RenderBody()
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div>
                     <!-- clock widget start -->
                     <span id="pendule"></span>

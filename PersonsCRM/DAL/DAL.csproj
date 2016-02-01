@@ -46,6 +46,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
@@ -67,7 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=4.0.52.0, Culture=neutral, processorArchitecture=MSIL">
@@ -105,6 +109,8 @@
     <Compile Include="DB\Concrete\MSSQL\Dapper\DapperRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfDbContext.cs" />
     <Compile Include="DB\Concrete\MSSQL\EF\EfRepository.cs" />
+    <Compile Include="DB\Concrete\MSSQL\NHibernate\PersonMap.cs" />
+    <Compile Include="DB\Concrete\MSSQL\NHibernate\PhoneMap.cs" />
     <Compile Include="DB\Concrete\Neo4j\Neo4jRepository.cs" />
     <Compile Include="DB\Concrete\MSSQL\NHibernate\NHibernateRepository.cs" />
     <Compile Include="DB\Concrete\Redis\RedisRepository.cs" />
@@ -123,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="DB\Concrete\MSSQL\NHibernate\Person.hbm.xml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,11 +144,6 @@
     <EmbeddedResource Include="Migrations\201601251238347_PersonsDB.resx">
       <DependentUpon>201601251238347_PersonsDB.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DB\Concrete\MSSQL\NHibernate\hibernate.cfg.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

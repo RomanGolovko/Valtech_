@@ -1,7 +1,9 @@
 ﻿using DAL.DB.Abstract;
 using DAL.Entities;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 using System.Collections.Generic;
 
 namespace DAL.DB.Concrete.NHibernate
@@ -12,10 +14,12 @@ namespace DAL.DB.Concrete.NHibernate
 
         public NHibernateRepository()
         {
-            var config = new Configuration();
-            config.Configure();
-            config.AddAssembly(typeof(Person).Assembly);
-            _session = config.BuildSessionFactory();
+            _session = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Roman\Documents\Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf;Integrated Security=True")
+                .ShowSql())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateRepository>())
+                .ExposeConfiguration(cfg => new SchemaExport(cfg)/*.Create(true, true)*/)
+                .BuildSessionFactory();
         }
 
         public Person Get(int id)
@@ -24,7 +28,7 @@ namespace DAL.DB.Concrete.NHibernate
 
             using (var currentSession = _session.OpenSession())
             {
-                person = currentSession.Get<Person>(id);
+                person = currentSession.Get<Person>(id); 
             }
 
             return person;
@@ -48,6 +52,10 @@ namespace DAL.DB.Concrete.NHibernate
             {
                 using (var transact = currentSession.BeginTransaction())
                 {
+                    foreach (var item in person.Phones)
+                    {
+                        item.Person = person;
+                    }
                     currentSession.Save(person);
                     transact.Commit();
                 }
