@@ -131,169 +131,169 @@ namespace PersonsCRM.Tests.BLL.Tests
         };
         #endregion
 
-        //#region GetAllPersons
-        //[Test]
-        //public void Get_All_Persons_From_Db_With_Many_Persons()
-        //{
-        //    var expected = new List<PersonDTO> { _persDto1, _persDto2, _persDto3, _persDto4, _persDto5 };
+        #region GetAllPersons
+        [Test]
+        public void Get_All_Persons_From_Db_With_Many_Persons()
+        {
+            var expected = new List<PersonDTO> { _persDto1, _persDto2, _persDto3, _persDto4, _persDto5 };
 
-        //    _pers1.Phones[0].Person = _pers1;
-        //    _pers1.Phones[1].Person = _pers1;
-        //    _pers2.Phones[0].Person = _pers2;
-        //    _pers3.Phones[0].Person = _pers3;
-        //    _pers4.Phones[0].Person = _pers4;
+            _pers1.Phones[0].Person = _pers1;
+            _pers1.Phones[1].Person = _pers1;
+            _pers2.Phones[0].Person = _pers2;
+            _pers3.Phones[0].Person = _pers3;
+            _pers4.Phones[0].Person = _pers4;
 
-        //    var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
+            var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
 
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.GetAll()).Returns(persons);
-        //    var personService = new PersonService(mock.Object);
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
+            var personService = new PersonService(mock.Object);
 
-        //    var result = personService.GetAllPersons().ToList();
+            var result = personService.GetAllPersons().ToList();
 
-        //    Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
-        //    CollectionAssert.AreEqual("$" + expected, "$" + result);
-        //}
+            Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
+            CollectionAssert.AreEqual("$" + expected, "$" + result);
+        }
 
-        //[Test]
-        //public void Get_All_Persons_From_Db_With_2_Persons()
-        //{
-        //    var expected = new List<PersonDTO> { _persDto1, _persDto2 };
+        [Test]
+        public void Get_All_Persons_From_Db_With_2_Persons()
+        {
+            var expected = new List<PersonDTO> { _persDto1, _persDto2 };
 
-        //    _pers1.Phones[0].Person = _pers1;
-        //    _pers1.Phones[1].Person = _pers1;
-        //    _pers2.Phones[0].Person = _pers2;
+            _pers1.Phones[0].Person = _pers1;
+            _pers1.Phones[1].Person = _pers1;
+            _pers2.Phones[0].Person = _pers2;
 
-        //    var persons = new List<Person> { _pers1, _pers2 };
+            var persons = new List<Person> { _pers1, _pers2 };
 
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.GetAll()).Returns(persons);
-        //    var personService = new PersonService(mock.Object);
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
+            var personService = new PersonService(mock.Object);
 
-        //    var result = personService.GetAllPersons().ToList();
+            var result = personService.GetAllPersons().ToList();
 
-        //    Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
-        //    CollectionAssert.AreEqual("$" + expected, "$" + result);
-        //}
+            Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
+            CollectionAssert.AreEqual("$" + expected, "$" + result);
+        }
 
-        //[Test]
-        //public void Get_All_Persons_From_Db_With_1_Person()
-        //{
-        //    var expected = new List<PersonDTO> { _persDto1 };
-        //    _pers1.Phones[0].Person = _pers1;
+        [Test]
+        public void Get_All_Persons_From_Db_With_1_Person()
+        {
+            var expected = new List<PersonDTO> { _persDto1 };
+            _pers1.Phones[0].Person = _pers1;
 
-        //    var persons = new List<Person> { _pers1 };
+            var persons = new List<Person> { _pers1 };
 
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.GetAll()).Returns(persons);
-        //    mock.Setup(p => p.GetAll()).Returns(new List<Person> { _pers1 });
-        //    var personService = new PersonService(mock.Object);
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.GetAll()).Returns(persons);
+            mock.Setup(p => p.GetAll()).Returns(new List<Person> { _pers1 });
+            var personService = new PersonService(mock.Object);
 
-        //    var result = personService.GetAllPersons().ToList();
-        //    Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
-        //    CollectionAssert.AreEqual("$" + expected, "$" + result);
-        //}
+            var result = personService.GetAllPersons().ToList();
+            Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
+            CollectionAssert.AreEqual("$" + expected, "$" + result);
+        }
 
-        //[Test]
-        //public void Get_All_Persons_From_Empty_Db()
-        //{
-        //    var expected = new List<PersonDTO>();
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(p => p.GetAll()).Returns(new List<Person>());
-        //    var personService = new PersonService(mock.Object);
+        [Test]
+        public void Get_All_Persons_From_Empty_Db()
+        {
+            var expected = new List<PersonDTO>();
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(p => p.GetAll()).Returns(new List<Person>());
+            var personService = new PersonService(mock.Object);
 
-        //    var result = personService.GetAllPersons();
-        //    Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
-        //    CollectionAssert.AreEqual("$" + expected, "$" + result);
-        //}
-        //#endregion
+            var result = personService.GetAllPersons();
+            Assert.IsInstanceOf<IEnumerable<PersonDTO>>(result);
+            CollectionAssert.AreEqual("$" + expected, "$" + result);
+        }
+        #endregion
 
-        //#region GetPerson
-        //[Test]
-        //public void Get_Existing_Person()
-        //{
-        //    _pers1.Phones[0].Person = _pers1;
-        //    _pers1.Phones[1].Person = _pers1;
-        //    _pers2.Phones[0].Person = _pers2;
-        //    _pers3.Phones[0].Person = _pers3;
-        //    _pers4.Phones[0].Person = _pers4;
+        #region GetPerson
+        [Test]
+        public void Get_Existing_Person()
+        {
+            _pers1.Phones[0].Person = _pers1;
+            _pers1.Phones[1].Person = _pers1;
+            _pers2.Phones[0].Person = _pers2;
+            _pers3.Phones[0].Person = _pers3;
+            _pers4.Phones[0].Person = _pers4;
 
-        //    var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
-        //    var id = 3;
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
-        //    var personService = new PersonService(mock.Object);
+            var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
+            var id = 3;
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
+            var personService = new PersonService(mock.Object);
 
-        //    var result = personService.GetPerson(id);
+            var result = personService.GetPerson(id);
 
-        //    Assert.AreEqual("$" + _persDto3, "$" + result);
-        //}
+            Assert.AreEqual("$" + _persDto3, "$" + result);
+        }
 
-        //[Test]
-        //public void Get_Person_With_OutOfRange_Id()
-        //{
-        //    _pers1.Phones[0].Person = _pers1;
-        //    _pers1.Phones[1].Person = _pers1;
-        //    _pers2.Phones[0].Person = _pers2;
-        //    _pers3.Phones[0].Person = _pers3;
-        //    _pers4.Phones[0].Person = _pers4;
+        [Test]
+        public void Get_Person_With_OutOfRange_Id()
+        {
+            _pers1.Phones[0].Person = _pers1;
+            _pers1.Phones[1].Person = _pers1;
+            _pers2.Phones[0].Person = _pers2;
+            _pers3.Phones[0].Person = _pers3;
+            _pers4.Phones[0].Person = _pers4;
 
-        //    var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
-        //    var id = 8;
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
-        //    var personService = new PersonService(mock.Object);
+            var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
+            var id = 8;
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(id)).Returns(persons.Find(x => x.Id == id));
+            var personService = new PersonService(mock.Object);
 
-        //    Assert.Throws<ValidationException>(() => personService.GetPerson(id));
-        //}
+            Assert.Throws<ValidationException>(() => personService.GetPerson(id));
+        }
 
-        //[Test]
-        //public void Get_Person_With_Null_Id_Parameter()
-        //{
-        //    var mock = new Mock<IRepository<Person>>();
-        //    var personService = new PersonService(mock.Object);
+        [Test]
+        public void Get_Person_With_Null_Id_Parameter()
+        {
+            var mock = new Mock<IRepository<Person>>();
+            var personService = new PersonService(mock.Object);
 
-        //    Assert.Throws<ValidationException>(() => personService.GetPerson(null));
-        //}
-        //#endregion
+            Assert.Throws<ValidationException>(() => personService.GetPerson(null));
+        }
+        #endregion
 
-        //#region SavePerson
-        //[Test]
-        //public void Save_Person()
-        //{
-        //    var persons = new List<Person> { _pers1 };
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.Create(_pers1)).Verifiable();
-        //    mock.Setup(x => x.Update(_pers1)).Verifiable();
-        //    mock.Setup(x => x.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
-        //    var personService = new PersonService(mock.Object);
+        #region SavePerson
+        [Test]
+        public void Save_Person()
+        {
+            var persons = new List<Person> { _pers1 };
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Create(_pers1)).Verifiable();
+            mock.Setup(x => x.Update(_pers1)).Verifiable();
+            mock.Setup(x => x.Get(_pers1.Id)).Returns(persons.Find(x => x.Id == _pers1.Id));
+            var personService = new PersonService(mock.Object);
 
-        //    personService.SavePerson(_persDto1);
-        //}
-        //#endregion
+            personService.SavePerson(_persDto1);
+        }
+        #endregion
 
-        //#region DeletePerson
-        //[Test]
-        //public void Delete_Person_From_Db_With_Many_Persons()
-        //{
-        //    var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.Get(_pers1.Id)).Returns(_pers1);
-        //    mock.Setup(x => x.Delete(_persDto1.Id)).Verifiable();
-        //    var personService = new PersonService(mock.Object);
+        #region DeletePerson
+        [Test]
+        public void Delete_Person_From_Db_With_Many_Persons()
+        {
+            var persons = new List<Person> { _pers1, _pers2, _pers3, _pers4, _pers5 };
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(_pers1.Id)).Returns(_pers1);
+            mock.Setup(x => x.Delete(_persDto1.Id)).Verifiable();
+            var personService = new PersonService(mock.Object);
 
-        //    personService.DeletePerson(_persDto1.Id);
-        //}
+            personService.DeletePerson(_persDto1.Id);
+        }
 
-        //[Test]
-        //public void Delete_Person_From_Db_With_0_Persons()
-        //{
-        //    var mock = new Mock<IRepository<Person>>();
-        //    mock.Setup(x => x.Get(2));
-        //    var personService = new PersonService(mock.Object);
+        [Test]
+        public void Delete_Person_From_Db_With_0_Persons()
+        {
+            var mock = new Mock<IRepository<Person>>();
+            mock.Setup(x => x.Get(2));
+            var personService = new PersonService(mock.Object);
 
-        //    Assert.Throws<ValidationException>(() => personService.DeletePerson(2));
-        //}
-        //#endregion
+            Assert.Throws<ValidationException>(() => personService.DeletePerson(2));
+        }
+        #endregion
     }
 }
