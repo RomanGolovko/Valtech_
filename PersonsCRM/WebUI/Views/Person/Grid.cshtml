@@ -38,16 +38,16 @@
                 @Html.HiddenFor(model => Model[i].Id)
 
                 <tr>
-                    <td class="input-group-sm">
-                        @Html.TextBoxFor(modelItem => Model[i].FirstName)
+                    <td class="input-group-sm ">
+                        @Html.TextBoxFor(modelItem => Model[i].FirstName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => Model[i].FirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="input-group-sm">
-                        @Html.TextBoxFor(modelItem => Model[i].LastName)
+                        @Html.TextBoxFor(modelItem => Model[i].LastName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => Model[i].LastName, "", new { @class = "text-danger" })
                     </td>
                     <td class="input-group-sm" >
-                        @Html.TextBoxFor(modelItem => Model[i].Age)
+                        @Html.TextBoxFor(modelItem => Model[i].Age, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => Model[i].Age, "", new { @class = "text-danger" })
                     </td>
                     @for (var j = 0; j < Model[i].Phones.Count; j++)
@@ -56,18 +56,15 @@
                         @Html.HiddenFor(model => Model[i].Phones[j].PersonId)
 
                         <td class="input-group-sm">
-                            @Html.TextBoxFor(modelItem => Model[i].Phones[j].Number)
+                            @Html.TextBoxFor(modelItem => Model[i].Phones[j].Number, new { @class = "form-control" })
                             @Html.ValidationMessageFor(modelItem => Model[i].Phones[j].Number, "", new { @class = "text-danger" })
                         </td>
                         <td class="input-group-sm">
-                            @Html.TextBoxFor(modelItem => Model[i].Phones[j].Type)
+                            @Html.TextBoxFor(modelItem => Model[i].Phones[j].Type, new { @class = "form-control" })
                             @Html.ValidationMessageFor(modelItem => Model[i].Phones[j].Type, "", new { @class = "text-danger" })
                         </td>
                     }
                     <td class="form-horizontal">
-                        <span class="label label-warning">
-                            @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id })
-                        </span> |
                         <span class="label label-danger">
                             @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id })
                         </span>
@@ -77,8 +74,8 @@
 
         </table>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="col-md-10">
+                <input type="submit" value="Save" class="btn-success btn-lg" />
             </div>
         </div>
     </div>

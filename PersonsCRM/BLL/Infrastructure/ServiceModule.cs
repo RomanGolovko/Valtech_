@@ -23,7 +23,7 @@ namespace BLL.Infrastructure
         public override void Load()
         {
             //Bind<IRepository<Person>>().To<LiteDbRepository>();
-            Bind<IRepository<Person>>().To<EfRepository>().WithConstructorArgument(_connectionString);
+            Bind<IRepository<Person>>().To<EfRepository>();
             //Bind<IRepository<Person>>().To<NHibernateRepository>();
             //Bind<IRepository<Person>>().To<DapperRepository>();
             //Bind<IRepository<Person>>().To<AdoRepository>();
