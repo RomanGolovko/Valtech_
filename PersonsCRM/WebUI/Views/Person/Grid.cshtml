@@ -13,9 +13,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>PersonViewModel</h4>
-        <hr />
-        <table class="table">
+        <h4>Persons</h4>
+        <table class="table-striped">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model[0].FirstName)
@@ -34,50 +33,54 @@
                 </th>
             </tr>
 
-            @for(var i = 0; i < Model?.Count(); i++)
+            @for (var i = 0; i < Model?.Count(); i++)
             {
                 @Html.HiddenFor(model => Model[i].Id)
 
                 <tr>
-                    <td>
+                    <td class="input-group-sm">
                         @Html.TextBoxFor(modelItem => Model[i].FirstName)
                         @Html.ValidationMessageFor(model => Model[i].FirstName, "", new { @class = "text-danger" })
                     </td>
-                    <td>
+                    <td class="input-group-sm">
                         @Html.TextBoxFor(modelItem => Model[i].LastName)
                         @Html.ValidationMessageFor(model => Model[i].LastName, "", new { @class = "text-danger" })
                     </td>
-                    <td>
+                    <td class="input-group-sm" >
                         @Html.TextBoxFor(modelItem => Model[i].Age)
                         @Html.ValidationMessageFor(model => Model[i].Age, "", new { @class = "text-danger" })
                     </td>
-                    @for(var j = 0; j < Model[i].Phones.Count; j++)
+                    @for (var j = 0; j < Model[i].Phones.Count; j++)
                     {
                         @Html.HiddenFor(model => Model[i].Phones[j].Id)
                         @Html.HiddenFor(model => Model[i].Phones[j].PersonId)
 
-                        <td>
+                        <td class="input-group-sm">
                             @Html.TextBoxFor(modelItem => Model[i].Phones[j].Number)
                             @Html.ValidationMessageFor(modelItem => Model[i].Phones[j].Number, "", new { @class = "text-danger" })
                         </td>
-                        <td>
+                        <td class="input-group-sm">
                             @Html.TextBoxFor(modelItem => Model[i].Phones[j].Type)
                             @Html.ValidationMessageFor(modelItem => Model[i].Phones[j].Type, "", new { @class = "text-danger" })
                         </td>
                     }
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id })
+                    <td class="form-horizontal">
+                        <span class="label label-warning">
+                            @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id })
+                        </span> |
+                        <span class="label label-danger">
+                            @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id })
+                        </span>
                     </td>
                 </tr>
             }
 
-            </table>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
+        </div>
     </div>
 }
 

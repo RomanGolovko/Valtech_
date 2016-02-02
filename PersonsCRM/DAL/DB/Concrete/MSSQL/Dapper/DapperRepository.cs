@@ -13,31 +13,6 @@ namespace DAL.DB.Concrete.MSSQL.Dapper
     {
         private string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Roman\Documents\Repository\Valtech_\PersonsCRM\WebUI\App_Data\PersonsDB.mdf;Integrated Security=True";
 
-        public void Create(Person item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Person Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Person> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Person item)
-        {
-            throw new NotImplementedException();
-        }
-
         public Person Get(int id)
         {
             Person person;
