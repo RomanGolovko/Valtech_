@@ -50,8 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Abstract\IRepository.cs" />
+    <Compile Include="DB\Concrete\EfAddressesRepository.cs" />
     <Compile Include="DB\Concrete\EfDbContext.cs" />
-    <Compile Include="DB\Concrete\EfRepository.cs" />
+    <Compile Include="DB\Concrete\EfPersonsRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Phone.cs" />

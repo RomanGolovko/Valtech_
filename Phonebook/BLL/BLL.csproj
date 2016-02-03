@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IService.cs" />
+    <Compile Include="Concrete\AddressService.cs" />
     <Compile Include="Concrete\PersonService.cs" />
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />

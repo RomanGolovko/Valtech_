@@ -1,17 +1,12 @@
-﻿using BLL.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BLL.Abstract
 {
-    public interface IService
+    public interface IService<T> where T : class
     {
-        PersonDTO GetPerson(int? id);
-        IEnumerable<PersonDTO> GetAllPersons();
-        void SavePerson(PersonDTO person);
-        void DeletePerson(int? id);
+        T Get(int? id);
+        IEnumerable<T> GetAll();
+        void Save(T item);
+        void Delete(int? id);
     }
 }

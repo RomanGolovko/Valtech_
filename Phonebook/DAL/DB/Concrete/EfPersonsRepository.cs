@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DAL.DB.Concrete
 {
-    public class EfRepository : IRepository<Person>
+    public class EfPersonsRepository : IRepository<Person>
     {
         private readonly EfDbContext _db = new EfDbContext();
 

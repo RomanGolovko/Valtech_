@@ -10,9 +10,9 @@ namespace WebUI.Controllers
 {
     public class PhonebookController : Controller
     {
-        private readonly IService _db;
+        private readonly IService<PersonDTO> _db;
 
-        public PhonebookController(IService serv)
+        public PhonebookController(IService<PersonDTO> serv)
         {
             _db = serv;
         }
@@ -23,7 +23,7 @@ namespace WebUI.Controllers
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
             Mapper.CreateMap<AddressDTO, AddressViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
-            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAllPersons());
+            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
 
             return View(persons);
         }
@@ -43,7 +43,7 @@ namespace WebUI.Controllers
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
             Mapper.CreateMap<AddressDTO, AddressViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
-            var person = Mapper.Map<PersonDTO, PersonViewModel>(_db.GetPerson(id));
+            var person = Mapper.Map<PersonDTO, PersonViewModel>(_db.Get(id));
 
             return View(person);
         }
@@ -59,10 +59,10 @@ namespace WebUI.Controllers
                 Mapper.CreateMap<PhoneViewModel, PhoneDTO>();
                 var person = Mapper.Map<PersonViewModel, PersonDTO>(personViewModel);
 
-                _db.SavePerson(person);
+                _db.Save(person);
                 TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
-                return RedirectToAction("Grid");
+                return RedirectToAction("Index");
             }
             catch (ValidationException ex)
             {
@@ -76,7 +76,7 @@ namespace WebUI.Controllers
         {
             try
             {
-                _db.DeletePerson(id);
+                _db.Delete(id);
                 return RedirectToAction("Index");
             }
             catch (ValidationException ex)

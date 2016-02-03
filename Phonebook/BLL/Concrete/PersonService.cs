@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BLL.Concrete
 {
-    public class PersonService : IService
+    public class PersonService : IService<PersonDTO>
     {
         private readonly IRepository<Person> _db;
 
@@ -17,7 +17,7 @@ namespace BLL.Concrete
             _db = repo;
         }
 
-        public PersonDTO GetPerson(int? id)
+        public PersonDTO Get(int? id)
         {
             if (id == null)
             {
@@ -37,7 +37,7 @@ namespace BLL.Concrete
             return Mapper.Map<Person, PersonDTO>(person);
         }
 
-        public IEnumerable<PersonDTO> GetAllPersons()
+        public IEnumerable<PersonDTO> GetAll()
         {
             Mapper.CreateMap<Phone, PhoneDTO>();
             Mapper.CreateMap<Address, AddressDTO>();
@@ -47,7 +47,7 @@ namespace BLL.Concrete
             return result;
         }
 
-        public void SavePerson(PersonDTO person)
+        public void Save(PersonDTO person)
         {
             Mapper.CreateMap<PersonDTO, Person>();
             Mapper.CreateMap<AddressDTO, Address>();
@@ -65,7 +65,7 @@ namespace BLL.Concrete
             }
         }
 
-        public void DeletePerson(int? id)
+        public void Delete(int? id)
         {
             if (id == null)
             {

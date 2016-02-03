@@ -16,7 +16,8 @@ namespace BLL.Infrastructure
 
         public override void Load()
         {
-            Bind<IRepository<Person>>().To<EfRepository>();
+            Bind<IRepository<Person>>().To<EfPersonsRepository>();
+            Bind<IRepository<Address>>().To<EfAddressesRepository>();
         }
     }
 }
