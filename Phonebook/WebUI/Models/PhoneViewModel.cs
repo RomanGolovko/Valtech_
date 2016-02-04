@@ -17,7 +17,7 @@ namespace WebUI.Models
         [HiddenInput(DisplayValue = false)]
         public int PersonId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        [Display(Name = "Street")]
         public int AddressId { get; set; }
     }
 }

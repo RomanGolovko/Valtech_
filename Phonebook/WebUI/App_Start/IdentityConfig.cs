@@ -52,7 +52,7 @@ namespace WebUI
                 RequiredLength = 3,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
-                RequireLowercase = true,
+                RequireLowercase = false,
                 RequireUppercase = false,
             };
 

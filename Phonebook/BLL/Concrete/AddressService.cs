@@ -10,11 +10,11 @@ namespace BLL.Concrete
 {
     public class AddressService : IService<AddressDTO>
     {
-        private readonly IRepository<Address> _db;
+        private readonly IDalUnitOfWork _db;
 
-        public AddressService(IRepository<Address> repo)
+        public AddressService(IDalUnitOfWork uow)
         {
-            _db = repo;
+            _db = uow;
         }
 
         public AddressDTO Get(int? id)
@@ -24,7 +24,7 @@ namespace BLL.Concrete
                 throw new ValidationException("Wrong inserted parameters", "");
             }
 
-            var address = _db.Get(id.Value);
+            var address = _db.Addresses.Get(id.Value);
             if (address == null)
             {
                 throw new ValidationException(@"Address not found", "");
@@ -38,10 +38,15 @@ namespace BLL.Concrete
 
         public IEnumerable<AddressDTO> GetAll()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Address, AddressDTO>());
-            var mapper = config.CreateMapper();
+            //var config = new MapperConfiguration(cfg => cfg.CreateMap<Address, AddressDTO>());
+            //var mapper = config.CreateMapper();
 
-            return mapper.Map<List<AddressDTO>>(_db.GetAll());
+            //return mapper.Map<List<AddressDTO>>(_db.Addresses.GetAll());
+
+            Mapper.CreateMap<Address, AddressDTO>();
+            Mapper.CreateMap<Phone, PhoneDTO>();
+
+            return Mapper.Map<IEnumerable<Address>, List<AddressDTO>>(_db.Addresses.GetAll());
         }
 
         public void Save(AddressDTO address)
@@ -51,13 +56,13 @@ namespace BLL.Concrete
 
             var currentAddress = mapper.Map<Address>(address);
 
-            if (_db.Get(address.Id) == null)
+            if (_db.Addresses.Get(address.Id) == null)
             {
-                _db.Create(currentAddress);
+                _db.Addresses.Create(currentAddress);
             }
             else
             {
-                _db.Update(currentAddress);
+                _db.Addresses.Update(currentAddress);
             }
         }
 
@@ -68,13 +73,13 @@ namespace BLL.Concrete
                 throw new ValidationException("Wrong inserted parameters", "");
             }
 
-            var address = _db.Get(id.Value);
+            var address = _db.Addresses.Get(id.Value);
             if (address == null)
             {
                 throw new ValidationException(@"Address not found", "");
             }
 
-            _db.Delete(id.Value);
+            _db.Addresses.Delete(id.Value);
         }
     }
 }

@@ -196,6 +196,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602041041182_InitialCreate.cs" />
+    <Compile Include="Migrations\201602041041182_InitialCreate.Designer.cs">
+      <DependentUpon>201602041041182_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602041108480_Age.cs" />
+    <Compile Include="Migrations\201602041108480_Age.Designer.cs">
+      <DependentUpon>201602041108480_Age.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -286,6 +295,14 @@
       <Project>{61ff0736-dde9-4aa0-87c6-d63ba7588945}</Project>
       <Name>Cross-Cutting</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602041041182_InitialCreate.resx">
+      <DependentUpon>201602041041182_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602041108480_Age.resx">
+      <DependentUpon>201602041108480_Age.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

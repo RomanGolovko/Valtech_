@@ -4,7 +4,6 @@ using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using BLL.DTO;
 
 namespace WebUI.Util
 {
@@ -27,9 +26,10 @@ namespace WebUI.Util
         {
             return _kernel.GetAll(serviceType);
         }
+
         private void AddBindings()
         {
-            _kernel.Bind<IService<PersonDTO>>().To<PersonService>();
+            _kernel.Bind<IBllUnitOfWork>().To<ServiceUnitOfWork>();
         }
     }
 }

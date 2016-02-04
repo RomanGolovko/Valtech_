@@ -76,6 +76,16 @@ namespace WebUI.Controllers
         }
 
         //
+        // GET: /Manage/MyInfo
+        public ActionResult MyInfo()
+        {
+             var model = new IndexViewModel
+             {
+                 Use
+             }
+        }
+
+        //
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

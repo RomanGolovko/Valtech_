@@ -1,6 +1,5 @@
 ﻿using DAL.DB.Abstract;
 using DAL.DB.Concrete;
-using DAL.Entities;
 using Ninject.Modules;
 
 namespace BLL.Infrastructure
@@ -16,8 +15,7 @@ namespace BLL.Infrastructure
 
         public override void Load()
         {
-            Bind<IRepository<Person>>().To<EfPersonsRepository>();
-            Bind<IRepository<Address>>().To<EfAddressesRepository>();
+            Bind<IDalUnitOfWork>().To<EfUnitOfWork>();
         }
     }
 }

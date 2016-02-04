@@ -10,11 +10,11 @@ namespace WebUI.Controllers
 {
     public class PhonebookController : Controller
     {
-        private readonly IService<PersonDTO> _db;
+        private readonly IBllUnitOfWork _db;
 
-        public PhonebookController(IService<PersonDTO> serv)
+        public PhonebookController(IBllUnitOfWork buow)
         {
-            _db = serv;
+            _db = buow;
         }
 
         // GET: Phonebook
@@ -23,7 +23,9 @@ namespace WebUI.Controllers
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
             Mapper.CreateMap<AddressDTO, AddressViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
-            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.GetAll());
+            var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.Persons.GetAll());
+
+            ViewBag.streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
 
             return View(persons);
         }
@@ -31,35 +33,42 @@ namespace WebUI.Controllers
         // GET: Phonebook/Create
         public ActionResult Create()
         {
+            Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
+            Mapper.CreateMap<AddressDTO, AddressViewModel>();
+            var streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
+            ViewBag.streets = new SelectList(streets, "Id", "Street");
+
             return View("Edit", new PersonViewModel());
         }
 
         // GET: Phonebook/Edit/5
         public ActionResult Edit(int? id)
         {
-            var streets = new List<string> { "Lenina street", "Karl Marks street", "Magnitogorskaya street", "Kirova street" };
-            ViewBag.streets = new SelectList(streets);
-
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
             Mapper.CreateMap<AddressDTO, AddressViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
-            var person = Mapper.Map<PersonDTO, PersonViewModel>(_db.Get(id));
+            var person = Mapper.Map<PersonDTO, PersonViewModel>(_db.Persons.Get(id));
+
+            var streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
+            ViewBag.streets = new SelectList(streets, "Id", "Street");
 
             return View(person);
         }
 
         // POST: Phonebook/Edit/5
         [HttpPost]
-        public ActionResult Edit(PersonViewModel personViewModel)
+        public ActionResult Edit(PersonViewModel personViewModel, string AddressId)
         {
+            ///TODO: убрать костыль с AddressId, должен отрабатывать binder
             try
             {
+                personViewModel.Phones[0].AddressId = int.Parse(AddressId);
                 Mapper.CreateMap<PersonViewModel, PersonDTO>();
                 Mapper.CreateMap<AddressViewModel, AddressDTO>();
                 Mapper.CreateMap<PhoneViewModel, PhoneDTO>();
                 var person = Mapper.Map<PersonViewModel, PersonDTO>(personViewModel);
 
-                _db.Save(person);
+                _db.Persons.Save(person);
                 TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
                 return RedirectToAction("Index");
@@ -76,7 +85,7 @@ namespace WebUI.Controllers
         {
             try
             {
-                _db.Delete(id);
+                _db.Persons.Delete(id);
                 return RedirectToAction("Index");
             }
             catch (ValidationException ex)

@@ -10,11 +10,11 @@ namespace BLL.Concrete
 {
     public class PersonService : IService<PersonDTO>
     {
-        private readonly IRepository<Person> _db;
+        private readonly IDalUnitOfWork _db;
 
-        public PersonService(IRepository<Person> repo)
+        public PersonService(IDalUnitOfWork uow)
         {
-            _db = repo;
+            _db = uow;
         }
 
         public PersonDTO Get(int? id)
@@ -24,7 +24,7 @@ namespace BLL.Concrete
                 throw new ValidationException("Wrong inserted parameters", "");
             }
 
-            var person = _db.Get(id.Value);
+            var person = _db.Persons.Get(id.Value);
             if (person == null)
             {
                 throw new ValidationException(@"Person not found", "");
@@ -42,7 +42,7 @@ namespace BLL.Concrete
             Mapper.CreateMap<Phone, PhoneDTO>();
             Mapper.CreateMap<Address, AddressDTO>();
             Mapper.CreateMap<Person, PersonDTO>();
-            var result = Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.GetAll());
+            var result = Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
 
             return result;
         }
@@ -55,13 +55,13 @@ namespace BLL.Concrete
 
             var currentPerson = Mapper.Map<PersonDTO, Person>(person);
 
-            if (_db.Get(person.Id) == null)
+            if (_db.Persons.Get(person.Id) == null)
             {
-                _db.Create(currentPerson);
+                _db.Persons.Create(currentPerson);
             }
             else
             {
-                _db.Update(currentPerson);
+                _db.Persons.Update(currentPerson);
             }
         }
 
@@ -72,13 +72,13 @@ namespace BLL.Concrete
                 throw new ValidationException("Wrong inserted parameters", "");
             }
 
-            var person = _db.Get(id.Value);
+            var person = _db.Persons.Get(id.Value);
             if (person == null)
             {
                 throw new ValidationException("Person not found", "");
             }
 
-            _db.Delete(id.Value);
+            _db.Persons.Delete(id.Value);
         }
     }
 }

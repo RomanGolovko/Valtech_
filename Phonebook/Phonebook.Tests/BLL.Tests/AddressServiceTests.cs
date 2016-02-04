@@ -14,8 +14,8 @@ namespace Phonebook.Tests.BLL.Tests
         [Test]
         public void CanGetAllAddresses()
         {
-            var mock = new Mock<IRepository<Address>>();
-            mock.Setup(x => x.GetAll()).Returns(new List<Address>());
+            var mock = new Mock<IDalUnitOfWork>();
+            mock.Setup(x => x.Addresses.GetAll()).Returns(new List<Address>());
             var addressService = new AddressService(mock.Object);
 
             var result = addressService.GetAll();
@@ -27,8 +27,8 @@ namespace Phonebook.Tests.BLL.Tests
         public void CanGetAddress()
         {
             var address = new Address();
-            var mock = new Mock<IRepository<Address>>();
-            mock.Setup(x => x.Get(address.Id)).Returns(address);
+            var mock = new Mock<IDalUnitOfWork>();
+            mock.Setup(x => x.Addresses.Get(address.Id)).Returns(address);
             var addressService = new AddressService(mock.Object);
 
             var result = addressService.Get(address.Id);
@@ -40,9 +40,9 @@ namespace Phonebook.Tests.BLL.Tests
         public void CanSaveAddress()
         {
             var address = new Address();
-            var mock = new Mock<IRepository<Address>>();
-            mock.Setup(x => x.Create(address)).Verifiable();
-            mock.Setup(x => x.Update(address)).Verifiable();
+            var mock = new Mock<IDalUnitOfWork>();
+            mock.Setup(x => x.Addresses.Create(address)).Verifiable();
+            mock.Setup(x => x.Addresses.Update(address)).Verifiable();
             var addressService = new AddressService(mock.Object);
 
             addressService.Save(new AddressDTO());
@@ -52,9 +52,9 @@ namespace Phonebook.Tests.BLL.Tests
         public void CanDeleteAddress()
         {
             var address = new Address();
-            var mock = new Mock<IRepository<Address>>();
-            mock.Setup(x => x.Get(address.Id)).Returns(address);
-            mock.Setup(x => x.Delete(address.Id)).Verifiable();
+            var mock = new Mock<IDalUnitOfWork>();
+            mock.Setup(x => x.Addresses.Get(address.Id)).Returns(address);
+            mock.Setup(x => x.Addresses.Delete(address.Id)).Verifiable();
             var addressService = new AddressService(mock.Object);
 
             addressService.Delete(address.Id);

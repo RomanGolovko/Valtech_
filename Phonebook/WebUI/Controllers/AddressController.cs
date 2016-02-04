@@ -10,11 +10,11 @@ namespace WebUI.Controllers
 {
     public class AddressController : Controller
     {
-        private readonly IService<AddressDTO> _db;
+        private readonly IBllUnitOfWork _db;
 
-        public AddressController(IService<AddressDTO> serv)
+        public AddressController(IBllUnitOfWork buow)
         {
-            _db = serv;
+            _db = buow;
         } 
 
         // GET: Address
@@ -23,7 +23,7 @@ namespace WebUI.Controllers
             var config = new MapperConfiguration(cfg => cfg.CreateMap<AddressDTO, AddressViewModel>());
             var mapper = config.CreateMapper();
 
-            return View(mapper.Map<IEnumerable<AddressViewModel>>(_db.GetAll()));
+            return View(mapper.Map<IEnumerable<AddressViewModel>>(_db.Addresses.GetAll()));
         }
 
         // GET: Address/Create
@@ -38,7 +38,7 @@ namespace WebUI.Controllers
             var config = new MapperConfiguration(cfg => cfg.CreateMap<AddressDTO, AddressViewModel>());
             var mapper = config.CreateMapper();
 
-            return View(mapper.Map<AddressViewModel>(_db.Get(id)));
+            return View(mapper.Map<AddressViewModel>(_db.Addresses.Get(id)));
         }
 
         // POST: Address/Edit/5
@@ -51,7 +51,7 @@ namespace WebUI.Controllers
                 var mapper = config.CreateMapper();
                 var address = mapper.Map<AddressDTO>(addressViewModel);
 
-                _db.Save(address);
+                _db.Addresses.Save(address);
                 TempData["message"] = $"{address.Street} has been saved";
 
                 return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace WebUI.Controllers
         {
             try
             {
-                _db.Delete(id);
+                _db.Addresses .Delete(id);
                 return RedirectToAction("Index");
             }
             catch (ValidationException ex)

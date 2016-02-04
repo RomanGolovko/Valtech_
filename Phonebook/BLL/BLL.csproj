@@ -48,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBllUnitOfWork.cs" />
     <Compile Include="Abstract\IService.cs" />
     <Compile Include="Concrete\AddressService.cs" />
     <Compile Include="Concrete\PersonService.cs" />
+    <Compile Include="Concrete\ServiceUnitOfWork.cs" />
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\PhoneDTO.cs" />

@@ -7,10 +7,10 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Phonebook"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PersonViewModel</h4>
         <hr />
@@ -41,13 +41,52 @@
             </div>
         </div>
 
+        @{
+            int count = 0;
+        }
+        @do
+        {
+            @Html.HiddenFor(model => model.Phones[count].Id)
+            @Html.HiddenFor(model => model.Phones[count].AddressId)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phones[count].Number, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phones[count].Number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phones[count].Number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phones[count].Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phones[count].Type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phones[count].Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Phones[count].AddressId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("streets", null, htmlAttributes: new { @class = "form-control", Name = $"AddressId" })
+                    </div>
+                </div>
+            </div>
+            count++;
+        } while (count < Model.Phones?.Count);
+
+        <div id="target"></div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
+            }
+
+<button type="button" id="add" onclick="AddBtnClick()">Add extra phone</button>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -56,3 +95,22 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function AddBtnClick() {
+        $('#target').prepend('<input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Phones_Id" name="Phones[0].Id" type="hidden" value="" /><div class="form-group">' +
+                '<label class="control-label col-md-2" for="Phone_Number">Phone number</label>' +
+                '<div class="col-md-10">' +
+                    '<input class="form-control text-box single-line" id="Phone_Number" name="Phone.Number" type="tel" value="" />' +
+                    '<span class="field-validation-valid text-danger" data-valmsg-for="Phone.Number" data-valmsg-replace="true"></span>' +
+                '</div>' +
+            '</div>' +
+            '<div class="form-group">' +
+                '<label class="control-label col-md-2" for="Phones_0__Type">Type</label>' +
+                '<div class="col-md-10">' +
+                    '<input class="form-control text-box single-line" id="Phone_Type" name="Phone.Type" type="text" value="" />' +
+                    '<span class="field-validation-valid text-danger" data-valmsg-for="Phone.Type" data-valmsg-replace="true"></span>' +
+                '</div>' +
+            '</div>')
+    }
+</script>

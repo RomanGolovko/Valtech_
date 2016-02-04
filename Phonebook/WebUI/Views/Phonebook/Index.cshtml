@@ -26,24 +26,40 @@
         <th>
             @Html.DisplayNameFor(model => model.Phones.FirstOrDefault().Type)
         </th>
+        <th>
+            @Html.DisplayName("Street")
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            @foreach (var phone in item.Phones)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => phone.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => phone.Type)
+                </td>
+                <td>
+                    @*Html.DisplayFor(x => x.ViewBag.streets )*@
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
