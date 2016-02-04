@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebUI.Models;
+using System.Security.Claims;
+using System.Threading;
 
 namespace WebUI.Controllers
 {
@@ -79,10 +81,15 @@ namespace WebUI.Controllers
         // GET: /Manage/MyInfo
         public ActionResult MyInfo()
         {
-             var model = new IndexViewModel
-             {
-                 Use
-             }
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+            var age = identity.Claims.Where(c => c.Type == "age").Select(c => c.Value).SingleOrDefault();
+            var model = new IndexViewModel
+            {
+                UserName = User.Identity.Name,
+                //Age = int.Parse(age)
+            };
+
+            return View(model);
         }
 
         //

@@ -274,6 +274,7 @@
     <Content Include="Views\Phonebook\Edit.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Manage\MyInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
