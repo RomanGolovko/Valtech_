@@ -1,10 +1,11 @@
 ﻿using DAL.Entities;
 
-namespace DAL.DB.Abstract
+namespace DAL.Interfaces
 {
     public interface IDalUnitOfWork
     {
         IRepository<Person> Persons { get; }
-        IRepository<Address> Addresses { get; }
+        IRepository<Phone> Phones { get; }
+        IRepository<Street> Streets { get; }   
     }
 }

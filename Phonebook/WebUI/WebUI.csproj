@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F8DD1452-4D22-48D9-96B0-91F3EE5D9DB8}</ProjectGuid>
+    <ProjectGuid>{D337F2AB-F4ED-43F3-940C-91F533B24FDA}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -189,28 +189,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PhonebookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602041041182_InitialCreate.cs" />
-    <Compile Include="Migrations\201602041041182_InitialCreate.Designer.cs">
-      <DependentUpon>201602041041182_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602041108480_Age.cs" />
-    <Compile Include="Migrations\201602041108480_Age.Designer.cs">
-      <DependentUpon>201602041108480_Age.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\PhoneViewModel.cs" />
+    <Compile Include="Models\StreetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
@@ -272,9 +262,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Phonebook\Index.cshtml" />
     <Content Include="Views\Phonebook\Edit.cshtml" />
-    <Content Include="Views\Address\Index.cshtml" />
-    <Content Include="Views\Address\Edit.cshtml" />
-    <Content Include="Views\Manage\MyInfo.cshtml" />
+    <Content Include="Views\Manage\UserInfo.cshtml" />
+    <None Include="Views\Manage\UserInfoEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,21 +278,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{9126d7b4-97fc-490d-b381-03bc56d0d511}</Project>
+      <Project>{60d01277-aecf-42a3-9a10-54db88a4819b}</Project>
       <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
-      <Project>{61ff0736-dde9-4aa0-87c6-d63ba7588945}</Project>
+      <Project>{fa375ae9-f052-467e-8d58-ea44ec757daa}</Project>
       <Name>Cross-Cutting</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602041041182_InitialCreate.resx">
-      <DependentUpon>201602041041182_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602041108480_Age.resx">
-      <DependentUpon>201602041108480_Age.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -321,9 +302,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60314</DevelopmentServerPort>
+          <DevelopmentServerPort>10629</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60314/</IISUrl>
+          <IISUrl>http://localhost:10629/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

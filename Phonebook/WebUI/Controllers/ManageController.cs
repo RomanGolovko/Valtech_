@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Cross_Cutting.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebUI.Models;
-using System.Security.Claims;
-using System.Threading;
 
 namespace WebUI.Controllers
 {
@@ -17,6 +19,8 @@ namespace WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -34,9 +38,9 @@ namespace WebUI.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -78,18 +82,57 @@ namespace WebUI.Controllers
         }
 
         //
-        // GET: /Manage/MyInfo
-        public ActionResult MyInfo()
+        // GET: /Account/UserInfo
+        public ActionResult UserInfo()
         {
-            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
-            var age = identity.Claims.Where(c => c.Type == "age").Select(c => c.Value).SingleOrDefault();
-            var model = new IndexViewModel
-            {
-                UserName = User.Identity.Name,
-                //Age = int.Parse(age)
-            };
+            var userId = User.Identity.GetUserId();
+            var currentUser = _db.Users.Find(userId);
 
-            return View(model);
+            return View(currentUser);
+        }
+
+        //
+        // GET: /Account/UserInfoEdit
+        public ActionResult UserInfoEdit(int? id)
+        {
+            var user = _db.Users.Find(id);
+            return View(user);
+        }
+
+        //
+        // POST
+        [HttpPost]
+        public ActionResult UserInfoEdit(ApplicationUser user, HttpPostedFileBase uploadImage)
+        {
+            try
+            {
+                var currentUser = _db.Users.Find(user.Id);
+
+                if (currentUser != null)
+                {
+                    if (ModelState.IsValid && uploadImage != null)
+                    {
+                        byte[] imageData = null;
+                        using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                        {
+                            imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                        }
+
+                        currentUser.Image = imageData;
+                    }
+
+                _db.Entry(currentUser).State = EntityState.Modified;
+                _db.SaveChanges();
+                }
+                TempData["message"] = $"{user.Name} has been saved";
+
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View(user);
+            }
         }
 
         //
@@ -348,7 +391,7 @@ namespace WebUI.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -399,6 +442,6 @@ namespace WebUI.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

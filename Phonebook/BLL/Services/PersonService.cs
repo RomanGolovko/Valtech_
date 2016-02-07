@@ -1,12 +1,13 @@
-﻿using AutoMapper;
-using BLL.Abstract;
-using BLL.DTO;
-using Cross_Cutting.Security;
-using DAL.DB.Abstract;
-using DAL.Entities;
+﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
+using BLL.DTO;
+using BLL.Interfaces;
+using Cross_Cutting.Security;
+using DAL.Entities;
+using DAL.Interfaces;
 
-namespace BLL.Concrete
+namespace BLL.Services
 {
     public class PersonService : IService<PersonDTO>
     {
@@ -15,6 +16,16 @@ namespace BLL.Concrete
         public PersonService(IDalUnitOfWork uow)
         {
             _db = uow;
+        }
+
+        public IEnumerable<PersonDTO> GetAll()
+        {
+            Mapper.CreateMap<Street, StreetDTO>();
+            Mapper.CreateMap<Phone, PhoneDTO>();
+            Mapper.CreateMap<Person, PersonDTO>();
+            var persons =  Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
+
+            return persons;
         }
 
         public PersonDTO Get(int? id)
@@ -30,28 +41,24 @@ namespace BLL.Concrete
                 throw new ValidationException(@"Person not found", "");
             }
 
+            Mapper.CreateMap<Street, StreetDTO>();
             Mapper.CreateMap<Phone, PhoneDTO>();
-            Mapper.CreateMap<Address, AddressDTO>();
             Mapper.CreateMap<Person, PersonDTO>();
-
-            return Mapper.Map<Person, PersonDTO>(person);
-        }
-
-        public IEnumerable<PersonDTO> GetAll()
-        {
-            Mapper.CreateMap<Phone, PhoneDTO>();
-            Mapper.CreateMap<Address, AddressDTO>();
-            Mapper.CreateMap<Person, PersonDTO>();
-            var result = Mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
+            var result = Mapper.Map<Person, PersonDTO>(_db.Persons.Get(id.Value));
 
             return result;
+        }
+
+        public IEnumerable<PersonDTO> Find(Func<PersonDTO, bool> predicat)
+        {
+            throw new NotImplementedException();
         }
 
         public void Save(PersonDTO person)
         {
             Mapper.CreateMap<PersonDTO, Person>();
-            Mapper.CreateMap<AddressDTO, Address>();
             Mapper.CreateMap<PhoneDTO, Phone>();
+            Mapper.CreateMap<StreetDTO, Street>();
 
             var currentPerson = Mapper.Map<PersonDTO, Person>(person);
 

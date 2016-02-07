@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9126D7B4-97FC-490D-B381-03BC56D0D511}</ProjectGuid>
+    <ProjectGuid>{60D01277-AECF-42A3-9A10-54DB88A4819B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
@@ -48,30 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IBllUnitOfWork.cs" />
-    <Compile Include="Abstract\IService.cs" />
-    <Compile Include="Concrete\AddressService.cs" />
-    <Compile Include="Concrete\PersonService.cs" />
-    <Compile Include="Concrete\ServiceUnitOfWork.cs" />
-    <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\PhoneDTO.cs" />
+    <Compile Include="DTO\StreetDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\IBllUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Services\PersonService.cs" />
+    <Compile Include="Services\ServiceUnitOfWork.cs" />
+    <Compile Include="Services\StreetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
-      <Project>{61ff0736-dde9-4aa0-87c6-d63ba7588945}</Project>
+      <Project>{fa375ae9-f052-467e-8d58-ea44ec757daa}</Project>
       <Name>Cross-Cutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{385d500e-b962-4c32-99b2-e1a1196b9f2c}</Project>
+      <Project>{6480a569-5378-4c47-9b0e-2983f6df1a97}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

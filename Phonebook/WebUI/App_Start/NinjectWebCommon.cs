@@ -1,3 +1,6 @@
+using BLL.Infrastructure;
+using Ninject.Modules;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebUI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebUI.App_Start.NinjectWebCommon), "Stop")]
 
@@ -10,8 +13,7 @@ namespace WebUI.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Modules;
-    using BLL.Infrastructure;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -41,8 +43,7 @@ namespace WebUI.App_Start
         private static IKernel CreateKernel()
         {
             var modules = new INinjectModule[] { new ServiceModule("DefaultConnection") };
-            var kernel = new StandardKernel(modules);
-            try
+            var kernel = new StandardKernel(modules); try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
@@ -64,6 +65,6 @@ namespace WebUI.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new WebUI.Util.NinjectDependencyResolver(kernel));
-        }
+        }        
     }
 }

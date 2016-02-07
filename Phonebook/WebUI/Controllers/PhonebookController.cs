@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using BLL.Abstract;
-using BLL.DTO;
-using Cross_Cutting.Security;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using AutoMapper;
+using BLL.DTO;
+using BLL.Interfaces;
+using Cross_Cutting.Security;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -12,59 +12,57 @@ namespace WebUI.Controllers
     {
         private readonly IBllUnitOfWork _db;
 
-        public PhonebookController(IBllUnitOfWork buow)
+        public PhonebookController(IBllUnitOfWork uow)
         {
-            _db = buow;
+            _db = uow;
         }
 
-        // GET: Phonebook
+        // GET: Person
         public ActionResult Index()
         {
-            Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
-            Mapper.CreateMap<AddressDTO, AddressViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
+            Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
+            Mapper.CreateMap<StreetDTO, StreetViewModel>();
             var persons = Mapper.Map<IEnumerable<PersonDTO>, List<PersonViewModel>>(_db.Persons.GetAll());
-
-            ViewBag.streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
 
             return View(persons);
         }
 
-        // GET: Phonebook/Create
+        // GET: Person/Create
         public ActionResult Create()
         {
+            Mapper.CreateMap<PersonDTO, PersonViewModel>();
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
-            Mapper.CreateMap<AddressDTO, AddressViewModel>();
-            var streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
+            Mapper.CreateMap<StreetDTO, StreetViewModel>();
+            var streets = Mapper.Map<IEnumerable<StreetDTO>, List<StreetViewModel>>(_db.Streets.GetAll());
             ViewBag.streets = new SelectList(streets, "Id", "Street");
 
             return View("Edit", new PersonViewModel());
         }
 
-        // GET: Phonebook/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Person/Edit/5
+        public ActionResult Edit(int id)
         {
             Mapper.CreateMap<PhoneDTO, PhoneViewModel>();
-            Mapper.CreateMap<AddressDTO, AddressViewModel>();
+            Mapper.CreateMap<StreetDTO, StreetViewModel>();
             Mapper.CreateMap<PersonDTO, PersonViewModel>();
             var person = Mapper.Map<PersonDTO, PersonViewModel>(_db.Persons.Get(id));
 
-            var streets = Mapper.Map<IEnumerable<AddressDTO>, List<AddressViewModel>>(_db.Addresses.GetAll());
+            var streets = Mapper.Map<IEnumerable<StreetDTO>, List<StreetViewModel>>(_db.Streets.GetAll());
             ViewBag.streets = new SelectList(streets, "Id", "Street");
 
             return View(person);
         }
 
-        // POST: Phonebook/Edit/5
+        // POST: Person/Edit/5
         [HttpPost]
         public ActionResult Edit(PersonViewModel personViewModel, string AddressId)
         {
-            ///TODO: убрать костыль с AddressId, должен отрабатывать binder
             try
             {
-                personViewModel.Phones[0].AddressId = int.Parse(AddressId);
+                personViewModel.StreetId = int.Parse(AddressId);
                 Mapper.CreateMap<PersonViewModel, PersonDTO>();
-                Mapper.CreateMap<AddressViewModel, AddressDTO>();
+                Mapper.CreateMap<StreetViewModel, StreetDTO>();
                 Mapper.CreateMap<PhoneViewModel, PhoneDTO>();
                 var person = Mapper.Map<PersonViewModel, PersonDTO>(personViewModel);
 
@@ -80,8 +78,8 @@ namespace WebUI.Controllers
             }
         }
 
-        // GET: Phonebook/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Person/Delete/5
+        public ActionResult Delete(int id)
         {
             try
             {

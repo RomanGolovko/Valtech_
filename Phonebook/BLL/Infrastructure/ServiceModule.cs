@@ -1,5 +1,5 @@
-﻿using DAL.DB.Abstract;
-using DAL.DB.Concrete;
+﻿using DAL.Interfaces;
+using DAL.Repositories;
 using Ninject.Modules;
 
 namespace BLL.Infrastructure
