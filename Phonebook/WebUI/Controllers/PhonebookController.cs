@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BLL.DTO;
@@ -90,6 +93,33 @@ namespace WebUI.Controllers
             {
                 ModelState.AddModelError(ex.Property, ex.Message);
                 return View("Index");
+            }
+        }
+
+        // GET: Person/CreateStreet
+        public ActionResult CreateStreet()
+        {
+            return View(new StreetViewModel());
+        }
+
+        // POST: Person/CreateStreet
+        public ActionResult CreateStreet(StreetViewModel street)
+        {
+            try
+            {
+                if (!ModelState.IsValid || street == null) return View();
+
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<StreetViewModel, StreetDTO>());
+                var mapper = config.CreateMapper();
+                var currentStreet = mapper.Map<StreetDTO>(street);
+                _db.Streets.Save(currentStreet);
+
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View();
             }
         }
     }

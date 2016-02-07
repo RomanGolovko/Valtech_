@@ -264,9 +264,11 @@
     <Content Include="Views\Phonebook\Edit.cshtml" />
     <Content Include="Views\Manage\UserInfo.cshtml" />
     <None Include="Views\Manage\UserInfoEdit.cshtml" />
+    <Content Include="Views\Phonebook\CreateStreet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Street\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
