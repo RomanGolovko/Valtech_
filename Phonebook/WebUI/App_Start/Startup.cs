@@ -3,10 +3,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using WebUI;
 
-[assembly: OwinStartup(typeof(WebUI.App_Start.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace WebUI.App_Start
+namespace WebUI
 {
     public class Startup
     {
