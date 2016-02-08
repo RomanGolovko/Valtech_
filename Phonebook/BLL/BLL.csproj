@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{60D01277-AECF-42A3-9A10-54DB88A4819B}</ProjectGuid>
+    <ProjectGuid>{496C60AC-7DFC-4DB9-9632-B9D4B8126F69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,29 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\PersonDTO.cs" />
-    <Compile Include="DTO\PhoneDTO.cs" />
-    <Compile Include="DTO\StreetDTO.cs" />
-    <Compile Include="Infrastructure\ServiceModule.cs" />
-    <Compile Include="Interfaces\IService.cs" />
-    <Compile Include="Interfaces\IBllUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\PersonService.cs" />
-    <Compile Include="Services\ServiceUnitOfWork.cs" />
-    <Compile Include="Services\StreetService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
-      <Project>{fa375ae9-f052-467e-8d58-ea44ec757daa}</Project>
-      <Name>Cross-Cutting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{6480a569-5378-4c47-9b0e-2983f6df1a97}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

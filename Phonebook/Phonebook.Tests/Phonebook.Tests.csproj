@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DF5DF556-BFC3-4913-A21D-78F378426A95}</ProjectGuid>
+    <ProjectGuid>{8B777699-EA5A-4C41-8575-DC92FC4B84F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Phonebook.Tests</RootNamespace>
@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebUI\WebUI.csproj">
-      <Project>{D337F2AB-F4ED-43F3-940C-91F533B24FDA}</Project>
+      <Project>{3D42188D-7B86-4C6E-B12E-C98DE0300659}</Project>
       <Name>WebUI</Name>
     </ProjectReference>
   </ItemGroup>
