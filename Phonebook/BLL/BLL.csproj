@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +48,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CityDTO.cs" />
+    <Compile Include="DTO\CountryDTO.cs" />
+    <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PhoneDTO.cs" />
+    <Compile Include="DTO\StreetDTO.cs" />
+    <Compile Include="Infrastructure\ServiceModule.cs" />
+    <Compile Include="Interfaces\IBllUnitOfWork.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\CountryService.cs" />
+    <Compile Include="Services\PersonService.cs" />
+    <Compile Include="Services\ServiceUnitOfWork.cs" />
+    <Compile Include="Services\StreetService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cross-Cutting\Cross-Cutting.csproj">
+      <Project>{474abb5d-8cda-45f0-bce2-c307d4c8e13d}</Project>
+      <Name>Cross-Cutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{ce019f55-351a-4667-88eb-bae4048df43e}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

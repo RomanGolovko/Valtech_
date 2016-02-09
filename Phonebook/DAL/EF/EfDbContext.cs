@@ -5,7 +5,7 @@ namespace DAL.EF
 {
     public class EfDbContext : DbContext
     {
-        public EfDbContext() : base("PhonebookDB") { }
+        public EfDbContext(string connectionstring) : base(connectionstring) { }
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Street> Streets { get; set; }

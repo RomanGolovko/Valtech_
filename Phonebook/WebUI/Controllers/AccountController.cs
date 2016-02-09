@@ -31,9 +31,10 @@ namespace WebUI.Controllers
 
         public ActionResult Index()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ApplicationUser, UserModel>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<ApplicationUser, UserModel>().ReverseMap());
             var mapper = config.CreateMapper();
-            var user = mapper.Map<UserModel>(UserManager.FindByEmailAsync(User.Identity.Name));
+            var currentUser = UserManager.FindByEmail(User.Identity.Name);
+            var user = mapper.Map<ApplicationUser, UserModel>(currentUser);
 
             return View(user);
         }

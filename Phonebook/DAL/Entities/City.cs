@@ -8,7 +8,7 @@ namespace DAL.Entities
         public string Name { get; set; }
         public List<Street> Streets { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
         public Country Country { get; set; }
     }
 }

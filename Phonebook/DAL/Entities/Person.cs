@@ -14,7 +14,7 @@ namespace DAL.Entities
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        public int StreetId { get; set; }
+        public int? StreetId { get; set; }
         public Street Street { get; set; }
     }
 }
