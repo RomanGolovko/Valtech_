@@ -6,14 +6,17 @@ namespace WebUI.Models
 {
     public class PersonModel
     {
-        [HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = true)]
         public int Id { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = true)]
         public string ApplicationUserId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public int CityId { get; set; }
+        [HiddenInput(DisplayValue = true)]
+        public int StreetId { get; set; }
+
+        [HiddenInput(DisplayValue = true)]
+        public StreetModel Street { get; set; }
 
         [Required(ErrorMessage = "Please enter persons first name")]
         public string FirstName { get; set; }

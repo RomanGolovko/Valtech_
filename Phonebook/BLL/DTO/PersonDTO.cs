@@ -9,6 +9,7 @@ namespace BLL.DTO
         public string LastName { get; set; }
         public string ApplicationUserId { get; set; }
         public int StreetId { get; set; }
+        public StreetDTO Street { get; set; }
         public List<PhoneDTO> Phones { get; set; }
     }
 }

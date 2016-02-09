@@ -3,6 +3,7 @@ using BLL.DTO;
 using BLL.Interfaces;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Cross_Cutting.Security.ExceptionHandler;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -44,24 +45,39 @@ namespace WebUI.Controllers
 
         // POST: Person/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PersonModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<PersonModel, PersonDTO>());
+                var mapper = config.CreateMapper();
+                var person = mapper.Map<PersonDTO>(model);
+
+                _db.PersonsService.Save(person);
+                TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (ValidationException ex)
             {
-                return View();
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View(model);
             }
         }
 
         // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                _db.PersonsService.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View("Index");
+            }
         }
     }
 }

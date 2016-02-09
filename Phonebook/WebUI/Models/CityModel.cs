@@ -12,6 +12,9 @@ namespace WebUI.Models
         [HiddenInput(DisplayValue = false)]
         public int CountryId { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
+        public CountryModel Country { get; set; }
+
         [Required(ErrorMessage = "Please enter city name")]
         [Display(Name = "City")]
         [Range(2, 20, ErrorMessage = "This city name is incorrect")]
