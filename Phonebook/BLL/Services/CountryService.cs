@@ -21,7 +21,7 @@ namespace BLL.Services
             _db = uow;
         }
 
-        public IEnumerable<CountryDTO> GetAll()
+        public IEnumerable<CountryDTO> GetAll(string userId)
         {
             var config = new MapperConfiguration(cfg =>
             {

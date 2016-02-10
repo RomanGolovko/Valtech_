@@ -24,10 +24,6 @@ namespace WebUI.Models
         [Required(ErrorMessage = "Please enter persons last name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter persons age")]
-        [Range(1, 100, ErrorMessage = "This age is incorrect")]
-        public int Age { get; set; }
-
         public List<PhoneModel> Phones { get; set; }
     }
 }

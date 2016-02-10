@@ -1,11 +1,15 @@
 ﻿using System.Data.Entity;
 using DAL.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Cross_Cutting.Security.Identity.Entities;
 
 namespace DAL.EF
 {
     public class EfDbContext : DbContext
     {
-        public EfDbContext(string connectionString) : base(connectionString) { }
+        public EfDbContext(string connectionString) : base(connectionString)
+        {
+        }
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Street> Streets { get; set; }

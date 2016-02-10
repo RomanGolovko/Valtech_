@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Cross_Cutting.Security.ExceptionHandler;
 using WebUI.Models;
+using Microsoft.AspNet.Identity;
+using System.Web;
+using Microsoft.AspNet.Identity.Owin;
+using Cross_Cutting.Security.Identity.Entities;
 
 namespace WebUI.Controllers
 {
@@ -20,13 +24,17 @@ namespace WebUI.Controllers
         // GET: Person
         public ActionResult Index()
         {
+            var user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmail(User.Identity.Name);
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<PersonDTO, PersonModel>();
                 cfg.CreateMap<PhoneDTO, PhoneModel>();
+                cfg.CreateMap<StreetDTO, StreetModel>();
+                cfg.CreateMap<CityDTO, CityModel>();
+                cfg.CreateMap<CountryDTO, CountryModel>();
             });
             var mapper = config.CreateMapper();
-            var persons = mapper.Map<IEnumerable<PersonDTO>, List<PersonModel>>(_db.PersonsService.GetAll());
+            var persons = mapper.Map<IEnumerable<PersonDTO>, List<PersonModel>>(_db.PersonsService.GetAll(user.Id));
 
             return View(persons);
         }
@@ -38,9 +46,20 @@ namespace WebUI.Controllers
         }
 
         // GET: Person/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<PersonDTO, PersonModel>();
+                cfg.CreateMap<PhoneDTO, PhoneModel>();
+                cfg.CreateMap<StreetDTO, StreetModel>();
+                cfg.CreateMap<CityDTO, CityModel>();
+                cfg.CreateMap<CountryDTO, CountryModel>();
+            });
+            var mapper = config.CreateMapper();
+            var person = mapper.Map<PersonModel>(_db.PersonsService.Get(id));
+
+            return View(person);
         }
 
         // POST: Person/Edit/5
@@ -49,7 +68,14 @@ namespace WebUI.Controllers
         {
             try
             {
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<PersonModel, PersonDTO>());
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<PersonModel, PersonDTO>();
+                    cfg.CreateMap<PhoneModel, PhoneDTO>();
+                    cfg.CreateMap<StreetModel, StreetDTO>();
+                    cfg.CreateMap<CityModel, CityDTO>();
+                    cfg.CreateMap<CountryModel, CountryDTO>();
+                });
                 var mapper = config.CreateMapper();
                 var person = mapper.Map<PersonDTO>(model);
 

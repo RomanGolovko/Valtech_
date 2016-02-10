@@ -24,33 +24,63 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Age)
+            @Html.DisplayNameFor(model => model.Phones[0].Number)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phones[0].Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street.City.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street.City.Country.Name)
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @foreach (var phone in item.Phones)
+                {
+                    @Html.DisplayFor(modelItem => phone.Number)
+                }
+            </td>
+            <td>
+                @foreach (var phone in item.Phones)
+                {
+                    @Html.DisplayFor(modelItem => phone.Type)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street.City.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street.City.Country.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

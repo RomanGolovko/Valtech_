@@ -88,13 +88,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201602091155572_InitialCreate.cs" />
+    <Compile Include="Migrations\201602091155572_InitialCreate.Designer.cs">
+      <DependentUpon>201602091155572_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602101233150_DataMigration.cs" />
+    <Compile Include="Migrations\201602101233150_DataMigration.Designer.cs">
+      <DependentUpon>201602101233150_DataMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ExceptionHandler\ValidationException.cs" />
     <Compile Include="Security\Identity\Entities\ApplicationContext.cs" />
+    <Compile Include="Security\Identity\Entities\ApplicationRole.cs" />
+    <Compile Include="Security\Identity\Entities\ApplicationRoleManager.cs" />
     <Compile Include="Security\Identity\Entities\ApplicationUser.cs" />
     <Compile Include="Security\Identity\Entities\ApplicationUserManager.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602091155572_InitialCreate.resx">
+      <DependentUpon>201602091155572_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602101233150_DataMigration.resx">
+      <DependentUpon>201602101233150_DataMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

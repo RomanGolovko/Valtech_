@@ -17,7 +17,7 @@ namespace BLL.Services
             _db = uow;
         }
 
-        public IEnumerable<CityDTO> GetAll()
+        public IEnumerable<CityDTO> GetAll(string userId)
         {
             var config = new MapperConfiguration(cfg =>
             {

@@ -17,7 +17,7 @@ namespace BLL.Services
             _db = uow;
         }
 
-        public IEnumerable<StreetDTO> GetAll()
+        public IEnumerable<StreetDTO> GetAll(string userId)
         {
             var config = new MapperConfiguration(cfg =>
             {

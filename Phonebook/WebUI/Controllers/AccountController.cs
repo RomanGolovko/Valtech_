@@ -154,7 +154,7 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(EditModel model, HttpPostedFile uploadImage)
+        public async Task<ActionResult> Edit(EditModel model, HttpPostedFileBase uploadImage)
         {
             var user = await UserManager.FindByEmailAsync(User.Identity.Name);
 

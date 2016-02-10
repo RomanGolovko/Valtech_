@@ -5,6 +5,7 @@ using Cross_Cutting.Security.ExceptionHandler;
 using DAL.Entities;
 using DAL.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL.Services
 {
@@ -17,16 +18,19 @@ namespace BLL.Services
             _db = uow;
         }
 
-        public IEnumerable<PersonDTO> GetAll()
+        public IEnumerable<PersonDTO> GetAll(string userId)
         {
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Person, PersonDTO>();
                 cfg.CreateMap<Phone, PhoneDTO>();
+                cfg.CreateMap<Street, StreetDTO>();
+                cfg.CreateMap<City, CityDTO>();
+                cfg.CreateMap<Country, CountryDTO>();
             });
             var mapper = config.CreateMapper();
-            var persons = mapper.Map<List<PersonDTO>>(_db.Persons.GetAll());
-
+            var persons = mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
+            //var currentPersons = persons.Where(x => x.ApplicationUserId == userId);
             return persons;
         }
 
@@ -48,6 +52,10 @@ namespace BLL.Services
             {
                 cfg.CreateMap<Person, PersonDTO>();
                 cfg.CreateMap<Phone, PhoneDTO>();
+                cfg.CreateMap<Street, StreetDTO>();
+                cfg.CreateMap<City, CityDTO>();
+                cfg.CreateMap<Country, CountryDTO>();
+
             });
             var mapper = config.CreateMapper();
             var currentPerson = mapper.Map<PersonDTO>(_db.Persons.Get(id.Value));
@@ -61,6 +69,9 @@ namespace BLL.Services
             {
                 cfg.CreateMap<PersonDTO, Person>();
                 cfg.CreateMap<PhoneDTO, Phone>();
+                cfg.CreateMap<StreetDTO, Street>();
+                cfg.CreateMap<CityDTO, City>();
+                cfg.CreateMap<CountryDTO, Country>();
             });
             var mapper = config.CreateMapper();
             var person = mapper.Map<Person>(_db.Persons.Get(personDTO.Id));
