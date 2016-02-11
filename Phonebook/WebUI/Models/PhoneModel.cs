@@ -11,7 +11,7 @@ namespace WebUI.Models
         [HiddenInput(DisplayValue = false)]
         public int PersonId { get; set; }
 
-        [DataType(DataType.PhoneNumber)]
+        [System.ComponentModel.DataAnnotations.DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone number")]
         public string Number { get; set; }
 

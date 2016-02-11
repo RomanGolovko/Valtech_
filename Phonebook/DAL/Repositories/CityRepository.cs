@@ -28,11 +28,13 @@ namespace DAL.Repositories
         public void Create(City city)
         {
             _db.Cities.Add(city);
+            _db.SaveChanges();
         }
 
         public void Update(City city)
         {
             _db.Entry(city).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -42,6 +44,7 @@ namespace DAL.Repositories
             if (city != null)
             {
                 _db.Cities.Remove(city);
+                _db.SaveChanges();
             }
         }
     }

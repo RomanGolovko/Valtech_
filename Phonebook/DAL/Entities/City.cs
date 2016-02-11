@@ -4,11 +4,10 @@ namespace DAL.Entities
 {
     public class City
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Street> Streets { get; set; }
-
-        public int? CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual List<Street> Streets { get; set; }
+        public virtual int CountryId { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

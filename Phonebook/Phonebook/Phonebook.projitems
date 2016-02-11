@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>dba5dbea-202f-4a88-93e5-3a625eb2768d</SharedGUID>
+    <SharedGUID>ac2b1995-c631-4298-8ea6-d3d04aebaaa0</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Phonebook</Import_RootNamespace>

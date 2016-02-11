@@ -1,8 +1,8 @@
-﻿using DAL.EF;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using DAL.EF;
 using DAL.Entities;
 using DAL.Interfaces;
-using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace DAL.Repositories
 {
@@ -17,7 +17,8 @@ namespace DAL.Repositories
 
         public IEnumerable<Person> GetAll()
         {
-            return _db.Persons;
+            var pers = _db.Persons;
+            return pers;
         }
 
         public Person Get(int id)
@@ -28,11 +29,13 @@ namespace DAL.Repositories
         public void Create(Person person)
         {
             _db.Persons.Add(person);
-        }
+            _db.SaveChanges();
+        } 
 
         public void Update(Person person)
         {
             _db.Entry(person).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -42,6 +45,7 @@ namespace DAL.Repositories
             if (person != null)
             {
                 _db.Persons.Remove(person);
+                _db.SaveChanges();
             }
         }
     }

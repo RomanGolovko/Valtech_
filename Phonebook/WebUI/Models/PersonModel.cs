@@ -10,7 +10,7 @@ namespace WebUI.Models
         public int Id { get; set; }
 
         [HiddenInput(DisplayValue = true)]
-        public string ApplicationUserId { get; set; }
+        public string UserId { get; set; }
 
         [HiddenInput(DisplayValue = true)]
         public int StreetId { get; set; }

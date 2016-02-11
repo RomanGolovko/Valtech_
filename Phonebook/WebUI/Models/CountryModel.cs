@@ -10,8 +10,7 @@ namespace WebUI.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please enter street name")]
-        [Display(Name = "Street")]
-        [Range(2, 20, ErrorMessage = "This street name is incorrect")]
+        [Display(Name = "Country")]
         public string Name { get; set; }
 
         public List<CityModel> Cities { get; set; }

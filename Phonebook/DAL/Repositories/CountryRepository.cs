@@ -28,11 +28,13 @@ namespace DAL.Repositories
         public void Create(Country country)
         {
             _db.Countries.Add(country);
+            _db.SaveChanges();
         }
 
         public void Update(Country country)
         {
             _db.Entry(country).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -42,6 +44,7 @@ namespace DAL.Repositories
             if (country != null)
             {
                 _db.Countries.Remove(country);
+                _db.SaveChanges();
             }
         }
     }

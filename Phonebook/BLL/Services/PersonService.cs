@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using BLL.DTO;
 using BLL.Interfaces;
-using Cross_Cutting.Security.ExceptionHandler;
+using Cross_Cutting.Security;
 using DAL.Entities;
 using DAL.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BLL.Services
 {
@@ -30,8 +30,9 @@ namespace BLL.Services
             });
             var mapper = config.CreateMapper();
             var persons = mapper.Map<IEnumerable<Person>, List<PersonDTO>>(_db.Persons.GetAll());
-            //var currentPersons = persons.Where(x => x.ApplicationUserId == userId);
-            return persons;
+            var currentPersons = persons.Where(x => x.UserId == userId);
+
+            return currentPersons;
         }
 
         public PersonDTO Get(int? id)
@@ -65,7 +66,7 @@ namespace BLL.Services
 
         public void Save(PersonDTO personDTO)
         {
-            var config = new MapperConfiguration(cfg => 
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<PersonDTO, Person>();
                 cfg.CreateMap<PhoneDTO, Phone>();
@@ -74,7 +75,13 @@ namespace BLL.Services
                 cfg.CreateMap<CountryDTO, Country>();
             });
             var mapper = config.CreateMapper();
-            var person = mapper.Map<Person>(_db.Persons.Get(personDTO.Id));
+            var person = mapper.Map<Person>(personDTO);
+            var street = person.Street;
+            SaveStreet(street);
+            var city = street.City;
+            SaveCity(city);
+            var country = city.Country;
+            SaveCountry(country);
 
             if (personDTO.Id == 0)
             {
@@ -86,7 +93,7 @@ namespace BLL.Services
             }
         }
 
-        public  void Delete(int? id)
+        public void Delete(int? id)
         {
             if (id == null)
             {
@@ -101,6 +108,42 @@ namespace BLL.Services
             }
 
             _db.Persons.Delete(id.Value);
+        }
+
+        private void SaveStreet(Street street)
+        {
+            if (street.Id == 0)
+            {
+                _db.Streets.Create(street);
+            }
+            else
+            {
+                _db.Streets.Update(street);
+            }
+        }
+
+        private void SaveCity(City city)
+        {
+            if (city.Id == 0)
+            {
+                _db.Cities.Create(city);
+            }
+            else
+            {
+                _db.Cities.Update(city);
+            }
+        }
+
+        private void SaveCountry(Country country)
+        {
+            if (country.Id == 0)
+            {
+                _db.Countries.Create(country);
+            }
+            else
+            {
+                _db.Countries.Update(country);
+            }
         }
     }
 }

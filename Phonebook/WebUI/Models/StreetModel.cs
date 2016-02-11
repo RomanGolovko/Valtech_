@@ -17,7 +17,6 @@ namespace WebUI.Models
 
         [Required(ErrorMessage = "Please enter street name")]
         [Display(Name = "Street")]
-        [Range(2, 20, ErrorMessage = "This street name is incorrect")]
         public string Name { get; set; }
 
         public List<PersonModel> Persons { get; set; }

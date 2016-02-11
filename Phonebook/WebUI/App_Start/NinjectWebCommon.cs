@@ -40,9 +40,8 @@ namespace WebUI.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var modules = new INinjectModule[] { new ServiceModule("PhonebookDB") };
+            var modules = new INinjectModule[] { new ServiceModule("aspnet-WebUI-20160211091104") };
             var kernel = new StandardKernel(modules);
-
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);

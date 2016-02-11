@@ -28,11 +28,13 @@ namespace DAL.Repositories
         public void Create(Street street)
         {
             _db.Streets.Add(street);
+            _db.SaveChanges();
         }
 
         public void Update(Street street)
         {
             _db.Entry(street).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -42,6 +44,7 @@ namespace DAL.Repositories
             if (street != null)
             {
                 _db.Streets.Remove(street);
+                _db.SaveChanges();
             }
         }
     }

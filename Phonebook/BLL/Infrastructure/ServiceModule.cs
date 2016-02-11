@@ -6,14 +6,14 @@ namespace BLL.Infrastructure
 {
     public class ServiceModule : NinjectModule
     {
-        private string connectionString;
+        private readonly string _connectionString;
         public ServiceModule(string connection)
         {
-            connectionString = connection;
+            _connectionString = connection;
         }
         public override void Load()
         {
-            Bind<IDalUnitOfWork>().To<EfUnitOfWork>().WithConstructorArgument(connectionString);
+            Bind<IDalUnitOfWork>().To<EfUnitOfWork>().WithConstructorArgument(_connectionString);
         }
     }
 }
