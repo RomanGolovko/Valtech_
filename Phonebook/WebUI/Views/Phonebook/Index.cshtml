@@ -1,15 +1,26 @@
 ﻿@model IEnumerable<WebUI.Models.PersonModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phonebook";
 }
 
-<h2>Index</h2>
+<h2>My Phonebook</h2>
+
+@using (Ajax.BeginForm("Search", FormMethod.Post, new AjaxOptions { UpdateTargetId = "list" }, new { @class = "form-inline", role = "form" }))
+{
+    <div class="col-md-3 col-md-offset-7">
+        <input type="text" name="str" class="form-control" placeholder="search parameters" />
+    </div>
+
+    <div>
+        <input type="submit" value="Search" class="btn btn-default">
+    </div>
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table id="list" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)

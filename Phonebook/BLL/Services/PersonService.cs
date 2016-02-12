@@ -35,6 +35,23 @@ namespace BLL.Services
             return currentPersons;
         }
 
+        public IEnumerable<PersonDTO> Search(string userId, string searchedParam)
+        {
+            var persons = GetAll(userId);
+
+            if (!string.IsNullOrEmpty(searchedParam))
+            {
+                persons = persons.Where(x => x.FirstName.ToLower().Contains(searchedParam.Trim().ToLower()) 
+                    /*|| x.Phones.Where(p => p.Number.ToString().Contains(searchedParam.Trim().ToLower()) || p.Type.Contains(searchedParam.Trim().ToLower()))*/
+                    || x.LastName.ToLower().Contains(searchedParam.Trim().ToLower())
+                    || x.Street.Name.ToLower().Contains(searchedParam.Trim().ToLower())
+                    || x.Street.City.Name.ToLower().Contains(searchedParam.Trim().ToLower())
+                    || x.Street.City.Country.Name.ToLower().Contains(searchedParam.Trim().ToLower()));
+            }
+
+            return persons;
+        }
+
         public PersonDTO Get(int? id)
         {
             if (id == null)

@@ -11,6 +11,7 @@ using WebUI.Models;
 
 namespace WebUI.Controllers
 {
+    [Authorize]
     public class PhonebookController : Controller
     {
         private readonly IBllUnitOfWork _db;
@@ -36,6 +37,24 @@ namespace WebUI.Controllers
             var persons = mapper.Map<IEnumerable<PersonDTO>, List<PersonModel>>(_db.PersonsService.GetAll(user.Id));
 
             return View(persons);
+        }
+
+        // POST: Person/Search
+        public ActionResult Search(string str)
+        {
+            var user = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByEmail(User.Identity.Name);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<PersonDTO, PersonModel>();
+                cfg.CreateMap<PhoneDTO, PhoneModel>();
+                cfg.CreateMap<StreetDTO, StreetModel>();
+                cfg.CreateMap<CityDTO, CityModel>();
+                cfg.CreateMap<CountryDTO, CountryModel>();
+            });
+            var mapper = config.CreateMapper();
+            var persons = mapper.Map<IEnumerable<PersonDTO>, List<PersonModel>>(_db.PersonsService.Search(user.Id, str));
+
+            return PartialView(persons);
         }
 
         // GET: Person/Create
