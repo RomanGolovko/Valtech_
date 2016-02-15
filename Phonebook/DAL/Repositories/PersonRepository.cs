@@ -23,7 +23,7 @@ namespace DAL.Repositories
 
         public Person Get(int id)
         {
-            return _db.Persons.Find(id);
+            return _db.Persons.Find(id); 
         }
 
         public void Create(Person person)

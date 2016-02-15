@@ -16,9 +16,12 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.StreetId)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Street.Id)
+        @Html.HiddenFor(model => model.Street.CityId)
         @Html.HiddenFor(model => model.Street.City.Id)
+        @Html.HiddenFor(model => model.Street.City.CountryId)
         @Html.HiddenFor(model => model.Street.City.Country.Id)
 
         <div class="form-group">
@@ -43,6 +46,7 @@
         @do
         {
             @Html.HiddenFor(model => model.Phones[count].Id)
+            @Html.HiddenFor(model => model.Phones[count].PersonId)
             <div class="form-group">
                 @Html.LabelFor(model => model.Phones[count].Number, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
