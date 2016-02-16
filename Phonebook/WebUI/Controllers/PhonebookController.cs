@@ -83,7 +83,7 @@ namespace WebUI.Controllers
         // POST: Person/Edit/5
         [HttpPost]
         public ActionResult Edit(PersonModel model)
-        {
+         {
             model.UserId = User.Identity.GetUserId();
             try
             {
@@ -98,10 +98,6 @@ namespace WebUI.Controllers
                 var mapper = config.CreateMapper();
                 var person = mapper.Map<PersonDTO>(model);
 
-                foreach (var phone in model.Phones)
-                {
-                    phone.PersonId = model.Id;
-                }
                 _db.PersonsService.Save(person);
                 TempData["message"] = $"{person.FirstName} {person.LastName} has been saved";
 
